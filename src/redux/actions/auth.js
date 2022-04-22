@@ -46,14 +46,12 @@ export const auth_action = () => async dispatch => {
                 "Content-Type": "application/json"
             },
         })
-
         const userData = await res.json() 
         // resultado exitoso o fail
         if (res.status === 200) {
             dispatch({
                 type: types.AUTH_VERIFY,
                 payload: userData.success  // => res auth user data user
-
             })
         } else {
             dispatch({
@@ -95,6 +93,32 @@ export const login_action = (formData) => async dispatch => {
         console.log(const_body)
         dispatch({
             type: types.AUTH_FAIL
+        })
+
+
+    }
+}
+
+export const logout_action = () => async dispatch => {
+    try {
+        const res = await fetch("/api/01/user/logout/", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        if (res.status === 200) {
+            dispatch({
+                type: types.LOGUT_SUCCESS
+            })
+        } else {
+            dispatch({
+                type: types.ACTION_FAIL
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: types.ACTION_FAIL
         })
 
 
