@@ -11,7 +11,7 @@ export default function Navbar() {
         </Link>
 
         <div className='flex items-center space-x-8 text-[15px]'>
-          <Link href="/">
+        <Link href="/user/login">
             <a className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
               login
             </a>

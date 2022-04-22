@@ -1,6 +1,25 @@
 import Head from 'next/head'
 import Navbar from './Navbar'
+import { useDispatch, useSelector } from 'react-redux'
+import { auth_action } from '../redux/actions/auth'
+import { useEffect } from 'react'
+
+
 export default function Layout({ title, description, children }) {
+    const userStatus = useSelector(e => e.auth)
+    const dispatch = useDispatch()
+    
+    const check_user = () => {
+        if (dispatch && dispatch !== undefined && dispatch !== null) {
+            dispatch(auth_action())
+        }
+    }
+
+
+    useEffect(() => {
+        check_user()
+    }, [])
+
     return (
         <>
             <Head>
@@ -10,7 +29,7 @@ export default function Layout({ title, description, children }) {
                 <meta name="description" content={description} />
                 <title>{title}</title>
             </Head>
-            <Navbar/>
+            <Navbar />
             <div className='m-[5rem]'>
                 {children}
             </div>

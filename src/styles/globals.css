@@ -8,6 +8,10 @@ body {
   @apply bg-slate-800 text-white
 }
 
+.input-field{
+  @apply focus:outline-none px-6 py-4 rounded-xl 
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
