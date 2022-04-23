@@ -1,40 +1,6 @@
 import * as types from './types'
 
 
-export const register_action = (formData) => async dispatch => {
-    const const_body = JSON.stringify(formData)
-    try {
-        const res = await fetch("/api/01/user/register/", {
-            method: "POST",
-            headers: {
-                "Action": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: const_body
-        })
-
-        // resultado exitoso o fail
-        if (res.status === 201) {
-            dispatch({
-                type: types.REGISTER_SUCCESS
-            })
-
-        } else {
-            dispatch({
-                type: types.AUTH_FAIL
-            })
-
-        }
-
-    } catch (error) {
-        console.log(const_body)
-        dispatch({
-            type: types.AUTH_FAIL
-        })
-
-
-    }
-}
 
 
 export const auth_action = () => async dispatch => {
@@ -68,7 +34,8 @@ export const auth_action = () => async dispatch => {
 }
 
 export const login_action = (formData) => async dispatch => {
-    const const_body = JSON.stringify(formData)
+    const {email, password} = formData
+    const const_body = JSON.stringify({email, password})
     try {
         const res = await fetch("/api/01/user/login/", {
             method: "POST",
@@ -98,6 +65,44 @@ export const login_action = (formData) => async dispatch => {
 
     }
 }
+
+
+export const register_action = (formData) => async dispatch => {
+    const const_body = JSON.stringify(formData)
+    try {
+        const res = await fetch("/api/01/user/register/", {
+            method: "POST",
+            headers: {
+                "Action": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: const_body
+        })
+
+        // resultado exitoso o fail
+        if (res.status === 201) {
+            dispatch(login_action(formData))
+            
+            dispatch({
+                type: types.REGISTER_SUCCESS
+            })
+        } else {
+            dispatch({
+                type: types.AUTH_FAIL
+            })
+
+        }
+
+    } catch (error) {
+        console.log(const_body)
+        dispatch({
+            type: types.AUTH_FAIL
+        })
+
+
+    }
+}
+
 
 export const logout_action = () => async dispatch => {
     try {
