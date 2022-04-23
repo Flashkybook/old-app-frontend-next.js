@@ -11,7 +11,7 @@ const FlashCards = ({ current }) => {
         {/* WORD */}
         {current &&
           < span className='text-5xl my-5'>
-            {current.word.word}
+            {current.dictionary.word}
           </span>
         }
 
