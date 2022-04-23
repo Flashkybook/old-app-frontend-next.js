@@ -30,7 +30,7 @@ export default function Layout({ title, description, children }) {
                 <title>{title}</title>
             </Head>
             <Navbar />
-            <div className='m-[5rem]'>
+            <div className=''>
                 {children}
             </div>
 

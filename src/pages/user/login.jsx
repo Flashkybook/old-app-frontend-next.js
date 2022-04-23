@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import Layout from '../../components/Layout'
-import { useDispatch } from 'react-redux'
 import { login_action } from '../../redux/actions/auth'
-
+import {useDispatch, useSelector} from 'react-redux'
+import { useRouter } from 'next/router'
 
 export default function login() {
-  const dispatch = useDispatch()
+  const route = useRouter()
+  const reduxStatus = useSelector(e => e.auth)
 
+  if (reduxStatus.is_auth) {
+    route.push("/")
+  }
+
+  const dispatch = useDispatch()
   const [formData, setFormaData] = useState({
     email: "",
     password: "",

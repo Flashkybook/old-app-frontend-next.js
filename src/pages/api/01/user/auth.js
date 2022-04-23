@@ -81,7 +81,6 @@ export default async (request, response) => {
                         });
                         const userData = await userApiRes.json()
 
-                        console.log(userData, access)
                         if (userApiRes.status === 200) {
                             return response.status(200).json({ success: userData.success })
                         } else {

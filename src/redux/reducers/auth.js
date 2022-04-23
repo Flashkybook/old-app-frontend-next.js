@@ -4,8 +4,8 @@ const initial_state = {
     user: null,
     is_auth: false,
     auth_status: "",
-
 }
+
 
 const authReducer = (state = initial_state, actions) => {
     const { type, payload } = actions

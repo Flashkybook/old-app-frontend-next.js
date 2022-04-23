@@ -17,7 +17,7 @@ export default function Navbar() {
             {user.email}
           </p>
         }
-        <Link href="/">
+        <Link href="/study">
           <a className='font-bold text-[25px]'>
             vocabulary app
           </a>

@@ -7,9 +7,30 @@ body {
   
   @apply bg-slate-800 text-white
 }
+.container-stretch{
+  margin: 5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;  
+}
 
 .input-field{
   @apply focus:outline-none px-6 py-4 rounded-xl 
+}
+.color-p1 {
+  @apply bg-slate-900
+}
+
+.color-p2 {
+  @apply bg-slate-500
+}
+
+.color-s1 {
+  @apply bg-teal-900
+}
+
+.color-s2 {
+  @apply bg-sky-900
 }
 
 @tailwind base;
