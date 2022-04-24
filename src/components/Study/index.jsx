@@ -1,50 +1,66 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { get_book } from '../../redux/actions/wordbook'
-import WordBook from './WordBook'
+import { get_book, set_current } from '../../redux/actions/wordbook'
 import FlashCards from './FlashCards'
+import Form from './Form'
 import Games from './Games'
+import WordBook from './WordBook'
 
 export default function index() {
     const dispatch = useDispatch()
+
+    const getbook = () => {dispatch(get_book())}
+    const setCurrent = (e) => {dispatch(set_current(e))}
+
     useEffect(() => {
-        dispatch(get_book())
+        getbook()
     }, [dispatch])
     const user_book = useSelector(e => e.book.user_book)
+    const current = useSelector(e => e.book.current)
 
 
-    const [current, setCurrent] = useState(0)
-
+    // const [current, setCurrent] = useState(0)
 
 
     const handlerSubmit = e => {
         // tiene que darle estilo para saber si es correcto
         // saber si es correcta la respuesta
-        const currentWord = user_book[current].dictionary.word.toLocaleLowerCase()
-        
+        const currentWord = user_book[current].terms.word.toLocaleLowerCase()
         const answer = e.target.answer.value.toLocaleLowerCase()
-        
-        if (answer === currentWord) {
+        if (answer === currentWord ) {
+            // espera
+            e.target.answer.classList.remove("border-red-500")
             e.target.answer.classList.add("border-teal-500")
-            // tiene que pasar a la siguiente targeta si es correcto
-            setCurrent(current + 1)
-            e.target.reset()
+            setTimeout(() => {
+                // tiene que pasar a la siguiente targeta si es correcto
+                setCurrent(+1)
+                e.target.reset()
+                e.target.answer.classList.replace("border-teal-500", "border-white")
+            }, 500);
 
-            // bucle de repeticion
-            if (current +1 >= user_book.length) {
+            if (current >= user_book.length) {
                 setCurrent(0)
-                console.log(current +1 >= user_book.length)
             }
+    
         } else {
             console.log("respuesta incorrecta")
-            e.target.answer.classList.add("border-teal-500")
-            e.target.answer.classList.replace("border-teal-500", "border-red-500")
+            e.target.answer.classList.remove("border-teal-500")
+            e.target.answer.classList.add("border-red-500")
         }
-
         e.preventDefault()
-
-
     }
+
+
+    useEffect(() => {
+
+        // bucle de repeticion
+        if (current >= user_book.length ) {
+            setCurrent(0)
+        }
+        
+
+    }, [current])
+
 
     return (
         <div className='mx-2'>
@@ -64,35 +80,22 @@ export default function index() {
 
                     {/* BUTTONS FlashCards */}
                     <div className='flex justify-center text-2xl mt-2'>
-
                         {/* PREVIUS */}
-                        <div>⬅</div>
-
-                        <div className='mx-4'> {current + 1}/{user_book.length}  </div>
-
+                        <button onClick={() => setCurrent(-1)}>⬅</button>
+                        <div className='mx-4'> {current+1}/{user_book.length}  </div>
                         {/* NEXT */}
-                        <div>➡</div>
-
+                        <button onClick={() => dispatch(set_current(1))}>➡</button>
                     </div>
+
+                    <Form/>
                 </div>
 
 
 
 
                 {/* wordbook LIST */}
-                <div className='w-1/5 border border-white flex flex-col justify-center  rounded-xl' >
-                    <span>
-                        user book list
-                    </span>
-                    <div>
-                        <ul className='flex flex-col'>
-                            {user_book && user_book.map((e, i) =>(
-                                 <li key={e.id} >{e.dictionary.word} {e.nivel}</li>
-                                 ))}
-                        </ul>
-                    </div>
-                </div>
-
+                <WordBook user_book={user_book} />
+                
 
             </div>
 

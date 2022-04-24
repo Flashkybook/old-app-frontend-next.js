@@ -10,8 +10,8 @@ const FlashCards = ({ current }) => {
 
         {/* WORD */}
         {current &&
-          < span className='text-5xl my-5'>
-            {current.dictionary.word}
+          < span className='text-5xl my-5 text-center'>
+            {current.terms.word}
           </span>
         }
 
