@@ -57,6 +57,8 @@ export const set_current = (data) => dispatch => {
 
 
 export const add_word = (formData) => async dispatch => {
+
+    console.log(formData)
     const const_body = JSON.stringify(formData)
     try {
         const res = await fetch("/api/01/wordbook/addword/", {
@@ -89,4 +91,42 @@ export const add_word = (formData) => async dispatch => {
 
 
     }
+}
+
+export const current_sesion = (formData) => async dispatch => {
+    // agrega las cartas estudiadas al redux, una ves la sesionde estudio termine se mandan los datos al backend
+
+    console.log("formData")
+    // const const_body = JSON.stringify(formData)
+    // try {
+    //     const res = await fetch("/api/01/wordbook/addword/", {
+    //         method: "POST",
+    //         headers: {
+    //             "Action": "application/json",
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: const_body
+    //     })
+
+    //     // resultado si agrega al libro o se tomo uno existente o fail
+    //     dispatch(get_book())
+    //     if (res.status === 201) { // create and adde to userbook
+    //         dispatch({
+    //             type: types.WORD_BOOK_ADD_SUCCESS
+    //         })
+    //     } else {
+    //         dispatch({
+    //             type: types.WORD_BOOK_ADD_FAIL
+    //         })
+
+    //     }
+
+    // } catch (error) {
+    //     console.log(const_body)
+    //     dispatch({
+    //         type: types.AUTH_FAIL
+    //     })
+
+
+    // }
 }

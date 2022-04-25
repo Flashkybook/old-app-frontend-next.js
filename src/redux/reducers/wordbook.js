@@ -1,8 +1,10 @@
 import * as types from '../actions/types'
 
 const initial_state = {
-    user_book: [],
-    current: 1
+    cards: [],
+    current: 1,
+    current_sesion : [], // son las cartas que seran envidas al backend para su setteo,
+    error : null
 }
 
 
@@ -10,7 +12,7 @@ const bookReducer = (state = initial_state, actions) => {
     const { type, payload } = actions
     switch (type) {
         case types.GET_BOOK_SUCCESS:
-            return { ...state, user_book: payload }
+            return { ...state, cards: payload }
         case types.GET_BOOK_FAIL:
             return { ...state }
 

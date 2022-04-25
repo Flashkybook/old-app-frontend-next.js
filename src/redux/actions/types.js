@@ -34,6 +34,13 @@ export const WORD_BOOK_ADD_FAIL = "WORD_BOOK_ADD_FAIL"
 export const ADD_TO_USER_BOOK = "ADD_TO_USER_BOOK"
 
 
+// Study Sesion
+
+export const SET_CARD = "SET_CARD"
+
+
+
+
 
 
 

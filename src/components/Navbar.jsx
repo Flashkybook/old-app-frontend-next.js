@@ -24,25 +24,25 @@ export default function Navbar() {
         </Link>
 
 
-        <div className='flex items-center space-x-8 text-[15px]'>
+        <ul className='flex items-center space-x-8 text-[15px]'>
 
           {user ?
-              <a onClick={()=>dispatch(logout_action())} className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
+              <li onClick={()=>dispatch(logout_action())} className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
                 Logout
-              </a>
+              </li>
            
 
             :
             <>
               <Link href="/user/login">
-                <a className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
+                <li className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
                   login
-                </a>
+                </li>
               </Link>
               <Link href="/user/register">
-                <a className=''>
+                <li className=''>
                   register
-                </a>
+                </li>
               </Link>
             </>
 
@@ -50,7 +50,7 @@ export default function Navbar() {
           }
 
 
-        </div>
+        </ul>
       </div>
 
     </nav>

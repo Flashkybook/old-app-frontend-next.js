@@ -4,7 +4,7 @@ import bookReducer from './wordbook'
 
 const reducers = {
     auth: authReducer,
-    book: bookReducer,
+    user_book: bookReducer,
 }
 
 export default combineReducers(reducers)

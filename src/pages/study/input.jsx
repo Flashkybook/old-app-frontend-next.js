@@ -2,13 +2,13 @@ import React from 'react'
 
 
 // components
-import Layout from '../components/Layout'
-import Study from '../components/Study'
+import Layout from '../../components/Layout'
+import Input from '../../components/Games/Input'
 
 const study = () => {
   return (
     <Layout>
-     <Study/>
+     <Input/>
 
     </Layout>
   )

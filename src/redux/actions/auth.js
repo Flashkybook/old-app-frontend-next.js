@@ -1,8 +1,5 @@
 import * as types from './types'
 
-
-
-
 export const auth_action = () => async dispatch => {
     try {
         const res = await fetch("/api/01/user/auth/", {
