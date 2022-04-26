@@ -12,7 +12,7 @@ const WordBook = ({all_cards}) => {
       <div>
         <ul className='flex flex-col'>
           {all_cards && all_cards.map((e, i) => (
-            <li key={i} >{e.terms.word} {e.nivel}</li>
+            <li key={i} >{e.terms.word} {e.easiness}</li>
           ))}
         </ul>
       </div>

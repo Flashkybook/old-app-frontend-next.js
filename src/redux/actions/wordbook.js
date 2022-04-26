@@ -101,6 +101,7 @@ export const add_word = (formData) => async dispatch => {
  * solo es un dispatch, el reducer debe realizar toda ala logica de ordenado
  */
 export const new_study_session = ()=> dispatch => {
+    console.log("nueva sesion de estudio")
     dispatch({
         type: types.NEW_STUDY_SESSION
     })

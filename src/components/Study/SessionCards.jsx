@@ -8,7 +8,7 @@ export default function SessionCards({cards}) {
             <div>
                 <ul className='flex flex-col'>
                     {cards && cards.map((e, i) => (
-                        <li key={i} >{e.terms.word} {e.nivel}</li>
+                        <li key={i} >{e.terms.word} {e.easiness}</li>
                     ))}
                 </ul>
             </div>

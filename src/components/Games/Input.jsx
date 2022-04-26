@@ -42,7 +42,7 @@ export default function Input() {
         e.target.reset()
         setFails(0)
         e.target.answer.classList.replace("border-teal-500", "border-white")
-        card.nivel = fails
+        card.easiness = fails
         dispatch(current_session(card))
       }, 500);
       if (current >= cards.length) {

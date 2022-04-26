@@ -37,13 +37,13 @@ const bookReducer = (state = initial_state, actions) => {
 
             let study_commit = 2 // seteable por configuracion de usuario poximamente
 
-            // ordena por nivel mayor
+            // ordena por easiness mayor
             let list_order = state.cards
             function compare(a, b) {
-                if (a.nivel < b.nivel) {
+                if (a.easiness < b.easiness) {
                     return 1;
                 }
-                if (a.nivel > b.nivel) {
+                if (a.easiness > b.easiness) {
                     return -1;
                 }
                 return 0;
