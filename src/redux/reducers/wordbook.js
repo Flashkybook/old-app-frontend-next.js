@@ -30,21 +30,21 @@ const bookReducer = (state = initial_state, actions) => {
             return { ...state }
 
         // SESSION
-        case types.CURRENT_SESSION_ADD:
+        case types.SET_WORD_STUDY:
             return { ...state }
 
         case types.NEW_STUDY_SESSION:
 
-            let study_commit = 2 // seteable por configuracion de usuario poximamente
+            let study_commit = 1 // seteable por configuracion de usuario poximamente
 
             // ordena por easiness mayor
             let list_order = state.cards
             function compare(a, b) {
                 if (a.easiness < b.easiness) {
-                    return 1;
+                    return -1;
                 }
                 if (a.easiness > b.easiness) {
-                    return -1;
+                    return 1;
                 }
                 return 0;
             }

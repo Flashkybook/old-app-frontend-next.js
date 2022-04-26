@@ -20,7 +20,7 @@ export default function Input() {
 
   const cards = useSelector(e => e.user_book.session)
   const current = useSelector(e => e.user_book.current)
-  const [fails, setFails] = useState(0)
+  // const [fails, setFails] = useState(0)
 
   /**
    * @param {respuesta} e respuesta del formulario
@@ -29,21 +29,21 @@ export default function Input() {
   const handlerSubmit = e => {
     const currentWord = cards[current].terms.word.toLocaleLowerCase()
     const answer = e.target.answer.value.toLocaleLowerCase()
+    const card = cards[current]
+    card.easiness = 5
 
     if (answer === currentWord) {
       // espera
       e.target.answer.classList.remove("border-red-500")
       e.target.answer.classList.add("border-teal-500")
-      const card = cards[current]
 
       setTimeout(() => {
         // tiene que pasar a la siguiente targeta si es correcto
         setCurrent(+1)
-        e.target.reset()
-        setFails(0)
+        // e.target.reset()
         e.target.answer.classList.replace("border-teal-500", "border-white")
-        card.easiness = fails
         dispatch(current_session(card))
+        console.log(card)
       }, 500);
       if (current >= cards.length) {
         setCurrent(0)
@@ -52,10 +52,10 @@ export default function Input() {
       console.log("respuesta incorrecta")
       e.target.answer.classList.remove("border-teal-500")
       e.target.answer.classList.add("border-red-500")
-      if (fails < 5) {
-        setFails(fails + 1)
+      if (card.easiness >= 0) {
+        card.easiness = card.easiness - 1
       }
-      console.log(currentWord)
+
     }
     e.preventDefault()
   }

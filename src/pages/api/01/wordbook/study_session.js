@@ -9,7 +9,7 @@ export default async (request, response) => {
 
     const sendData = JSON.stringify(request.body)
 
-
+    console.log(sendData)
     if (request.method === 'POST') {
         try {
             const apiRes = await fetch(`${backend_api}/api/words/study_session/`, {
