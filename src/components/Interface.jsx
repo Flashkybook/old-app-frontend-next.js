@@ -26,9 +26,6 @@ export default function index({ children, gameTitle, new_session }) {
   
     const all_cards = useSelector(e => e.user_book.cards)
     
-
-
-
     const cards = new_session ? useSelector(e => e.user_book.session) : useSelector(e => e.user_book.cards) 
     const current = useSelector(e => e.user_book.current)
 
@@ -41,15 +38,18 @@ export default function index({ children, gameTitle, new_session }) {
 
 
 
+
+
     return (
         <div className='mx-2'>
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
             <div className='container-stretch space-x-5'>
 
-
                 <Games />
 
                 {/* FlashCards */}
+
+                
 
                 <div className='w-1/2 flex flex-col items-center '>
                     <FlashCards current={cards[current] } />

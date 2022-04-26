@@ -1,6 +1,3 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { get_book } from '../../redux/actions/wordbook'
 
 
 const WordBook = ({all_cards}) => {

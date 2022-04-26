@@ -60,11 +60,6 @@ export default function Input() {
     e.preventDefault()
   }
 
-  /**
-   * sesion de estudios
-   */
-
-
   useEffect(() => {
     if (current >= cards.length) {
       setCurrent(0)
@@ -72,7 +67,10 @@ export default function Input() {
 
   }, [current])
 
-
+  // useEffect(() => {
+  //   dispatch(get_book())
+  //   dispatch(new_study_session()) 
+  // }, [dispatch])
 
   return (
     <Interface gameTitle="Input" new_session={true}>

@@ -31,14 +31,14 @@ const bookReducer = (state = initial_state, actions) => {
 
         // SESSION
         case types.CURRENT_SESSION_ADD:
-            return { ...state, session: [...state.session, payload] }
+            return { ...state }
 
         case types.NEW_STUDY_SESSION:
 
             let study_commit = 2 // seteable por configuracion de usuario poximamente
 
             // ordena por nivel mayor
-            let list_order = [...state.cards]
+            let list_order = state.cards
             function compare(a, b) {
                 if (a.nivel < b.nivel) {
                     return 1;
@@ -51,8 +51,6 @@ const bookReducer = (state = initial_state, actions) => {
             list_order.sort(compare);
 
             let list = list_order.slice(0, study_commit)
-            console.log("nueva sesion de estudio", state.cards)
-
             return { ...state, session: list }
 
         default:
