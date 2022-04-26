@@ -3,17 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { get_book } from '../../redux/actions/wordbook'
 
 
-const WordBook = ({ cards }) => {
+const WordBook = ({all_cards}) => {
 
-  
-
-
-
-
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(get_book())
-  }, [dispatch])
 
 
   return (
@@ -23,7 +14,7 @@ const WordBook = ({ cards }) => {
       </span>
       <div>
         <ul className='flex flex-col'>
-          {cards && cards.map((e, i) => (
+          {all_cards && all_cards.map((e, i) => (
             <li key={i} >{e.terms.word} {e.nivel}</li>
           ))}
         </ul>

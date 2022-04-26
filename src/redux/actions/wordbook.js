@@ -93,40 +93,29 @@ export const add_word = (formData) => async dispatch => {
     }
 }
 
-export const current_sesion = (formData) => async dispatch => {
+/**
+ * 
+ * @returns crea una nueva sesion de estudios que 
+ * toma las 25 primeras cartas ordenadas por nivel de aprendizaje o nivel de repeticion
+ * @constant 
+ * solo es un dispatch, el reducer debe realizar toda ala logica de ordenado
+ */
+export const new_study_session = ()=> dispatch => {
+    dispatch({
+        type: types.NEW_STUDY_SESSION
+    })
+    
+}
+
+
+export const current_session = (formData) => async dispatch => {
     // agrega las cartas estudiadas al redux, una ves la sesionde estudio termine se mandan los datos al backend
 
-    console.log("formData")
-    // const const_body = JSON.stringify(formData)
-    // try {
-    //     const res = await fetch("/api/01/wordbook/addword/", {
-    //         method: "POST",
-    //         headers: {
-    //             "Action": "application/json",
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: const_body
-    //     })
+    console.log(formData)
 
-    //     // resultado si agrega al libro o se tomo uno existente o fail
-    //     dispatch(get_book())
-    //     if (res.status === 201) { // create and adde to userbook
-    //         dispatch({
-    //             type: types.WORD_BOOK_ADD_SUCCESS
-    //         })
-    //     } else {
-    //         dispatch({
-    //             type: types.WORD_BOOK_ADD_FAIL
-    //         })
+    dispatch({
+        type: types.CURRENT_SESSION_ADD, payload : formData
+    })
+    
 
-    //     }
-
-    // } catch (error) {
-    //     console.log(const_body)
-    //     dispatch({
-    //         type: types.AUTH_FAIL
-    //     })
-
-
-    // }
 }

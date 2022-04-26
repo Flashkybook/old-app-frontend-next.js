@@ -1,5 +1,10 @@
+
 import * as types from './types'
 
+
+/** 
+* accion de verificacion de usuario enviando el access token al backend
+*/
 export const auth_action = () => async dispatch => {
     try {
         const res = await fetch("/api/01/user/auth/", {
@@ -9,7 +14,7 @@ export const auth_action = () => async dispatch => {
                 "Content-Type": "application/json"
             },
         })
-        const userData = await res.json() 
+        const userData = await res.json()
         // resultado exitoso o fail
         if (res.status === 200) {
             dispatch({
@@ -31,8 +36,8 @@ export const auth_action = () => async dispatch => {
 }
 
 export const login_action = (formData) => async dispatch => {
-    const {email, password} = formData
-    const const_body = JSON.stringify({email, password})
+    const { email, password } = formData
+    const const_body = JSON.stringify({ email, password })
     try {
         const res = await fetch("/api/01/user/login/", {
             method: "POST",
@@ -79,7 +84,7 @@ export const register_action = (formData) => async dispatch => {
         // resultado exitoso o fail
         if (res.status === 201) {
             dispatch(login_action(formData))
-            
+
             dispatch({
                 type: types.REGISTER_SUCCESS
             })

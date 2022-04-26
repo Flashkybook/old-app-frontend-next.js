@@ -19,7 +19,6 @@ const authReducer = (state = initial_state, actions) => {
         case types.LOGUT_SUCCESS:
             return { ...state, is_auth: false, user: null }
 
-
         case types.AUTH_FAIL:
             return { ...state, is_auth: false }
 

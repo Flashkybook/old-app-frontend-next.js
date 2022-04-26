@@ -3,8 +3,8 @@ import * as types from '../actions/types'
 const initial_state = {
     cards: [],
     current: 1,
-    current_sesion : [], // son las cartas que seran envidas al backend para su setteo,
-    error : null
+    session: [], // son las cartas que seran envidas al backend para su setteo,
+    error: null
 }
 
 
@@ -28,6 +28,32 @@ const bookReducer = (state = initial_state, actions) => {
 
         case types.SET_CURRENT_FAIL:
             return { ...state }
+
+        // SESSION
+        case types.CURRENT_SESSION_ADD:
+            return { ...state, session: [...state.session, payload] }
+
+        case types.NEW_STUDY_SESSION:
+
+            let study_commit = 2 // seteable por configuracion de usuario poximamente
+
+            // ordena por nivel mayor
+            let list_order = [...state.cards]
+            function compare(a, b) {
+                if (a.nivel < b.nivel) {
+                    return 1;
+                }
+                if (a.nivel > b.nivel) {
+                    return -1;
+                }
+                return 0;
+            }
+            list_order.sort(compare);
+
+            let list = list_order.slice(0, study_commit)
+            console.log("nueva sesion de estudio", state.cards)
+
+            return { ...state, session: list }
 
         default:
             return state;

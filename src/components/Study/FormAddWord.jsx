@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_word } from '../../redux/actions/wordbook'
@@ -5,6 +6,10 @@ import { add_word } from '../../redux/actions/wordbook'
 
 
 export default function FormAddWord() {
+/**
+formulario que agrega palabras al backend
+@example asd
+**/
 
 
 

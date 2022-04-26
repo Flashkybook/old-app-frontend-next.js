@@ -36,7 +36,9 @@ export const ADD_TO_USER_BOOK = "ADD_TO_USER_BOOK"
 
 // Study Sesion
 
-export const SET_CARD = "SET_CARD"
+export const NEW_STUDY_SESSION = "NEW_STUDY_SESSION"
+
+export const CURRENT_SESSION_ADD = "CURRENT_SESSION_ADD"
 
 
 

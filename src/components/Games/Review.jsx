@@ -1,15 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { set_current} from '../../redux/actions/wordbook'
-import LayoutInterface from '../LayoutInterface'
-export default function Review() {
+import Interface from '../Interface'
 
+
+export default function Review() {
   const dispatch = useDispatch()
   const setCurrent = (e) => { dispatch(set_current(e)) }
   const current = useSelector(e => e.user_book.current)
   const cards = useSelector(e => e.user_book.cards)
 
   return (
-    <LayoutInterface>
+    <Interface gameTitle="Review" new_session={false}>
       {/* BUTTONS FlashCards */}
       <div className='flex justify-center text-2xl mt-2'>
         {/* PREVIUS */}
@@ -19,6 +20,6 @@ export default function Review() {
         <button onClick={() => dispatch(set_current(1))}>➡</button>
       </div>
 
-    </LayoutInterface>
+    </Interface>
   )
 }

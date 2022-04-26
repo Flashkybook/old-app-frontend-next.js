@@ -1,23 +1,32 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {set_current, current_sesion } from '../../redux/actions/wordbook'
-import LayoutInterface from '../LayoutInterface'
+import { set_current, current_session, new_study_session } from '../../redux/actions/wordbook'
+import Interface from '../Interface'
 
+/**tareas, se tiene que repetir las respuestas fallidas hasta que se acepte o se responda bien, 
+// guarda el numero de fails
+// inicia una sesion de estudios
+// guardar la current_sesion
+*/
 
+/**
+ * 
+ * @returns Game de input
+ */
 export default function Input() {
+
   const dispatch = useDispatch()
   const setCurrent = (e) => { dispatch(set_current(e)) }
 
-  const cards = useSelector(e => e.user_book.cards)
+  const cards = useSelector(e => e.user_book.session)
   const current = useSelector(e => e.user_book.current)
-
-  // const [current, setCurrent] = useState(0)
   const [fails, setFails] = useState(0)
 
-
+  /**
+   * @param {respuesta} e respuesta del formulario
+   * obtiene la respuesta del formulario
+   */
   const handlerSubmit = e => {
-    // tiene que darle estilo para saber si es correcto
-    // saber si es correcta la respuesta
     const currentWord = cards[current].terms.word.toLocaleLowerCase()
     const answer = e.target.answer.value.toLocaleLowerCase()
 
@@ -34,9 +43,8 @@ export default function Input() {
         setFails(0)
         e.target.answer.classList.replace("border-teal-500", "border-white")
         card.nivel = fails
-        dispatch(current_sesion(card))
+        dispatch(current_session(card))
       }, 500);
-
       if (current >= cards.length) {
         setCurrent(0)
       }
@@ -47,27 +55,30 @@ export default function Input() {
       if (fails < 5) {
         setFails(fails + 1)
       }
+      console.log(currentWord)
     }
     e.preventDefault()
   }
 
+  /**
+   * sesion de estudios
+   */
+
 
   useEffect(() => {
-    // bucle de repeticion
     if (current >= cards.length) {
       setCurrent(0)
     }
+
   }, [current])
 
+
+
   return (
-    <LayoutInterface>
-
+    <Interface gameTitle="Input" new_session={true}>
       <form action="" onSubmit={handlerSubmit} >
-        <input className='py-2 px-4 outline-none bg-slate-800 rounded-3xl border text-center' name='answer' type="text" placeholder='answer...' />
+        <input autoComplete='off' className='py-2 px-4 outline-none bg-slate-800 rounded-3xl border text-center' name='answer' type="text" placeholder='answer...' />
       </form>
-
-
-
-    </LayoutInterface>
+    </Interface>
   )
 }
