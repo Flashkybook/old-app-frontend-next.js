@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
-import { set_current} from '../../redux/actions/wordbook'
+import { set_current } from '../../redux/actions/wordbook'
 import Interface from '../Interface'
 
 
@@ -9,8 +11,13 @@ export default function Review() {
   const current = useSelector(e => e.user_book.current)
   const cards = useSelector(e => e.user_book.cards)
 
+  useEffect(() => {
+    if (current >= cards.length) {
+      setCurrent(0)
+    }
+  }, [current])
   return (
-    <Interface gameTitle="Review" new_session={false}>
+    <Interface gameTitle="Review" review={true}>
       {/* BUTTONS FlashCards */}
       <div className='flex justify-center text-2xl mt-2'>
         {/* PREVIUS */}

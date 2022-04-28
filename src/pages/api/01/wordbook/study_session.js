@@ -9,7 +9,6 @@ export default async (request, response) => {
 
     const sendData = JSON.stringify(request.body)
 
-    console.log(sendData)
     if (request.method === 'POST') {
         try {
             const apiRes = await fetch(`${backend_api}/api/words/study_session/`, {
@@ -25,11 +24,9 @@ export default async (request, response) => {
 
             //  201 created  202 acepted and added 406 no lo crea ni lo acepta
             if (apiRes.status === 201) {
-                console.log('status 200', data)
                 return response.status(201).json({ success: data.success })
 
             }else{
-                console.log('status 400', data)
                 return response.status(201).json({ success: data.success })
             }
         } catch (error) {

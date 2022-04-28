@@ -3,14 +3,13 @@ import React from 'react'
 
 // components
 import Layout from '../../components/Layout'
-import Review from '../../components/Games/Review'
+import Feedback from '../../components/Games/Feedback'
 
-export default function study(){
+export default function feedback(){
   return (
     <Layout>
-     <Review/>
+     <Feedback/>
 
     </Layout>
   )
 }
-

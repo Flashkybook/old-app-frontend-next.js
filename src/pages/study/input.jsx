@@ -5,7 +5,7 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import Input from '../../components/Games/Input'
 
-const study = () => {
+export default function input(){
   return (
     <Layout>
      <Input/>
@@ -14,4 +14,4 @@ const study = () => {
   )
 }
 
-export default study
+ 
