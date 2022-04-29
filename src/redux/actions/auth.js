@@ -30,10 +30,9 @@ export const auth_action = () => async dispatch => {
         dispatch({
             type: types.AUTH_FAIL
         })
-
-
     }
 }
+
 
 export const login_action = (formData) => async dispatch => {
     const { email, password } = formData
