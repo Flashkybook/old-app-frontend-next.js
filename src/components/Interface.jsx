@@ -25,6 +25,7 @@ export default function index({ children, gameTitle, review, feedback }) {
     const all_cards = useSelector(e => e.user_book.cards)
     const current = useSelector(e => e.user_book.current)
 
+
     // sessiond de estudio
     const session_study = useSelector(e => e.user_book.session_study)
     const cards = session_study ? useSelector(e => e.user_book.cards_session) : useSelector(e => e.user_book.cards)
@@ -33,20 +34,17 @@ export default function index({ children, gameTitle, review, feedback }) {
     return (
         <div className='mx-2'>
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
-            <div className='container-stretch space-x-5'>
+            
+            <div className='flex flex-col md:flex-row md:items-start md:space-x-3 justify-center items-center mt-8'>
 
                 <GameList />
+
                 {/* FlashCards */}
-                <div className='w-1/2 flex flex-col items-center '>
-
-                    <div>
-                        {feedback === false &&
-                            <FlashCards current={cards[current]} />
-                        }
-                        {children}
-                    </div>
-
-
+                <div className='w-full flex flex-col items-center '>
+                    {feedback === false &&
+                        <FlashCards current={cards[current]} />
+                    }
+                    {children}
                 </div>
 
 

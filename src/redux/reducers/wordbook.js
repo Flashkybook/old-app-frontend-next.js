@@ -6,7 +6,7 @@ const initial_state = {
     session_study: false,
     cards_session: [], // son las cartas que seran envidas al backend para su setteo,
     error: null,
-    commit: 2
+    commit: 5
 }
 
 
@@ -37,21 +37,34 @@ const bookReducer = (state = initial_state, actions) => {
             return { ...state }
 
         case types.NEW_STUDY_SESSION:
-            let study_commit = state.commit // seteable por configuracion de usuario poximamente
+            const study_commit = state.commit // seteable por configuracion de usuario poximamente
             // ordena por easiness mayor
-            let list_order = state.cards
+            const cards = state.cards
             function compare(a, b) {
-                if (a.easiness < b.easiness) {
+                if (a.repetitions < b.repetitions) {
                     return -1;
                 }
-                if (a.easiness > b.easiness) {
+                if (a.repetitions > b.repetitions) {
                     return 1;
                 }
                 return 0;
             }
-            list_order.sort(compare);    
-            // console.log(state.cards)
-            let list = list_order.slice(0, study_commit)    
+
+            
+            const lista =  cards.filter(e=> e.next_review_date === "2022-04-29" || e.next_review_date === null)
+            // if (list_order.length === 0){
+            // }
+
+            if (lista.length === 0){
+                console.log("valio")
+                lista = cards.sort(compare);    
+            }
+
+            console.log(lista)
+
+            
+            const list = lista.slice(0, study_commit)    
+
             return { ...state, cards_session: list, session_study:true, current: 0 }
         case types.SESSION_STUDY_END:
             return { ...state, cards_session: [], session_study: false, current: 0 }

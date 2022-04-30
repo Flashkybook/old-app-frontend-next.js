@@ -5,22 +5,29 @@ export default function Home() {
 
   const [audio, setAudio] = useState("send this data")
 
-  const handlerOnCLick = async() => {
+  const handlerOnCLick = async () => {
+
+    try {
+      const res = await fetch("http://localhost:3000/api/01/wordbook/gtts/", {
+        method: "POST",
+        headers: {
+          "Action": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(audio)
+      })
+      const data = await res.json()
+      console.log(data)
+      const audio_data = new Audio(data.success)
+      audio_data.play()
+
+    } catch (error) {
+      console.log(error)
+
+    }
 
 
-    const res = await fetch("http://localhost:3000/api/01/wordbook/gtts/", {
-      method: "POST",
-      headers: {
-        "Action": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(audio)
-    })
-    const data = await res.json()
 
-    const audio = new Audio(data.success)
-
-    audio.play()
   }
 
   return (

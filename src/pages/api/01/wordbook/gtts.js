@@ -10,19 +10,31 @@ export default async (request, response) => {
 
     const refresh = save_cookies.refresh
     const access = save_cookies.access
+    const sendData = JSON.stringify(request.body)
 
-    const url = `${backend_api}/api/words/text_to_speesh`
+    const url = `${backend_api}/api/words/text_to_speesh/`
 
-    const apiRes = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${access}`, // da una respuesta al backend con nuestro usuario
-        }
-    });
-    console.log(url)
+    try {
+        const apiRes = await fetch(`${backend_api}/api/words/text_to_speesh/`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${access}`, // da una respuesta al backend con nuestro usuario
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sendData)
+        });
+    
+        console.log(apiRes.status)
 
-    return response.status(200).json({ success: url })
+        return response.status(200).json({ success: url })
+        
+    } catch (error) {
+        console.log("400 api next",error)
+        return response.status(400).json({ error: "algun error" })
+
+        
+    }
 
     // if (apiRes.status === 200) {
 

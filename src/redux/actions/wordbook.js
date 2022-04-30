@@ -1,13 +1,11 @@
 import * as types from './types'
 
 export const set_session_study = (bool) => dispatch => {
-    console.log(bool)
     if (bool === true) {
         dispatch({
             type: types.NEW_STUDY_SESSION
         })
     } else if (bool === false) {
-        console.log("here")
         dispatch({
             type: types.SESSION_STUDY_END
         })

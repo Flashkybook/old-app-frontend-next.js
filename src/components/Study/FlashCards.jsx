@@ -19,7 +19,6 @@ const FlashCards = ({ current }) => {
 
   return (
     <div className='w-full border border-white flex flex-col justify-end items-center pb-4 pt-16 bg-slate-700 rounded-3xl' >
-        <button onClick={handlerOnCLick} className="text-2xl text-center mt-16 border p-2 mx-auto">hello</button>
 
       <div className='flex flex-col justify-end  items-center  font-bold my-2'>
 
@@ -31,11 +30,11 @@ const FlashCards = ({ current }) => {
         }
 
         <div className='text-xl font-bold mt-2'>
-          Translate
+          
         </div>
         <div className='flex text-sm font-bold'>
-          <div className='m-2'>Sinonimo01</div>
-          <div className='m-2'>Sinonimo01</div>
+          <div className='m-2'></div>
+          <div className='m-2'></div>
         </div>
 
       </div>

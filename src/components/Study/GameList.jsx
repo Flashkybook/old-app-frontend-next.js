@@ -4,13 +4,14 @@ import Link from 'next/link'
 
 const GameList = () => {
   return (
-    <div className='w-1/5 border border-white rounded-xl'>
+    <div className='mt-4 w-full md:w-1/5 rounded-xl'>
+      <ul className='py-2 flex md:flex-col justify-around'>
 
-      <h2>GameList </h2>
-
-      <ul className=' mt-5 flex flex-col'>
+        <li className='text-xl font-bold px-2'>
+        Games :
+        </li>
         <Link href="/study">
-          <li className=''>
+          <li className='px-2 border rounded-md bg-slate-900'>
             Review
           </li>
         </Link>
