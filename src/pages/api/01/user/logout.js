@@ -4,14 +4,14 @@ export default function handler(request, response) {
 
     if (request.method === 'POST') {
         response.setHeader('Set-Cookie', [
-            cookie.serialize('access', "", {
+            cookie.serialize('access', '', {
                 httpOnly: true,
                 secure: process.env.ENV_DEV !== 'false',
                 expires: new Date(0),
                 sameSite: 'strict',
                 path: '/api/'
             }),
-            cookie.serialize('refresh', "", {
+            cookie.serialize('refresh', '', {
                 httpOnly: true,
                 secure: process.env.ENV_DEV !== 'false',
                 expires: new Date(0),

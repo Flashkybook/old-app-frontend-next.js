@@ -34,13 +34,13 @@ export default async (request, response) => {
                 
             } else if (apiRes.status === 406) {
                 console.log('status 200', data)
-                return response.status(406).json({ error: "neither created or add" })
+                return response.status(406).json({ error: 'neither created or add' })
             }
         } catch (error) {
             response.status(402).json({ error: `solicitud fallida ${request.method}` })
         }
     } else {
-        console.log("401")
+        console.log('401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }

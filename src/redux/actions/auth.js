@@ -7,11 +7,11 @@ import * as types from './types'
 */
 export const auth_action = () => async dispatch => {
     try {
-        const res = await fetch("/api/01/user/auth/", {
-            method: "GET",
+        const res = await fetch('/api/01/user/auth/', {
+            method: 'GET',
             headers: {
-                "Action": "application/json",
-                "Content-Type": "application/json"
+                'Action': 'application/json',
+                'Content-Type': 'application/json'
             },
         })
         const userData = await res.json()
@@ -38,11 +38,11 @@ export const login_action = (formData) => async dispatch => {
     const { email, password } = formData
     const const_body = JSON.stringify({ email, password })
     try {
-        const res = await fetch("/api/01/user/login/", {
-            method: "POST",
+        const res = await fetch('/api/01/user/login/', {
+            method: 'POST',
             headers: {
-                "Action": "application/json",
-                "Content-Type": "application/json"
+                'Action': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: const_body
         })
@@ -71,11 +71,11 @@ export const login_action = (formData) => async dispatch => {
 export const register_action = (formData) => async dispatch => {
     const const_body = JSON.stringify(formData)
     try {
-        const res = await fetch("/api/01/user/register/", {
-            method: "POST",
+        const res = await fetch('/api/01/user/register/', {
+            method: 'POST',
             headers: {
-                "Action": "application/json",
-                "Content-Type": "application/json"
+                'Action': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: const_body
         })
@@ -107,7 +107,7 @@ export const register_action = (formData) => async dispatch => {
 
 export const logout_action = () => async dispatch => {
     try {
-        const res = await fetch("/api/01/user/logout/", {
+        const res = await fetch('/api/01/user/logout/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json'

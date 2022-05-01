@@ -27,15 +27,15 @@ export default async (request, response) => {
             if (apiRes.status === 200) {
                 return response.status(200).json({ success: data.success })
             } else {
-                console.log("index?")
+                console.log('index?')
                 return response.status(500).json({error: data})
             }
         } catch (error) {
-            console.log("402")
+            console.log('402')
             response.status(402).json({ error: `solicitud fallida ${request.method}` })
         }
     } else {
-        console.log("401")
+        console.log('401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }

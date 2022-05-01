@@ -18,7 +18,6 @@ export default function index({ children, gameTitle, review, feedback }) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log("review", review)
         dispatch(get_book(!review))
     }, [])
 
@@ -31,10 +30,15 @@ export default function index({ children, gameTitle, review, feedback }) {
     const session_study = useSelector(e => e.user_book.session_study)
     const cards = session_study ? useSelector(e => e.user_book.cards_session) : useSelector(e => e.user_book.cards)
 
+    // progres bar
     var act = current + 1
-    const taj = (act / cards.length) * 100
+    const taj = 0
+    if(cards.length > 0){
 
-    console.log(taj)
+        const taj = (act / cards.length) * 100
+    }
+ 
+
 
     return (
         <div className='mx-2'>
@@ -50,18 +54,18 @@ export default function index({ children, gameTitle, review, feedback }) {
                     {feedback === false &&
                         <>
                             <div className='w-full my-5'>
-                                <div class="flex justify-between mb-1">
+                                <div className='flex justify-between mb-1'>
                                     {type_of_session ?
-                                        <span class="text-base font-medium text-blue-700 dark:text-white">{type_of_session} session</span>
+                                        <span className='text-base font-medium text-blue-700 dark:text-white'>{type_of_session} session</span>
                                         :
-                                        <span class="text-base font-medium text-blue-700 dark:text-white">Review session</span>
+                                        <span className='text-base font-medium text-blue-700 dark:text-white'>Review session</span>
                                     }
 
-                                    <span class="text-sm font-medium text-blue-700 dark:text-white">{taj.toFixed(2)}%</span>
+                                    <span className='text-sm font-medium text-blue-700 dark:text-white'>{taj.toFixed(2)}%</span>
                                 </div>
 
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                    <div class="bg-blue-600 h-2.5 rounded-full" style={{ width: `${taj}%` }}></div>
+                                <div className='w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700'>
+                                    <div className='bg-blue-600 h-2.5 rounded-full' style={{ width: `${taj}%` }}></div>
                                 </div>
                             </div>
                             <FlashCards current={cards[current]} />
@@ -84,7 +88,7 @@ export default function index({ children, gameTitle, review, feedback }) {
 }
 
 index.defaultProps = {
-    gameTitle: "Game title",
+    gameTitle: 'Game title',
     review: false,
     feedback: false
 }

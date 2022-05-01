@@ -10,16 +10,16 @@ export const set_session_study = (bool) => dispatch => {
             type: types.SESSION_STUDY_END
         })
     } else {
-        console.log("set_session_study no accept", bool)
+        console.log('set_session_study no accept', bool)
     }
 }
 export const get_book = (bool) => async dispatch => {
     try {
-        const res = await fetch("/api/01/wordbook/", {
-            method: "GET",
+        const res = await fetch('/api/01/wordbook/', {
+            method: 'GET',
             headers: {
-                "Action": "application/json",
-                "Content-Type": "application/json"
+                'Action': 'application/json',
+                'Content-Type': 'application/json'
             },
         })
         const userData = await res.json()
@@ -49,11 +49,11 @@ export const get_book = (bool) => async dispatch => {
 export const add_word = (formData) => async dispatch => {
     const const_body = JSON.stringify(formData)
     try {
-        const res = await fetch("/api/01/wordbook/addword/", {
-            method: "POST",
+        const res = await fetch('/api/01/wordbook/addword/', {
+            method: 'POST',
             headers: {
-                "Action": "application/json",
-                "Content-Type": "application/json"
+                'Action': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: const_body
         })
@@ -82,11 +82,11 @@ export const current_session = (formData) => async dispatch => {
     // mandar los datos de estudio en tiempo real al backend
     const const_body = JSON.stringify(formData)
     try {
-        const res = await fetch("/api/01/wordbook/study_session/", {
-            method: "POST",
+        const res = await fetch('/api/01/wordbook/study_session/', {
+            method: 'POST',
             headers: {
-                "Action": "application/json",
-                "Content-Type": "application/json"
+                'Action': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: const_body
         })

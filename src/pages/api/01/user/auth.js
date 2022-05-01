@@ -28,7 +28,7 @@ export default async (request, response) => {
             });
             const data = await apiRes.json()
 
-            // console.log("primer llamado", save_cookies, apiRes.status)
+            // console.log('primer llamado', save_cookies, apiRes.status)
             if (apiRes.status === 200) {
                 // agregamos el token access a nuestra cookie
                 response.setHeader('Set-Cookie', [ // agrega un header a la respuesta de la peticion
@@ -55,7 +55,7 @@ export default async (request, response) => {
                 ])
 
                 // VERIFY
-                const token_verify = JSON.stringify({ "token": access })
+                const token_verify = JSON.stringify({ 'token': access })
                 try {
                     const apiResVerify = await fetch(`${backend_api}/api/token/verify/`, {
                         method: 'POST',
@@ -91,24 +91,24 @@ export default async (request, response) => {
 
                         // return response.status(201).json({ success: 'verify user success' })
                     } else {
-                        console.log(apiResVerify.status, "405")
+                        console.log(apiResVerify.status, '405')
                         return response.status(405).json({ 'error': 'verify token fail' })
                     }
 
                 } catch (error) {
-                    console.log(token_verify, "404")
+                    console.log(token_verify, '404')
                     return response.status(403).json({ 'error': 'Verify token fail' })
                 }
             } else {
-                console.log(refresh, "403")
+                console.log(refresh, '403')
                 return response.status(403).json({ 'error': 'Refresh token fail' })
             }
         } catch (error) {
-            console.log("402")
+            console.log('402')
             response.status(402).json({ error: `solicitud fallida ${request.method}` })
         }
     } else {
-        console.log("401")
+        console.log('401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }

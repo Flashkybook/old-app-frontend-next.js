@@ -30,11 +30,11 @@ export default async (request, response) => {
                 return response.status(201).json({ success: data.success })
             }
         } catch (error) {
-            console.log("402")
+            console.log('402')
             response.status(402).json({ error: `solicitud fallida ${request.method}` })
         }
     } else {
-        console.log("401")
+        console.log('401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }

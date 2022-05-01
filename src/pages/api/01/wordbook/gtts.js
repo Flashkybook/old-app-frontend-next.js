@@ -30,8 +30,8 @@ export default async (request, response) => {
         return response.status(200).json({ success: url })
         
     } catch (error) {
-        console.log("400 api next",error)
-        return response.status(400).json({ error: "algun error" })
+        console.log('400 api next',error)
+        return response.status(400).json({ error: 'algun error' })
 
         
     }
@@ -43,15 +43,15 @@ export default async (request, response) => {
     //         // REFRESH
            
     //         } else {
-    //             console.log("index?")
+    //             console.log('index?')
     //             return response.status(500).json({error: data})
     //         }
     //     } catch (error) {
-    //         console.log("402")
+    //         console.log('402')
     //         response.status(402).json({ error: `solicitud fallida ${request.method}` })
     //     }
     // } else {
-    //     console.log("401")
+    //     console.log('401')
     //     response.status(401).json({ error: `no soporta method ${request.method}` })
     // }
 }

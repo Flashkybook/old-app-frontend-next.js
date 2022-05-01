@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Layout from '../../components/Layout'
 import { login_action } from '../../redux/actions/auth'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 
 export default function login() {
@@ -42,14 +42,23 @@ export default function login() {
 
   return (
     <Layout>
-      <div className='flex justify-center items-center'>
+      <div className='flex justify-center items-center mt-5'>
+
 
         <div className='border border-slate-50 rounded-[3rem] w-[50%] bg-slate-600 py-5 px-4 '>
           <div className='text-center mb-8'>
             <h3 className='text-[3rem]'>Login</h3>
+
+            <div className='flex justify-center'>
+              <div className='bg-slate-800 w-2/3 text-left p-4 -mb-6 rounded-3xl'>
+                <p>recomendado:</p>
+                <p>user: invitado@callapp.com</p>
+                <p>password: 123456++</p>
+              </div>
+            </div>
           </div>
           <form method='POST' onSubmit={handlerSubmit}>
-            <div className="flex flex-col m-10 space-y-2 text-black">
+            <div className="flex flex-col m-10 mt-0 space-y-2 text-black">
               {Object.keys(formData).map((e, index) => (
                 <input
                   key={index}

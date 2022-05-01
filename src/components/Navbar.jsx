@@ -14,9 +14,9 @@ export default function Navbar() {
 
   const handlerHidden =()=>{
     const className = navRef.current.classList
-    className.toggle("hidden")
+    className.toggle('hidden')
     console.log(className)
-    // const item = document.getElementById("nav")
+    // const item = document.getElementById('nav')
 
     // item.target
 
@@ -24,14 +24,14 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-slate-900 text-white py-4 px-2 md:px-24">
+    <nav className='bg-slate-900 text-white py-4 px-2 md:px-24'>
       <div className='flex justify-between items-center'>
         {user &&
           <p className='font-bold text-[25px]'>
             {user.username}
           </p>
         }
-        <Link href="/">
+        <Link href='/'>
           <a className='font-bold text-[25px]'>
             Call App <span className='text-sm border px-1'>Beta</span>
           </a>
@@ -50,12 +50,12 @@ export default function Navbar() {
 
             :
             <div  className='flex items-center'>
-              <Link href="/user/login">
+              <Link href='/user/login'>
                 <li className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
                   login
                 </li>
               </Link>
-              <Link href="/user/register">
+              <Link href='/user/register'>
                 <li className=''>
                   register
                 </li>

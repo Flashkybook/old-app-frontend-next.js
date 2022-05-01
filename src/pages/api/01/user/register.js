@@ -19,7 +19,7 @@ export default async (request, response) => {
             const data = await apiRes.json()
 
             if (apiRes.status === 201) {
-                return response.status(201).json({ success: data.success, "data": data.body })
+                return response.status(201).json({ success: data.success, 'data': data.body })
             } else {
                 console.log('no status 200', data)
                 return response.status(apiRes.status).json({ error: data.error })
@@ -28,7 +28,7 @@ export default async (request, response) => {
             response.status(402).json({ error: `solicitud fallida ${request.method}` })
         }
     } else {
-        console.log("401")
+        console.log('401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }

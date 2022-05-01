@@ -4,14 +4,14 @@ import React, { useState } from 'react'
 
 export default function FlashCards({ current }){
 
-  const [audio, setAudio] = useState("send this data")
+  const [audio, setAudio] = useState('send this data')
 
   const handlerOnCLick = async() => {
-    const res = await fetch("http://localhost:3000/api/01/wordbook/gtts/", {
-      method: "POST",
+    const res = await fetch('http://localhost:3000/api/01/wordbook/gtts/', {
+      method: 'POST',
       headers: {
-        "Action": "application/json",
-        "Content-Type": "application/json"
+        'Action': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(audio)
     })

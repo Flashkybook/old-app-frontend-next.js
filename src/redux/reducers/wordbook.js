@@ -65,16 +65,16 @@ const bookReducer = (state = initial_state, actions) => {
             const study_commit = state.commit // seteable por configuracion de usuario poximamente
 
             const list = []
-            const type_of_session = ""
+            const type_of_session = ''
             if (ByDaily.length > 0){    
                 list = ByDaily.slice(0, study_commit) 
-                type_of_session = "Daily"   
+                type_of_session = 'Daily'   
             }else if(ByLastReview.length > 0){
                 list = ByLastReview.slice(0, study_commit)    
-                type_of_session = "Lately not reviewed"   
+                type_of_session = 'Lately not reviewed'   
             }else{
                 list = ByRepetitions  
-                type_of_session = "least reviewed"   
+                type_of_session = 'least reviewed'   
             }
             console.log(list)
 

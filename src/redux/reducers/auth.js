@@ -3,7 +3,7 @@ import * as types from '../actions/types'
 const initial_state = {
     user: null,
     is_auth: false,
-    auth_status: "",
+    auth_status: '',
 }
 
 

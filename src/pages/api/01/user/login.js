@@ -40,19 +40,19 @@ export default async (request, response) => {
                         path: '/api/'
                     })
                 ])
-                return response.status(201).json({ success: data.success, "data": data.body })
+                return response.status(201).json({ success: data.success, 'data': data.body })
                 
             } else {
                 console.log('login 403 no status 200', data)
                 return response.status(apiRes.status).json({ error: data.error })
             }
         } catch (error) {
-            console.log("login 402")
+            console.log('login 402')
 
             response.status(402).json({ error: `solicitud fallida ${request.method}` })
         }
     } else {
-        console.log("login 401")
+        console.log('login 401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }
