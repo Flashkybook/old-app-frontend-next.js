@@ -11,7 +11,7 @@ export default function DailyTodo({cards}) {
             { daily.length > 0 ? 
             <h6>Hoy tienes {daily.length} que debes repasar</h6>
             :
-            <h6>✅ Has competado tu tarea diaria puedes seguir estudiando pero no sera agregado a tu progreso </h6>    
+            <h6>✅Has completado tu tarea diaria puedes seguir estudiando pero no sera agregado a tu progreso </h6>    
             }
             
             

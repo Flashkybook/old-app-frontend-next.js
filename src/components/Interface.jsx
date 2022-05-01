@@ -31,22 +31,41 @@ export default function index({ children, gameTitle, review, feedback }) {
     const session_study = useSelector(e => e.user_book.session_study)
     const cards = session_study ? useSelector(e => e.user_book.cards_session) : useSelector(e => e.user_book.cards)
 
+    var act = current + 1
+    const taj = (act / cards.length) * 100
+
+    console.log(taj)
 
     return (
         <div className='mx-2'>
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
-            
-                {type_of_session && <h6 className='text-center my-5'>{type_of_session} session</h6>}
+
+            <div className='flex flex-col md:flex-row md:items-start md:space-x-16 md:mx-24 justify-center items-center mt-8'>
 
 
-            <div className='flex flex-col md:flex-row md:items-start md:space-x-3 justify-center items-center mt-8'>
-            
                 <GameList />
 
                 {/* FlashCards */}
-                <div className='w-full flex flex-col items-center '>
+                <div className='w-full md:w-2/3 md:mx-10 flex flex-col items-center '>
                     {feedback === false &&
-                        <FlashCards current={cards[current]} />
+                        <>
+                            <div className='w-full my-5'>
+                                <div class="flex justify-between mb-1">
+                                    {type_of_session ?
+                                        <span class="text-base font-medium text-blue-700 dark:text-white">{type_of_session} session</span>
+                                        :
+                                        <span class="text-base font-medium text-blue-700 dark:text-white">Review session</span>
+                                    }
+
+                                    <span class="text-sm font-medium text-blue-700 dark:text-white">{taj.toFixed(2)}%</span>
+                                </div>
+
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style={{ width: `${taj}%` }}></div>
+                                </div>
+                            </div>
+                            <FlashCards current={cards[current]} />
+                        </>
                     }
                     {children}
                 </div>

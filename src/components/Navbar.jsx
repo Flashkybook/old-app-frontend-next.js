@@ -1,19 +1,24 @@
 import Link from 'next/link'
+import { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {logout_action} from '../redux/actions/auth'
 
 export default function Navbar() {
   
   const userStatus = useSelector(e => e.auth)
+
+  const navRef = useRef()
   const user = userStatus.user
 
   const dispatch = useDispatch()
 
   const handlerHidden =()=>{
-    console.log("hola mundo")
+    const className = navRef.current.classList
+    className.toggle("hidden")
+    console.log(className)
     // const item = document.getElementById("nav")
 
-    // item.target.className.toggle("hidden")
+    // item.target
 
     
   }
@@ -26,16 +31,16 @@ export default function Navbar() {
             {user.username}
           </p>
         }
-        <Link href="/study">
+        <Link href="/">
           <a className='font-bold text-[25px]'>
-            vocabulary app
+            Call App <span className='text-sm border px-1'>Beta</span>
           </a>
         </Link>
 
         <button onClick={handlerHidden} className='flex md:hidden ' >[--]</button>
 
 
-        <ul className='hidden md:flex items-center space-x-8 text-[15px]'>
+        <ul ref={navRef} className='hidden md:flex items-center space-x-8 text-[15px]'>
 
           {user ?
               <li onClick={()=>dispatch(logout_action())} className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
@@ -44,7 +49,7 @@ export default function Navbar() {
            
 
             :
-            <div id="nav" className=''>
+            <div  className='flex items-center'>
               <Link href="/user/login">
                 <li className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
                   login

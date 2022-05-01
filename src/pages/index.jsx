@@ -1,9 +1,14 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
+import Review from '../components/Games/Review'
+import { useSelector } from "react-redux";
+import Link from "next/link";
 
 export default function Home() {
 
   const [audio, setAudio] = useState("send this data")
+
+  const auth = useSelector(e => e.auth.user)
 
   const handlerOnCLick = async () => {
 
@@ -32,10 +37,26 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="container m-10">
-        <h1 className="text-5xl text-center">home page</h1>
-        <button onClick={handlerOnCLick} className="text-2xl text-center mt-16 border p-2 mx-auto">hello</button>
-      </div>
+      {auth ?
+        <Review />
+        :
+        <div className="flex flex-col text-xl justify-center items-center mt-24">
+
+          <Link href="user/login">
+            <button className=" border rounded-2xl bg-slate-600 p-2">login to get started</button>
+          </Link>
+          or
+          <Link href="user/register">
+            <button className="border rounded-2xl bg-slate-600 p-2">Sign up to get started</button>
+          </Link>
+        </div>
+
+      }
+
+      {/* <div className="container m-10">
+    <h1 className="text-5xl text-center">home page</h1>
+    <button onClick={handlerOnCLick} className="text-2xl text-center mt-16 border p-2 mx-auto">hello</button>
+    </div> */}
     </Layout>
   )
 }
