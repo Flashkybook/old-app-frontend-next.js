@@ -2,7 +2,7 @@
 import cookie from 'cookie'
 const backend_api = process.env.BACKEND_DJANGO_API
 
-export default async (request, response) => {
+export default async function index(request, response) {
     //  guardados en los cookies
     const save_cookies = cookie.parse(request.headers.cookie ?? '')
     // work flow data 
@@ -29,7 +29,7 @@ export default async (request, response) => {
             if (resApi.status === 200) {
                 return response.status(200).json({ success: data.success })
             } else {
-                return response.status(500).json({error: data})
+                return response.status(500).json({ error: data })
             }
         } catch (error) {
             console.log('402')

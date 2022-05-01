@@ -2,7 +2,7 @@
 import cookie from 'cookie'
 const backend_api = process.env.BACKEND_DJANGO_API
 
-export default async (request, response) => {
+export default async function gtts(request, response) {
     //  guardados en los cookies
     const save_cookies = cookie.parse(request.headers.cookie ?? '')
 

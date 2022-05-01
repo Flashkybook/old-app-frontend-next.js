@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Layout from '../../components/Layout'
 import { login_action } from '../../redux/actions/auth'
 import { useDispatch, useSelector } from 'react-redux'

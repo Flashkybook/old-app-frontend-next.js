@@ -4,7 +4,7 @@
 const backend_api = process.env.BACKEND_DJANGO_API
 
 
-export default async (request, response) => {
+export default async function register(request, response) {
     const sendData = JSON.stringify(request.body)
     if (request.method === 'POST') {
         try {

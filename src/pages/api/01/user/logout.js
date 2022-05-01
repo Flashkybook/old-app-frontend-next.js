@@ -1,6 +1,6 @@
 import cookie from 'cookie'
 
-export default function handler(request, response) {
+export default async function logout(request, response) {
 
     if (request.method === 'POST') {
         response.setHeader('Set-Cookie', [

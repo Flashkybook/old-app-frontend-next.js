@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {logout_action} from '../redux/actions/auth'
+import { logout_action } from '../redux/actions/auth'
 
 export default function Navbar() {
-  
+
   const userStatus = useSelector(e => e.auth)
 
   const navRef = useRef()
@@ -12,7 +12,7 @@ export default function Navbar() {
 
   const dispatch = useDispatch()
 
-  const handlerHidden =()=>{
+  const handlerHidden = () => {
     const className = navRef.current.classList
     className.toggle('hidden')
     console.log(className)
@@ -20,7 +20,7 @@ export default function Navbar() {
 
     // item.target
 
-    
+
   }
 
   return (
@@ -43,22 +43,22 @@ export default function Navbar() {
         <ul ref={navRef} className='hidden md:flex items-center space-x-8 text-[15px]'>
 
           {user ?
-              <li onClick={()=>dispatch(logout_action())} className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
-                Logout
-              </li>
-           
+            <li onClick={() => dispatch(logout_action())} className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
+              Logout
+            </li>
+
 
             :
-            <div  className='flex items-center'>
+            <div className='flex items-center'>
               <Link href='/user/login'>
-                <li className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
+                <a className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]' >
                   login
-                </li>
+                </a>
               </Link>
               <Link href='/user/register'>
-                <li className=''>
+                <a className='hover:bg-slate-300 hover:text-slate-900 px-5 py-2 rounded-[5rem]'>
                   register
-                </li>
+                </a>
               </Link>
             </div>
 

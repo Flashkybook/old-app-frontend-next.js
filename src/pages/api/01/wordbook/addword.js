@@ -2,7 +2,7 @@
 import cookie from 'cookie'
 const backend_api = process.env.BACKEND_DJANGO_API
 
-export default async (request, response) => {
+export default async function addword(request, response) {
     const save_cookies = cookie.parse(request.headers.cookie ?? '')
     const access = save_cookies.access
     // api backend > BACKEND_DJANGO_API/api/words/ 
