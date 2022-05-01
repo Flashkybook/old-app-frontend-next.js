@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-const FlashCards = ({ current }) => {
+
+
+
+export default function FlashCards({ current }){
 
   const [audio, setAudio] = useState("send this data")
 
@@ -43,4 +46,3 @@ const FlashCards = ({ current }) => {
   )
 }
 
-export default FlashCards

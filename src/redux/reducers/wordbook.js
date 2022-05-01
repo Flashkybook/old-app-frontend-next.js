@@ -4,6 +4,7 @@ const initial_state = {
     cards: [],
     current: 0,
     session_study: false,
+    type_of_session: null,
     cards_session: [], // son las cartas que seran envidas al backend para su setteo,
     error: null,
     commit: 5
@@ -36,10 +37,9 @@ const bookReducer = (state = initial_state, actions) => {
         case types.SET_WORD_STUDY:
             return { ...state }
 
+
         case types.NEW_STUDY_SESSION:
-            const study_commit = state.commit // seteable por configuracion de usuario poximamente
             // ordena por easiness mayor
-            const cards = state.cards
             function compare(a, b) {
                 if (a.repetitions < b.repetitions) {
                     return -1;
@@ -49,25 +49,40 @@ const bookReducer = (state = initial_state, actions) => {
                 }
                 return 0;
             }
-
             
-            const lista =  cards.filter(e=> e.next_review_date === "2022-04-29" || e.next_review_date === null)
-            // if (list_order.length === 0){
-            // }
+            const today = new Date().toLocaleDateString()
+            const cards = state.cards
+            
+            // next_review_date is less that today
+            const ByDaily = cards.filter((valor)=> valor.next_review_date === today || valor.next_review_date === null )
+        
+            // last_review que no sea menor que hoy  
+            const ByLastReview = cards.filter((valor)=> valor.last_review <= today)
+        
+            // por numero de repeticiones
+            const ByRepetitions = cards.sort(compare);  
 
-            if (lista.length === 0){
-                console.log("valio")
-                lista = cards.sort(compare);    
+            const study_commit = state.commit // seteable por configuracion de usuario poximamente
+
+            const list = []
+            const type_of_session = ""
+            if (ByDaily.length > 0){    
+                list = ByDaily.slice(0, study_commit) 
+                type_of_session = "Daily"   
+            }else if(ByLastReview.length > 0){
+                list = ByLastReview.slice(0, study_commit)    
+                type_of_session = "Lately not reviewed"   
+            }else{
+                list = ByRepetitions  
+                type_of_session = "least reviewed"   
             }
+            console.log(list)
 
-            console.log(lista)
+            return { ...state, cards_session: list, session_study: true, current: 0, type_of_session : type_of_session }
 
-            
-            const list = lista.slice(0, study_commit)    
 
-            return { ...state, cards_session: list, session_study:true, current: 0 }
         case types.SESSION_STUDY_END:
-            return { ...state, cards_session: [], session_study: false, current: 0 }
+            return { ...state, cards_session: [], session_study: false, current: 0, type_of_session : null }
 
         default:
             return state;

@@ -4,8 +4,8 @@ import { get_book } from '../redux/actions/wordbook'
 import FlashCards from './Study/FlashCards'
 import FormAddWord from './Study/FormAddWord'
 import GameList from './Study/GameList'
-import WordBook from './Study/WordBook'
-import SessionCards from './Study/SessionCards'
+import UserBookList from './Study/UserBookList'
+import DailyTodo from './Study/DailyTodo'
 
 
 /**
@@ -24,6 +24,7 @@ export default function index({ children, gameTitle, review, feedback }) {
 
     const all_cards = useSelector(e => e.user_book.cards)
     const current = useSelector(e => e.user_book.current)
+    const type_of_session = useSelector(e => e.user_book.type_of_session)
 
 
     // sessiond de estudio
@@ -35,8 +36,11 @@ export default function index({ children, gameTitle, review, feedback }) {
         <div className='mx-2'>
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
             
-            <div className='flex flex-col md:flex-row md:items-start md:space-x-3 justify-center items-center mt-8'>
+                {type_of_session && <h6 className='text-center my-5'>{type_of_session} session</h6>}
 
+
+            <div className='flex flex-col md:flex-row md:items-start md:space-x-3 justify-center items-center mt-8'>
+            
                 <GameList />
 
                 {/* FlashCards */}
@@ -49,13 +53,13 @@ export default function index({ children, gameTitle, review, feedback }) {
 
 
                 {/* wordbook LIST */}
-                <SessionCards cards={cards} />
+                <DailyTodo cards={all_cards} />
 
             </div>
             <FormAddWord />
 
             {/* mostrar all cards */}
-            <WordBook all_cards={all_cards} />
+            <UserBookList all_cards={all_cards} />
         </div>
     )
 }

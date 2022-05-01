@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const GameList = () => {
+export default function GameList(){
   return (
     <div className='mt-4 w-full md:w-1/5 rounded-xl'>
       <ul className='py-2 flex md:flex-col justify-around'>
@@ -25,5 +25,3 @@ const GameList = () => {
     </div>
   )
 }
-
-export default GameList
