@@ -43,11 +43,15 @@ export default function Home() {
         <div className='flex flex-col text-xl justify-center items-center mt-24'>
 
           <Link href='user/login'>
-            <button className=' border rounded-2xl bg-slate-600 p-2'>login to get started</button>
+            <a>
+              <button className=' border rounded-2xl bg-slate-600 p-2'>login to get started</button>
+            </a>
           </Link>
           or
           <Link href='user/register'>
-            <button className='border rounded-2xl bg-slate-600 p-2'>Sign up to get started</button>
+            <a>
+              <button className='border rounded-2xl bg-slate-600 p-2'>Sign up to get started</button>
+            </a>
           </Link>
         </div>
 

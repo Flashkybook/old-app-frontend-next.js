@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { set_current, current_session, set_session_study } from '../../redux/actions/wordbook'
+import { set_current, current_session } from '../../redux/actions/wordbook'
 import Interface from '../Interface'
-
 import { useRouter } from 'next/router'
 
-export default function Input() {
+
+export default function InputComponent() {
 
   const dispatch = useDispatch()
   const setCurrent = (e) => { dispatch(set_current(e)) }
@@ -21,9 +20,7 @@ export default function Input() {
     const currentWord = cards[current].terms.word.toLocaleLowerCase()
     const answer = e.target.answer.value.toLocaleLowerCase()
     const card = cards[current]
-
     card.easiness = 5
-
     if (answer === currentWord) {
       // espera
       e.target.answer.classList.remove('border-red-500', 'border-white')
@@ -37,7 +34,6 @@ export default function Input() {
       if (current +1 >= cards.length) {
         router.push('/study/feedback')
       }
-
     } else {
       e.target.answer.classList.remove('border-teal-500', 'border-white')
       e.target.answer.classList.add('border-red-500')
@@ -47,19 +43,9 @@ export default function Input() {
       if (card.easiness >= 0) {
         card.easiness = card.easiness - 1
       }
-
     }
-
-
     e.preventDefault()
   }
-
-
-
-
-
-
-
   return (
     <Interface gameTitle='Input' >
       <form action='' onSubmit={handlerSubmit} >

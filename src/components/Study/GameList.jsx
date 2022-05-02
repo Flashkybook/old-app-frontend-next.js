@@ -2,27 +2,27 @@
 import React from 'react'
 import Link from 'next/link'
 
-export default function GameList(){
+export default function GameList() {
   return (
     <div className='mt-4 w-full md:w-1/5 rounded-xl'>
       <ul className='py-2 flex md:flex-col justify-around'>
 
         <li className='text-xl font-bold px-2'>
-        Games :
+          Games :
         </li>
         <Link href='/study'>
-          <li >
+          <a >
             <button className='w-full px-2 my-4 border rounded-md bg-slate-900'>
-            Review
+              Review
             </button>
-          </li>
+          </a>
         </Link>
         <Link href='/study/input'>
-        <li >
+          <a >
             <button className='w-full px-2 my-4 border rounded-md bg-slate-900'>
-            input
+              input
             </button>
-          </li>
+          </a>
         </Link>
 
       </ul>

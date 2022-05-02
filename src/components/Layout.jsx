@@ -6,19 +6,17 @@ import { useEffect } from 'react'
 
 
 export default function Layout({ title, description, children }) {
-    const userStatus = useSelector(e => e.auth)
+
     const dispatch = useDispatch()
 
-    const check_user = () => {
-        if (dispatch && dispatch !== undefined && dispatch !== null) {
-            dispatch(auth_action())
-        }
-    }
-
-
     useEffect(() => {
-        check_user()
-    }, [])
+        const get_auth = () => {
+            if (dispatch && dispatch !== undefined && dispatch !== null) {
+                dispatch(auth_action())
+            }
+        }
+        get_auth()
+    }, [dispatch])
 
     return (
         <>

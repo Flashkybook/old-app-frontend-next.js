@@ -15,7 +15,7 @@ export default function Review() {
     if (current >= cards.length) {
       setCurrent(0)
     }
-  }, [current])
+  })
   return (
     <Interface gameTitle='Review' review={true}>
       {/* BUTTONS FlashCards */}

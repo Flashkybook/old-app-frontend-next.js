@@ -5,7 +5,7 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import Review from '../../components/Games/Review'
 
-export default function study(){
+export default function Study(){
   return (
     <Layout>
      <Review/>

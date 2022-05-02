@@ -4,7 +4,7 @@ import { login_action } from '../../redux/actions/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 
-export default function login() {
+export default function Login() {
   const route = useRouter()
   const reduxStatus = useSelector(e => e.auth)
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_book } from '../redux/actions/wordbook'
 import FlashCards from './Study/FlashCards'
@@ -13,31 +13,35 @@ import DailyTodo from './Study/DailyTodo'
  * si session is true se crea una nueva ssion y se muestran solo las cartas de session
  * si no se muestran todas las cartas
  */
-export default function index({ children, gameTitle, review, feedback }) {
+export default function Interface({ children, gameTitle, review, feedback }) {
 
     const dispatch = useDispatch()
-
     useEffect(() => {
-        dispatch(get_book(!review))
-    }, [])
+        const getbook = (e)=>{
+            dispatch(get_book(e))
+        }
+        const if_no_review = !review
+        getbook(if_no_review)
+    }, [dispatch])
+
+    const current = useSelector(e => e.user_book.current)
 
     const all_cards = useSelector(e => e.user_book.cards)
-    const current = useSelector(e => e.user_book.current)
+    const cards_session = useSelector(e => e.user_book.cards_session)
+
     const type_of_session = useSelector(e => e.user_book.type_of_session)
-
-
     // sessiond de estudio
     const session_study = useSelector(e => e.user_book.session_study)
-    const cards = session_study ? useSelector(e => e.user_book.cards_session) : useSelector(e => e.user_book.cards)
+    const cards = session_study ? cards_session  : all_cards
 
     // progres bar
     var act = current + 1
     const taj = 0
-    if(cards.length > 0){
+    if (cards.length > 0) {
 
         const taj = (act / cards.length) * 100
     }
- 
+
 
 
     return (
@@ -87,7 +91,7 @@ export default function index({ children, gameTitle, review, feedback }) {
     )
 }
 
-index.defaultProps = {
+Interface.defaultProps = {
     gameTitle: 'Game title',
     review: false,
     feedback: false

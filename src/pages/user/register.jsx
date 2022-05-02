@@ -4,7 +4,7 @@ import {register_action} from '../../redux/actions/auth'
 import {useDispatch, useSelector} from 'react-redux'
 import { useRouter } from 'next/router'
 
-const register = () => {
+const Register = () => {
   const route = useRouter()
   const reduxStatus = useSelector(e => e.auth)
 
@@ -94,4 +94,4 @@ const register = () => {
   )
 }
 
-export default register
+export default Register
