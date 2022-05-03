@@ -115,7 +115,7 @@ export const logout_action = () => async dispatch => {
         })
         if (res.status === 200) {
             dispatch({
-                type: types.LOGUT_SUCCESS
+                type: types.LOGOUT_SUCCESS
             })
         } else {
             dispatch({
