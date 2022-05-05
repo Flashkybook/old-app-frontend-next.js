@@ -31,7 +31,7 @@ export default async function addword(request, response) {
                 return response.status(202).json({ success: data.success, })
                 
             } else if (apiRes.status === 406) {
-                return response.status(406).json({ error: 'neither created or add' })
+                return response.status(406).json({ error:`solicitud fallida ${apiRes}, ${apiRes.error} + ${data.error} ` })
             }
         } catch (error) {
             response.status(402).json({ error: `solicitud fallida ${request.method}` })

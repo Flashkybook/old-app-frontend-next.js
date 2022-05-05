@@ -10,12 +10,11 @@ export default function Review() {
   const setCurrent = (e) => { dispatch(set_current(e)) }
   const current = useSelector(e => e.user_book.current)
   const cards = useSelector(e => e.user_book.cards)
+  
+  if (current +1 > cards.length) {
+    setCurrent(0)
+  }
 
-  useEffect(() => {
-    if (current >= cards.length) {
-      setCurrent(0)
-    }
-  })
   return (
     <Interface gameTitle='Review' review={true}>
       {/* BUTTONS FlashCards */}
