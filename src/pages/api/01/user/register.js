@@ -17,11 +17,11 @@ export default async function register(request, response) {
                 body: sendData
             });
             const data = await apiRes.json()
+            console.log(data)
 
             if (apiRes.status === 201) {
                 return response.status(201).json({ success: data.success, 'data': data.body })
             } else {
-                console.log('no status 200', data)
                 return response.status(apiRes.status).json({ error: data.error })
             }
         } catch (error) {

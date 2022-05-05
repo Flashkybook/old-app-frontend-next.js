@@ -43,7 +43,6 @@ export default async function login(request, response) {
                 return response.status(201).json({ success: data.success, 'data': data.body })
 
             } else {
-                console.log('login 403 no status 200', data)
                 return response.status(apiRes.status).json({ error: data.error })
             }
         } catch (error) {

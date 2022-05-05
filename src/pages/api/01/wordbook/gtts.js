@@ -10,23 +10,21 @@ export default async function gtts(request, response) {
 
     const refresh = save_cookies.refresh
     const access = save_cookies.access
-    const sendData = JSON.stringify(request.body)
+    const sendData = request.body
 
-    const url = `${backend_api}/api/words/text_to_speesh/`
-
+    const url =`${backend_api}/api/words/gttsApi/`+ sendData
     try {
-        const apiRes = await fetch(`${backend_api}/api/words/text_to_speesh/`, {
-            method: 'POST',
+        const apiRes = await fetch(url, {
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${access}`, // da una respuesta al backend con nuestro usuario
                 'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${access}`, // da una respuesta al backend con nuestro usuario
             },
-            body: JSON.stringify(sendData)
         });
-    
-        console.log(apiRes.status)
-
+        // const data = await apiRes.json()
+        // console.log(data)
+        console.log(url)
         return response.status(200).json({ success: url })
         
     } catch (error) {

@@ -24,6 +24,6 @@ export default async function logout(request, response) {
 
     } else {
         response.setHeader('Allow', ['POST'])
-        return response.status(200).json({ 'error': 'only alow POST method' })
+        return response.status(200).json({ error: 'only alow POST method' })
     }
 }

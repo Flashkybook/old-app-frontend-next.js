@@ -8,6 +8,8 @@ const Register = () => {
   const route = useRouter()
   const reduxStatus = useSelector(e => e.auth)
 
+  const error = useSelector(e=>e.auth.error)
+
   if (reduxStatus.is_auth) {
     route.push("/")
   }
@@ -32,13 +34,11 @@ const Register = () => {
     }
   }
 
-  const [error, setError] = useState()
+
   const handlerSubmit = e => {
     e.preventDefault()
     if(formData.password === formData.re_password){
       dispatch(register_action(formData))
-    }else{
-      setError("contraseñas no son iguales")
     }
   }
 

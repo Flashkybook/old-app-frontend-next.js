@@ -23,12 +23,15 @@ export const auth_action = () => async dispatch => {
             })
         } else {
             dispatch({
-                type: types.AUTH_FAIL
+                type: types.AUTH_FAIL,
+                payload: userData.error
+
             })
         }
     } catch (error) {
         dispatch({
-            type: types.AUTH_FAIL
+            type: types.AUTH_FAIL,
+            payload: "error 500"
         })
     }
 }
@@ -79,6 +82,8 @@ export const register_action = (formData) => async dispatch => {
             },
             body: const_body
         })
+        const data = await res.json()
+
 
         // resultado exitoso o fail
         if (res.status === 201) {
@@ -89,15 +94,16 @@ export const register_action = (formData) => async dispatch => {
             })
         } else {
             dispatch({
-                type: types.AUTH_FAIL
+                type: types.ACTION_FAIL,
+                payload: data.error
             })
-
         }
 
     } catch (error) {
         console.log(const_body)
         dispatch({
-            type: types.AUTH_FAIL
+            type: types.ACTION_FAIL,
+            payload: "Error 500"
         })
 
 
@@ -119,12 +125,15 @@ export const logout_action = () => async dispatch => {
             })
         } else {
             dispatch({
-                type: types.ACTION_FAIL
+                type: types.ACTION_FAIL,
+                payload: "error 500"
+
             })
         }
     } catch (error) {
         dispatch({
-            type: types.ACTION_FAIL
+            type: types.ACTION_FAIL,
+            payload: "error 500"
         })
 
 

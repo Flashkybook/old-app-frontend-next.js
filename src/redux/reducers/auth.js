@@ -4,6 +4,7 @@ const initial_state = {
     user: null,
     is_auth: false,
     auth_status: '',
+    error: null
 }
 
 
@@ -23,7 +24,7 @@ const authReducer = (state = initial_state, actions) => {
             return { ...state, is_auth: false }
 
         case types.ACTION_FAIL:
-            return { ...state}
+            return { ...state, error: payload}
 
         default:
             return state;

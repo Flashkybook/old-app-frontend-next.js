@@ -92,16 +92,15 @@ export default async function auth(request, response){
                         // return response.status(201).json({ success: 'verify user success' })
                     } else {
                         console.log(apiResVerify.status, '405')
-                        return response.status(405).json({ 'error': 'verify token fail' })
+                        return response.status(405).json({ error: 'verify token fail' })
                     }
 
                 } catch (error) {
                     console.log(token_verify, '404')
-                    return response.status(403).json({ 'error': 'Verify token fail' })
+                    return response.status(403).json({ error: 'Verify token fail' })
                 }
             } else {
-                console.log(refresh, '403')
-                return response.status(403).json({ 'error': 'Refresh token fail' })
+                return response.status(403).json({ error: 'Refresh token fail' })
             }
         } catch (error) {
             console.log('402')

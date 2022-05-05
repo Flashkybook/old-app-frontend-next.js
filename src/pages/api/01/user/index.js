@@ -29,7 +29,7 @@ export default async function index(request, response) {
             if (resApi.status === 200) {
                 return response.status(200).json({ success: data.success })
             } else {
-                return response.status(500).json({ error: data })
+                return response.status(500).json({ error: data.error })
             }
         } catch (error) {
             console.log('402')

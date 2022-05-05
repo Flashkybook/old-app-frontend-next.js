@@ -11,7 +11,7 @@ export default async function study_session(request, response) {
 
     if (request.method === 'POST') {
         try {
-            const apiRes = await fetch(`${backend_api}/api/words/study_session/`, {
+            const apiRes = await fetch(`${backend_api}/api/words/setword/`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

@@ -12,7 +12,7 @@ export default async function addword(request, response) {
 
     if (request.method === 'POST') {
         try {
-            const apiRes = await fetch(`${backend_api}/api/words/add_to_dict/`, {
+            const apiRes = await fetch(`${backend_api}/api/words/setword/`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -25,15 +25,12 @@ export default async function addword(request, response) {
 
             //  201 created  202 acepted and added 406 no lo crea ni lo acepta
             if (apiRes.status === 201) {
-                console.log('status 200', data)
                 return response.status(201).json({ success: data.success })
 
             } else if (apiRes.status === 202) {
-                console.log('status 200', data)
                 return response.status(202).json({ success: data.success, })
                 
             } else if (apiRes.status === 406) {
-                console.log('status 200', data)
                 return response.status(406).json({ error: 'neither created or add' })
             }
         } catch (error) {

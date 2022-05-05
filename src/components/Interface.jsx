@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_book } from '../redux/actions/wordbook'
-import FlashCards from './Study/FlashCards'
 import FormAddWord from './Study/FormAddWord'
 import GameList from './Study/GameList'
 import UserBookList from './Study/UserBookList'
 import DailyTodo from './Study/DailyTodo'
 
-
+import { lazy, Suspense } from 'react'
+const FlashCards = lazy(() => import('./Study/FlashCards'))
 /**
  *  session de estudio vs review
  * si session is true se crea una nueva ssion y se muestran solo las cartas de session
@@ -17,7 +17,7 @@ export default function Interface({ children, gameTitle, review, feedback }) {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        const getbook = (e)=>{
+        const getbook = (e) => {
             dispatch(get_book(e))
         }
         const if_no_review = !review
@@ -32,7 +32,7 @@ export default function Interface({ children, gameTitle, review, feedback }) {
     const type_of_session = useSelector(e => e.user_book.type_of_session)
     // sessiond de estudio
     const session_study = useSelector(e => e.user_book.session_study)
-    const cards = session_study ? cards_session  : all_cards
+    const cards = session_study ? cards_session : all_cards
 
     // progres bar
     var act = current + 1
@@ -72,7 +72,16 @@ export default function Interface({ children, gameTitle, review, feedback }) {
                                     <div className='bg-blue-600 h-2.5 rounded-full' style={{ width: `${taj}%` }}></div>
                                 </div>
                             </div>
-                            <FlashCards current={cards[current]} />
+
+                            {cards.length > 0 &&
+                                <Suspense fallback={<svg className="animate-spin h-20 w-20 mx-auto my-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>}>
+
+                                    <FlashCards current={cards[current]} />
+                                </Suspense>
+                            }
                         </>
                     }
                     {children}

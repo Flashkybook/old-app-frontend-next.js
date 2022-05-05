@@ -22,7 +22,7 @@ export default function FormAddWord() {
       // if this word exists in our user_book no acept and make style of error
       e.target.newWord.classList.remove('border-red-500')
       addword(newWord)
-      e.target.reset()
+      // e.target.reset()
     }
   }
 
