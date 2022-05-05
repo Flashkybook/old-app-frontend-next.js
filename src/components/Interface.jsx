@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_book } from '../redux/actions/wordbook'
 import FormAddWord from './Study/FormAddWord'
@@ -35,12 +35,15 @@ export default function Interface({ children, gameTitle, review, feedback }) {
     const cards = session_study ? cards_session : all_cards
 
     // progres bar
-    var act = current + 1
-    const taj = 0
-    if (cards.length > 0) {
+    const [taje, setTaje] = useState(0)
 
-        const taj = (act / cards.length) * 100
-    }
+    useEffect(() => {
+        const act = current + 1
+        if (cards.length > 0) {
+            setTaje((act / cards.length) * 100)
+        }
+
+    })
 
 
 
@@ -49,10 +52,7 @@ export default function Interface({ children, gameTitle, review, feedback }) {
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
 
             <div className='flex flex-col md:flex-row md:items-start md:space-x-16 md:mx-24 justify-center items-center mt-8'>
-
-
                 <GameList />
-
                 {/* FlashCards */}
                 <div className='w-full md:w-2/3 md:mx-10 flex flex-col items-center '>
                     {feedback === false &&
@@ -65,11 +65,11 @@ export default function Interface({ children, gameTitle, review, feedback }) {
                                         <span className='text-base font-medium text-blue-700 dark:text-white'>Review session</span>
                                     }
 
-                                    <span className='text-sm font-medium text-blue-700 dark:text-white'>{taj.toFixed(2)}%</span>
+                                    <span className='text-sm font-medium text-blue-700 dark:text-white'>{taje.toFixed(2)}%</span>
                                 </div>
 
                                 <div className='w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700'>
-                                    <div className='bg-blue-600 h-2.5 rounded-full' style={{ width: `${taj}%` }}></div>
+                                    <div className='bg-blue-600 h-2.5 rounded-full' style={{ width: `${taje}%` }}></div>
                                 </div>
                             </div>
 
@@ -79,7 +79,7 @@ export default function Interface({ children, gameTitle, review, feedback }) {
                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>}>
 
-                                    <FlashCards current={cards[current]} />
+                                    <FlashCards current={cards[current]} gameType={gameTitle} />
                                 </Suspense>
                             }
                         </>

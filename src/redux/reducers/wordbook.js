@@ -76,8 +76,6 @@ const bookReducer = (state = initial_state, actions) => {
                 list = ByRepetitions  
                 type_of_session = 'least reviewed'   
             }
-            console.log(list)
-
             return { ...state, cards_session: list, session_study: true, current: 0, type_of_session : type_of_session }
 
 

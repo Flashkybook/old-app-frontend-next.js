@@ -4,18 +4,16 @@ import Interface from '../Interface'
 import { useRouter } from 'next/router'
 
 
-export default function InputComponent() {
+export default function InputGame() {
 
   const dispatch = useDispatch()
   const setCurrent = (e) => { dispatch(set_current(e)) }
-
 
   const cards = useSelector(e => e.user_book.cards_session)
   const current = useSelector(e => e.user_book.current)
 
   // session de estudio
   const router = useRouter()
-
   const handlerSubmit = e => {
     const currentWord = cards[current].terms.word.toLocaleLowerCase()
     const answer = e.target.answer.value.toLocaleLowerCase()

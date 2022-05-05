@@ -3,12 +3,12 @@ import React from 'react'
 
 // components
 import Layout from '../../components/Layout'
-import InputGame from '../../components/Games/InputGame'
+import Listening from '../../components/Games/Listening'
 
 export default function Index(){
   return (
     <Layout>
-     <InputGame/>
+     <Listening/>
     </Layout>
   )
 }
