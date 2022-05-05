@@ -7,7 +7,7 @@ import UserBookList from './Study/UserBookList'
 import DailyTodo from './Study/DailyTodo'
 
 import { lazy, Suspense } from 'react'
-const FlashCards = lazy(() => import('./Study/FlashCards'))
+const FlashCards = lazy(() => import('./Games/FlashCards'))
 /**
  *  session de estudio vs review
  * si session is true se crea una nueva ssion y se muestran solo las cartas de session
@@ -16,7 +16,9 @@ const FlashCards = lazy(() => import('./Study/FlashCards'))
 export default function Interface({ children, gameTitle, review, feedback }) {
 
     const dispatch = useDispatch()
+
     useEffect(() => {
+        /**get user_book or session_study if review is false */
         const getbook = (e) => {
             dispatch(get_book(e))
         }
@@ -25,33 +27,32 @@ export default function Interface({ children, gameTitle, review, feedback }) {
     }, [dispatch])
 
     const current = useSelector(e => e.user_book.current)
-
+    const error = useSelector(e => e.user_book.error)
     const all_cards = useSelector(e => e.user_book.cards)
     const cards_session = useSelector(e => e.user_book.cards_session)
-
     const type_of_session = useSelector(e => e.user_book.type_of_session)
-    // sessiond de estudio
     const session_study = useSelector(e => e.user_book.session_study)
+
     const cards = session_study ? cards_session : all_cards
+
+
 
     // progres bar
     const [taje, setTaje] = useState(0)
-
     useEffect(() => {
         const act = current + 1
         if (cards.length > 0) {
             setTaje((act / cards.length) * 100)
         }
-
     })
-
-
-
     return (
         <div className='mx-2'>
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
 
             <div className='flex flex-col md:flex-row md:items-start md:space-x-16 md:mx-24 justify-center items-center mt-8'>
+                {error &&
+                    <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{error}</h1>
+                }
                 <GameList />
                 {/* FlashCards */}
                 <div className='w-full md:w-2/3 md:mx-10 flex flex-col items-center '>
@@ -79,7 +80,7 @@ export default function Interface({ children, gameTitle, review, feedback }) {
                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>}>
 
-                                    <FlashCards current={cards[current]} gameType={gameTitle} />
+                                    <FlashCards current_card={cards[current]} gameType={gameTitle} />
                                 </Suspense>
                             }
                         </>

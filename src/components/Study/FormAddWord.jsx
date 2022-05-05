@@ -1,4 +1,5 @@
 
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { add_word } from '../../redux/actions/wordbook'
 
@@ -11,19 +12,23 @@ export default function FormAddWord() {
   const user_book = useSelector(e => e.user_book.cards)
   const words_user = user_book.map(e => e.terms.word)
 
+  const [error, setError] = useState(null)
   const handleSubmit = e => {
     e.preventDefault()
     const newWord = e.target.newWord.value.toLocaleLowerCase()
     // console.log(newWord.hasCorrectedText)
-    if(words_user.includes(newWord)){
-      console.log('word already exists on userbook')
+    if (newWord.trim().length === 0) {
+
+      setError('this word is empty')
       e.target.newWord.classList.add('border-red-500')
-    }else{
-      // if this word exists in our user_book no acept and make style of error
+    } else if (words_user.includes(newWord)) {
+      setError('this word already exists on userbook')
+      e.target.newWord.classList.add('border-red-500')
+    } else {
       e.target.newWord.classList.remove('border-red-500')
       addword(newWord)
-      // e.target.reset()
     }
+    e.target.reset()
   }
 
 
@@ -39,6 +44,11 @@ export default function FormAddWord() {
           <button className='bg-slate-900 px-2 mx-2' type='submit'> add</button>
 
         </form>
+
+        {error &&
+          <span className='text-red-500 font-semibold'>{error}</span>
+        }
+
       </div>
     </div>
   )

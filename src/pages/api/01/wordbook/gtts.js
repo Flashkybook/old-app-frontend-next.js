@@ -23,8 +23,6 @@ export default async function gtts(request, response) {
             },
         });
         // const data = await apiRes.json()
-        // console.log(data)
-        console.log(url)
         return response.status(200).json({ success: url })
         
     } catch (error) {

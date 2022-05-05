@@ -1,7 +1,8 @@
 
 
 export default function UserBookList({ all_cards }) {
-  const today = new Date().toLocaleDateString()
+  const today = new Date().toTimeString()
+
   return (
     <div className='w-full flex flex-col justify-center my-4' >
       <span className='text-center text-2xl font-bold underline my-2'>

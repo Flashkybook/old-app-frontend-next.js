@@ -14,8 +14,10 @@ const initial_state = {
 const bookReducer = (state = initial_state, actions) => {
     const { type, payload } = actions
     switch (type) {
+
         case types.GET_BOOK_SUCCESS:
             return { ...state, cards: payload}
+
         case types.GET_BOOK_FAIL:
             return { ...state }
 
@@ -29,14 +31,12 @@ const bookReducer = (state = initial_state, actions) => {
         case types.PREVIOUS_CURRENT:
             return state.current > 0 ? { ...state, current: state.current + payload } : { ...state }
 
-
         case types.SET_CURRENT_FAIL:
             return { ...state }
 
         // SESSION
         case types.SET_WORD_STUDY:
             return { ...state }
-
 
         case types.NEW_STUDY_SESSION:
             // ordena por easiness mayor
@@ -78,9 +78,12 @@ const bookReducer = (state = initial_state, actions) => {
             }
             return { ...state, cards_session: list, session_study: true, current: 0, type_of_session : type_of_session }
 
-
         case types.SESSION_STUDY_END:
             return { ...state, cards_session: [], session_study: false, current: 0, type_of_session : null }
+
+        // Add Word 
+        case types.WORD_BOOK_ADD_FAIL:
+            return { ...state, error: payload  }
 
         default:
             return state;

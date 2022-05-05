@@ -57,6 +57,8 @@ export const add_word = (formData) => async dispatch => {
             },
             body: const_body
         })
+        const data = await res.json()
+
 
         // resultado si agrega al libro o se tomo uno existente o fail
         dispatch(get_book())
@@ -66,7 +68,9 @@ export const add_word = (formData) => async dispatch => {
             })
         } else {
             dispatch({
-                type: types.WORD_BOOK_ADD_FAIL
+                type: types.WORD_BOOK_ADD_FAIL,
+                payload: `status ${res.status} data ${data} error ${data.error}`
+
             })
 
         }
