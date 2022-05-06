@@ -8,8 +8,6 @@ export default async function addword(request, response) {
     // api backend > BACKEND_DJANGO_API/api/words/ 
 
     const sendData = JSON.stringify(request.body)
-
-
     if (request.method === 'POST') {
         try {
             const apiRes = await fetch(`${backend_api}/api/words/setword/`, {
@@ -31,7 +29,7 @@ export default async function addword(request, response) {
                 return response.status(202).json({ success: data.success, })
                 
             } else if (apiRes.status === 406) {
-                return response.status(406).json({ error:`solicitud fallida ${apiRes}, ${apiRes.error} + ${data.error} ` })
+                return response.status(406).json({ error:` ${data.error} ` })
             }
         } catch (error) {
             response.status(402).json({ error: `solicitud fallida ${request.method}` })
