@@ -70,7 +70,7 @@ export const add_word = (formData) => async dispatch => {
             console.log(`status ${res.error} data ${data} error ${data.error}`)
             dispatch({
                 type: types.WORD_BOOK_ADD_FAIL,
-                payload: `status ${res.status} data ${data} error ${data.error}`
+                payload: `status ${res.status} data ${data.error}`
 
             })
 

@@ -50,9 +50,7 @@ export default function Interface({ children, gameTitle, review, feedback }) {
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
 
             <div className='flex flex-col md:flex-row md:items-start md:space-x-16 md:mx-24 justify-center items-center mt-8'>
-                {error &&
-                    <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{error}</h1>
-                }
+
                 <GameList />
                 {/* FlashCards */}
                 <div className='w-full md:w-2/3 md:mx-10 flex flex-col items-center '>
@@ -93,6 +91,9 @@ export default function Interface({ children, gameTitle, review, feedback }) {
                 <DailyTodo cards={all_cards} />
 
             </div>
+            {error &&
+                <h1 className='text-center mt-16 text-xl underline-offset-2 underline '>{error}</h1>
+            }
             <FormAddWord />
 
             {/* mostrar all cards */}
