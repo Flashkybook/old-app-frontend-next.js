@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { set_current, current_session } from '../../redux/actions/wordbook'
 import Interface from '../Interface'
-import { useRouter } from 'next/router'
 
 
 export default function Listening() {
@@ -13,12 +12,13 @@ export default function Listening() {
   const current = useSelector(e => e.user_book.current)
 
   // session de estudio
-  const router = useRouter()
+  
   const handlerSubmit = e => {
     const currentWord = cards[current].terms.word.toLocaleLowerCase()
     const answer = e.target.answer.value.toLocaleLowerCase()
     const card = cards[current]
     card.easiness = 5
+    console.log(current +1, cards.length)
     if (answer === currentWord) {
       // espera
       e.target.answer.classList.remove('border-red-500', 'border-white')
@@ -29,9 +29,6 @@ export default function Listening() {
         e.target.answer.classList.replace('border-teal-500', 'border-white') // success style
         dispatch(current_session(card)) // add card sta to backend
       }, 500);
-      if (current +1 >= cards.length) {
-        router.push('/study/feedback')
-      }
     } else {
       e.target.answer.classList.remove('border-teal-500', 'border-white')
       e.target.answer.classList.add('border-red-500')
@@ -44,6 +41,7 @@ export default function Listening() {
     }
     e.preventDefault()
   }
+
   return (
     <Interface gameTitle='Listening' >
       <form action='' onSubmit={handlerSubmit} >

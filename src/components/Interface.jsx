@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { get_book } from '../redux/actions/wordbook'
+import { get_book, set_current } from '../redux/actions/wordbook'
+import { useRouter } from 'next/router'
 import FormAddWord from './Study/FormAddWord'
 import GameList from './Study/GameList'
 import UserBookList from './Study/UserBookList'
 import DailyTodo from './Study/DailyTodo'
+
+
 
 import { lazy, Suspense } from 'react'
 const FlashCards = lazy(() => import('./Games/FlashCards'))
@@ -34,7 +37,9 @@ export default function Interface({ children, gameTitle, review, feedback }) {
     const session_study = useSelector(e => e.user_book.session_study)
 
     const cards = session_study ? cards_session : all_cards
+    const router = useRouter()
 
+    const setCurrent = (e) => { dispatch(set_current(e)) }
 
 
     // progres bar
@@ -43,6 +48,10 @@ export default function Interface({ children, gameTitle, review, feedback }) {
         const act = current + 1
         if (cards.length > 0) {
             setTaje((act / cards.length) * 100)
+        }
+        if (cards.length > 0 && act > cards.length) {
+            setCurrent(0)
+            router.push('/study/feedback')
         }
     })
     return (
