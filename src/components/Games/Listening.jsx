@@ -18,7 +18,6 @@ export default function Listening() {
     const answer = e.target.answer.value.toLocaleLowerCase()
     const card = cards[current]
     card.easiness = 5
-    console.log(current +1, cards.length)
     if (answer === currentWord) {
       // espera
       e.target.answer.classList.remove('border-red-500', 'border-white')

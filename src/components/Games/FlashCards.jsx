@@ -7,7 +7,10 @@ export default function FlashCards({ current_card, gameType }) {
 
   const [url, setUrl] = useState()
   const current_num = useSelector(e => e.user_book.current)
+
+
   const [card, setCard] = useState(null)
+
   useEffect(() => {
     setCard(current_card)
     const getgTTS = async (data = "") => {
@@ -20,29 +23,27 @@ export default function FlashCards({ current_card, gameType }) {
           },
           body: JSON.stringify(data)
         })
-        const url = await res.json()
-        setUrl(url.success)
+        const resUrl = await res.json()
+        setUrl(resUrl.success)
+
         setTimeout(() => {
           if (gameType === "Listening" && current_num > 0) {
-            const audio_data = new Audio(url.success)
+            const audio_data = new Audio(resUrl.success)
             audio_data.play()
           }
         }, 500);
-
       } catch (error) {
         console.log(error)
       }
     }
-    if (card !== null) {
-      getgTTS(card.terms.word)
+    if (current_card !== undefined ) {
+      getgTTS(current_card.terms.word)
     }
-
-  }, [card])
+  }, [current_card])
 
   //const [audio_data] = useState(new Audio(url));
   const playSond = () => {
     const audio_data = new Audio(url)
-    console.log(audio_data)
     audio_data.play()
   }
 
