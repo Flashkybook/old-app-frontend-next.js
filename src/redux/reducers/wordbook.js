@@ -5,15 +5,18 @@ const initial_state = {
     current: 0,
     session_study: false,
     type_of_session: null,
-    cards_session: [], // son las cartas que seran envidas al backend para su setteo,
+    session_cards: [], // son las cartas que seran envidas al backend para su setteo,
+    session_cards_completed: [], // son las cartas que seran envidas al backend para su setteo,
     error: null,
-    commit: 5
+    commit: 2
 }
 
 
 const bookReducer = (state = initial_state, actions) => {
     const { type, payload } = actions
     switch (type) {
+
+        // GET USER BOOK
 
         case types.GET_BOOK_SUCCESS:
             return { ...state, cards: payload }
@@ -34,18 +37,27 @@ const bookReducer = (state = initial_state, actions) => {
         case types.SET_CURRENT_FAIL:
             return { ...state }
 
+    
         // SESSION
         case types.CORRECT_WORD_STUDY:
             // manda al final la palabra pero ya aprobada
-            payload.ready = true
-            return { ...state, cards_session : [...state.cards_session, payload] }
+            state.session_cards.shift() 
+
+            // add score of fails if exist
+            
+            
+
+            return { ...state, session_cards_completed : [...state.session_cards_completed, payload] }
 
         case types.FAIL_WORD_STUDY:
-            payload.ready = false
-            state.cards_session.shift() // elimina el elemento actual del principio
-            payload.fails = +1  
+            state.session_cards.shift() // elimina el elemento actual del principio
 
-            return { ...state, cards_session : [...state.cards_session, payload] }
+            if(payload.fails ){
+                payload.fails +=1  
+            }else{
+                payload.fails = 1  
+            }
+            return { ...state, session_cards : [...state.session_cards, payload] }
 
         case types.NEW_STUDY_SESSION:
             // ordena por easiness mayor
@@ -82,18 +94,19 @@ const bookReducer = (state = initial_state, actions) => {
                 list = ByLastReview.slice(0, study_commit)
                 type_of_session = 'Lately not reviewed'
             } else {
-                list = ByRepetitions
+                list = ByRepetitions.slice(0, study_commit)
                 type_of_session = 'least reviewed'
             }
-            return { ...state, cards_session: list, session_study: true, current: 0, type_of_session: type_of_session }
+            console.log(study_commit)
 
-            
+            console.log(list)
+            return { ...state, session_cards: list, session_cards_completed: [], session_study: true, current: 0, type_of_session: type_of_session }
+
         case types.SESSION_STUDY_END:
-            console.log("por que te reseteas?")
             return { ...state }
             
-        // case types.SESSION_STUDY_RESET:
-        //     return { ...state, cards_session: [], session_study: false, current: 0, type_of_session: null }
+        case types.SESSION_STUDY_RESET:
+            return { ...state, session_cards: [], session_study: false, current: 0, type_of_session: null }
             
         
 

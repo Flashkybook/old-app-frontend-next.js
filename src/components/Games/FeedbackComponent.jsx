@@ -10,11 +10,11 @@ export default function FeedbackComponent() {
   const dispatch = useDispatch()
 
   const cards = useSelector(e => e.user_book.cards)
-  const cards_session = useSelector(e => e.user_book.cards_session)
-
+  const session_cards_completed = useSelector(e => e.user_book.session_cards_completed)
+  console.log(session_cards_completed)
   // comparacion de 2 arrays
   const compare = cards.filter(function (e) {
-    return cards_session.filter(card=>{
+    return session_cards_completed.filter(card=>{
       return card.id === e.id
     })
   })
@@ -57,7 +57,7 @@ export default function FeedbackComponent() {
 
           <ul className='flex flex-col space-y-2 w-full mx-auto'>
 
-            {cards_session.map((e, i) => (
+            {session_cards_completed.map((e, i) => (
               <li className='flex flex-col' key={i}>
                   {"."}
                 

@@ -17,6 +17,7 @@ export default function UserBookList({ all_cards }) {
               <th>progress</th>
               <th>Next review </th>
               <th className='px-5'>review today</th>
+              <th>repetitions</th>
             </tr>
           </thead>
           <tbody>
@@ -37,8 +38,12 @@ export default function UserBookList({ all_cards }) {
 
                 <td>
                   {e.next_review_date}
+
                 </td>
 
+              <td className="test-center">
+                  <span> {e.repetitions}</span>
+              </td>
                 {/* review today */}
                 <td className='px-4'>
                   {e.last_review >= today ? <i>✅</i> : <i>➡</i>}

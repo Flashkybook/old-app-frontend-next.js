@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_book, set_current } from '../redux/actions/wordbook'
 import { useRouter } from 'next/router'
+
+// components
 import FormAddWord from './Study/FormAddWord'
 import GameList from './Study/GameList'
 import UserBookList from './Study/UserBookList'
 import DailyTodo from './Study/DailyTodo'
 
-
-
-import { lazy, Suspense } from 'react'
 const FlashCards = lazy(() => import('./Games/FlashCards'))
+
 /**
- *  session de estudio vs review
- * si session is true se crea una nueva ssion y se muestran solo las cartas de session
+ * session de estudio vs review
+ * si session is true se crea una nueva sesion y se muestran solo las cartas de session
  * si no se muestran todas las cartas
  */
 export default function Interface({ children, study_session, gameTitle, review, feedback }) {
@@ -28,7 +28,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
         }
 
         /* activar 1 ves en secion de estudio
-            no activar en review ni en 
+        no activar en review ni en 
         */
         if (study_session) {
             getbook(true)
@@ -38,21 +38,19 @@ export default function Interface({ children, study_session, gameTitle, review, 
 
     }, [dispatch])
 
+    // redux state
     const current = useSelector(e => e.user_book.current)
     const error = useSelector(e => e.user_book.error)
     const all_cards = useSelector(e => e.user_book.cards)
-    const cards_session = useSelector(e => e.user_book.cards_session)
+    const session_cards = useSelector(e => e.user_book.session_cards)
     const type_of_session = useSelector(e => e.user_book.type_of_session)
 
-    const cards = session_study ? cards_session : all_cards
-
-
-
+    // solo tomar las cards de session
+    const cards = session_study ? session_cards : all_cards
 
     const router = useRouter()
 
     const setCurrent = (e) => { dispatch(set_current(e)) }
-
 
     // progres bar
     const [taje, setTaje] = useState(0)
@@ -66,6 +64,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
             router.push('/study/feedback')
         }
     })
+    
     return (
         <div className='mx-2'>
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
@@ -97,8 +96,8 @@ export default function Interface({ children, study_session, gameTitle, review, 
 
                         <div className='w-full mt-12'>
 
-                            {cards_session.map((e, i) => (
-                                <div className='bg-gray-600 my-2 flex space-x-1'>
+                            {session_cards.map((e, i) => (
+                                <div key={i} className='bg-gray-600 my-2 flex space-x-1'>
                                     <span>{e.terms.word}</span>
                                     <span className='text-red-500 font-bold'>{e.fails}</span>
                                     <span className='text-teal-500 font-bold'>{e.ready}</span>
@@ -114,11 +113,11 @@ export default function Interface({ children, study_session, gameTitle, review, 
                         <>
 
                             {cards.length > 0 &&
-                                <Suspense fallback={<svg className="animate-spin h-20 w-20 mx-auto my-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>}>
-
+                                <Suspense fallback={
+                                    <svg className="animate-spin h-20 w-20 mx-auto my-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>}>
                                     <FlashCards current_card={cards[current]} gameType={gameTitle} />
                                 </Suspense>
                             }
