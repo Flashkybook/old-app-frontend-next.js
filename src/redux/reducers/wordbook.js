@@ -97,13 +97,12 @@ const bookReducer = (state = initial_state, actions) => {
                 list = ByRepetitions.slice(0, study_commit)
                 type_of_session = 'least reviewed'
             }
-            console.log(study_commit)
 
-            console.log(list)
             return { ...state, session_cards: list, session_cards_completed: [], session_study: true, current: 0, type_of_session: type_of_session }
 
         case types.SESSION_STUDY_END:
-            return { ...state }
+            return { ...state, session_cards: [], session_study: false, current: 0, type_of_session: null }
+
             
         case types.SESSION_STUDY_RESET:
             return { ...state, session_cards: [], session_study: false, current: 0, type_of_session: null }

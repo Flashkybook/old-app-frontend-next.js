@@ -7,8 +7,10 @@ export default function FlashCards({ current_card, gameType }) {
 
   const [url, setUrl] = useState()
   const current_num = useSelector(e => e.user_book.current)
+  const session_cards_completed = useSelector(e => e.user_book.session_cards_completed)
 
   const [card, setCard] = useState(null)
+  
 
   
   useEffect(() => {
@@ -25,9 +27,10 @@ export default function FlashCards({ current_card, gameType }) {
         })
         const resUrl = await res.json()
         setUrl(resUrl.success)
-
+        console.log(gameType === "Listening" && session_cards_completed.length > 0)
+        console.log(current_num > 0)
         setTimeout(() => {
-          if (gameType === "Listening" && current_num > 0) {
+          if (gameType === "Listening" && session_cards_completed.length > 0 || current_num > 0) {
             const audio_data = new Audio(resUrl.success)
             audio_data.play()
           }

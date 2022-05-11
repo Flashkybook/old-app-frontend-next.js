@@ -29,8 +29,6 @@ export default function Listening() {
    * en session solo estan las palanbras no completadas
    * una ves compeltadas se borran de session y se agregan a feedback con sus nuevas estadisticas 
    */
-
-  console.log(cards)
   const handlerSubmit = e => {
     const answer = e.target.answer.value.toLocaleLowerCase()
     const currentWord = cards[current].terms.word.toLocaleLowerCase()
@@ -65,10 +63,8 @@ export default function Listening() {
           dispatch(current_session(card, false))
         } else { //fail donot exist
           dispatch(current_session(card, true)) // add word sta to backend
-          console.log("AQUI!", cards.length, cards)
           
           setTimeout(() => {
-            console.log("AQUI!", cards.length, cards)
             if (cards.length === 0) {
               router.push("/study/feedback/")
             }

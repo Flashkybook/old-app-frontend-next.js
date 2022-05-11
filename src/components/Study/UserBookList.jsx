@@ -16,8 +16,8 @@ export default function UserBookList({ all_cards }) {
               <th className='text-left px-5'>Word</th>
               <th>progress</th>
               <th>Next review </th>
+              <th className="text-right">repetitions</th>
               <th className='px-5'>review today</th>
-              <th>repetitions</th>
             </tr>
           </thead>
           <tbody>
