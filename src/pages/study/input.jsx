@@ -7,7 +7,7 @@ import InputGame from '../../components/Games/InputGame'
 
 export default function Index(){
   return (
-    <Layout>
+    <Layout  title={"input study"}>
      <InputGame/>
     </Layout>
   )

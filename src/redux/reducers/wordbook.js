@@ -16,7 +16,7 @@ const bookReducer = (state = initial_state, actions) => {
     switch (type) {
 
         case types.GET_BOOK_SUCCESS:
-            return { ...state, cards: payload}
+            return { ...state, cards: payload }
 
         case types.GET_BOOK_FAIL:
             return { ...state }
@@ -35,8 +35,17 @@ const bookReducer = (state = initial_state, actions) => {
             return { ...state }
 
         // SESSION
-        case types.SET_WORD_STUDY:
-            return { ...state }
+        case types.CORRECT_WORD_STUDY:
+            // manda al final la palabra pero ya aprobada
+            payload.ready = true
+            return { ...state, cards_session : [...state.cards_session, payload] }
+
+        case types.FAIL_WORD_STUDY:
+            payload.ready = false
+            state.cards_session.shift() // elimina el elemento actual del principio
+            payload.fails = +1  
+
+            return { ...state, cards_session : [...state.cards_session, payload] }
 
         case types.NEW_STUDY_SESSION:
             // ordena por easiness mayor
@@ -49,41 +58,48 @@ const bookReducer = (state = initial_state, actions) => {
                 }
                 return 0;
             }
-            
+
             const today = new Date().toLocaleDateString()
             const cards = state.cards
-            
+
             // next_review_date is less that today
-            const ByDaily = cards.filter((valor)=> valor.next_review_date === today || valor.next_review_date === null )
-        
+            const ByDaily = cards.filter((valor) => valor.next_review_date === today || valor.next_review_date === null)
+
             // last_review que no sea menor que hoy  
-            const ByLastReview = cards.filter((valor)=> valor.last_review <= today)
-        
+            const ByLastReview = cards.filter((valor) => valor.last_review <= today)
+
             // por numero de repeticiones
-            const ByRepetitions = cards.sort(compare);  
+            const ByRepetitions = cards.sort(compare);
 
             const study_commit = state.commit // seteable por configuracion de usuario poximamente
 
             const list = []
             const type_of_session = ''
-            if (ByDaily.length > 0){    
-                list = ByDaily.slice(0, study_commit) 
-                type_of_session = 'Daily'   
-            }else if(ByLastReview.length > 0){
-                list = ByLastReview.slice(0, study_commit)    
-                type_of_session = 'Lately not reviewed'   
-            }else{
-                list = ByRepetitions  
-                type_of_session = 'least reviewed'   
+            if (ByDaily.length > 0) {
+                list = ByDaily.slice(0, study_commit)
+                type_of_session = 'Daily'
+            } else if (ByLastReview.length > 0) {
+                list = ByLastReview.slice(0, study_commit)
+                type_of_session = 'Lately not reviewed'
+            } else {
+                list = ByRepetitions
+                type_of_session = 'least reviewed'
             }
-            return { ...state, cards_session: list, session_study: true, current: 0, type_of_session : type_of_session }
+            return { ...state, cards_session: list, session_study: true, current: 0, type_of_session: type_of_session }
 
+            
         case types.SESSION_STUDY_END:
-            return { ...state, cards_session: [], session_study: false, current: 0, type_of_session : null }
+            console.log("por que te reseteas?")
+            return { ...state }
+            
+        // case types.SESSION_STUDY_RESET:
+        //     return { ...state, cards_session: [], session_study: false, current: 0, type_of_session: null }
+            
+        
 
         // Add Word 
         case types.WORD_BOOK_ADD_FAIL:
-            return { ...state, error: payload  }
+            return { ...state, error: payload }
 
         default:
             return state;

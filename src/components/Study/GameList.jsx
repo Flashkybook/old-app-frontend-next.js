@@ -11,7 +11,7 @@ export default function GameList() {
 
   return (
 
-    <div className='mt-4 w-full md:w-1/5 rounded-xl'>
+    <div className='mt-4 w-full rounded-xl'>
       <ul className='py-2 flex md:flex-col justify-around'>
 
         <li className='text-xl font-bold px-2'>

@@ -16,17 +16,26 @@ const FlashCards = lazy(() => import('./Games/FlashCards'))
  * si session is true se crea una nueva ssion y se muestran solo las cartas de session
  * si no se muestran todas las cartas
  */
-export default function Interface({ children, gameTitle, review, feedback }) {
+export default function Interface({ children, study_session, gameTitle, review, feedback }) {
 
     const dispatch = useDispatch()
+    const session_study = useSelector(e => e.user_book.session_study)
 
     useEffect(() => {
         /**get user_book or session_study if review is false */
         const getbook = (e) => {
             dispatch(get_book(e))
         }
-        const if_no_review = !review
-        getbook(if_no_review)
+
+        /* activar 1 ves en secion de estudio
+            no activar en review ni en 
+        */
+        if (study_session) {
+            getbook(true)
+        } else {
+            getbook(false)
+        }
+
     }, [dispatch])
 
     const current = useSelector(e => e.user_book.current)
@@ -34,9 +43,12 @@ export default function Interface({ children, gameTitle, review, feedback }) {
     const all_cards = useSelector(e => e.user_book.cards)
     const cards_session = useSelector(e => e.user_book.cards_session)
     const type_of_session = useSelector(e => e.user_book.type_of_session)
-    const session_study = useSelector(e => e.user_book.session_study)
 
     const cards = session_study ? cards_session : all_cards
+
+
+
+
     const router = useRouter()
 
     const setCurrent = (e) => { dispatch(set_current(e)) }
@@ -60,26 +72,46 @@ export default function Interface({ children, gameTitle, review, feedback }) {
 
             <div className='flex flex-col md:flex-row md:items-start md:space-x-16 md:mx-24 justify-center items-center mt-8'>
 
-                <GameList />
-                {/* FlashCards */}
-                <div className='w-full md:w-2/3 md:mx-10 flex flex-col items-center '>
+                <div className='flex flex-col mt-4 w-full md:w-1/5 rounded-xl   '>
+
+                    <GameList />
+                    {/* FlashCards */}
+
+                    <div className='w-full my-5'>
+                        <div className='flex justify-between mb-1'>
+                            {type_of_session ?
+                                <span className='text-base font-medium text-blue-700 dark:text-white'>{type_of_session} session</span>
+                                :
+                                <span className='text-base font-medium text-blue-700 dark:text-white'>Review session</span>
+                            }
+
+                        </div>
+
+                        <div className='w-full bg-gray-200 h-2.5 dark:bg-gray-700'>
+                            <div className='bg-blue-600 h-2.5 flex justify-center items-center' style={{ width: `${taje}%` }}>
+                                <span className='text-[10px] font-medium text-blue-700 dark:text-white'>{taje.toFixed(2)}%</span>
+
+                            </div>
+                        </div>
+
+
+                        <div className='w-full mt-12'>
+
+                            {cards_session.map((e, i) => (
+                                <div className='bg-gray-600 my-2 flex space-x-1'>
+                                    <span>{e.terms.word}</span>
+                                    <span className='text-red-500 font-bold'>{e.fails}</span>
+                                    <span className='text-teal-500 font-bold'>{e.ready}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div className='w-full md:w-2/3 md:mx-10 flex flex-col items-center pb-4 pt-16 border border-white  bg-slate-700 rounded-3xl'>
+
+
                     {feedback === false &&
                         <>
-                            <div className='w-full my-5'>
-                                <div className='flex justify-between mb-1'>
-                                    {type_of_session ?
-                                        <span className='text-base font-medium text-blue-700 dark:text-white'>{type_of_session} session</span>
-                                        :
-                                        <span className='text-base font-medium text-blue-700 dark:text-white'>Review session</span>
-                                    }
-
-                                    <span className='text-sm font-medium text-blue-700 dark:text-white'>{taje.toFixed(2)}%</span>
-                                </div>
-
-                                <div className='w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700'>
-                                    <div className='bg-blue-600 h-2.5 rounded-full' style={{ width: `${taje}%` }}></div>
-                                </div>
-                            </div>
 
                             {cards.length > 0 &&
                                 <Suspense fallback={<svg className="animate-spin h-20 w-20 mx-auto my-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

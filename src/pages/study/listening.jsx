@@ -7,7 +7,7 @@ import Listening from '../../components/Games/Listening'
 
 export default function Index(){
   return (
-    <Layout>
+    <Layout title={"listening study"}>
      <Listening/>
     </Layout>
   )

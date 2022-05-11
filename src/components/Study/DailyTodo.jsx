@@ -4,7 +4,7 @@ export default function DailyTodo({ cards }) {
     const today = new Date().toLocaleDateString()
     const daily = cards.filter((valor, index) => valor.next_review_date === today || valor.next_review_date === null)
 
-
+    
     return (
         <div className='flex  mt-5 md:mt-0 md:w-1/5 flex-col justify-center  ' >
 
@@ -29,10 +29,14 @@ export default function DailyTodo({ cards }) {
             <div>
                 <ul className='flex flex-col'>
                     {daily && daily.map((e, i) => (
-                        <li key={i} >{e.terms.word} </li>
+                        <li key={i} >
+                            {/* {e.terms.word}  */}
+                            </li>
                     ))}
                 </ul>
             </div>
         </div>
     )
 }
+
+

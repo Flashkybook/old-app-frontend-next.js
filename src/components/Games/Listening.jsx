@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { set_current, current_session } from '../../redux/actions/wordbook'
 import Interface from '../Interface'
@@ -12,40 +13,114 @@ export default function Listening() {
   const current = useSelector(e => e.user_book.current)
 
   // session de estudio
-  
+
+
+
+  const [wrong, setWrong] = useState()
+  const [correct, setCorrect] = useState()
+
+  useEffect(() => {
+    setWrong(false)
+    setCorrect(false)
+  }, [current])
+
+
   const handlerSubmit = e => {
-    const currentWord = cards[current].terms.word.toLocaleLowerCase()
     const answer = e.target.answer.value.toLocaleLowerCase()
     const card = cards[current]
-    card.easiness = 5
+    const currentWord = cards[current].terms.word.toLocaleLowerCase()    
+
+    setCorrect(currentWord)
+
     if (answer === currentWord) {
       // espera
       e.target.answer.classList.remove('border-red-500', 'border-white')
       e.target.answer.classList.add('border-teal-500')
+
       setTimeout(() => {
         setCurrent(+1) // next card
         e.target.reset()  // reset input
         e.target.answer.classList.replace('border-teal-500', 'border-white') // success style
-        dispatch(current_session(card)) // add card sta to backend
+
+        // una ves aprovado si la palabra fue fallida 1 ves la volvemos a repetir y gana un punto de fail acumulativo para la siguiente ronda
+        if(card.current_fail){ // fail exist true
+          dispatch(current_session(card, false))        
+        }else{ //fail donot exist
+          dispatch(current_session(card, true)) // add word sta to backend
+        }
+
       }, 500);
+
     } else {
+      setWrong(answer)
+      card.current_fail = true //disparador a ser enviada al final de la ronda
+
       e.target.answer.classList.remove('border-teal-500', 'border-white')
       e.target.answer.classList.add('border-red-500')
       setTimeout(() => {
         e.target.answer.classList.replace('border-red-500', 'border-white') // success style
+        
       }, 1000);
-      if (card.easiness >= 0) {
-        card.easiness = card.easiness - 1
-      }
+
+      // if (card.easiness > 0) {
+      //   card.easiness = card.easiness - 1
+      // }
     }
     e.preventDefault()
   }
 
+
+
   return (
-    <Interface gameTitle='Listening' >
-      <form action='' onSubmit={handlerSubmit} >
-        <input autoComplete='off' className='py-2 px-4 outline-none bg-slate-800 rounded-3xl border text-center' name='answer' type='text' placeholder='answer...' />
+    <Interface gameTitle='Listening' study_session={true} >
+
+      {wrong &&
+        <div className='text-center'>
+          <h3 className='text-4xl  text-teal-500'>{correct}</h3>
+          <h3 className='text-4xl mb-12 text-red-500'>{wrong}</h3>
+        </div>  
+      }
+
+
+      <form className='w-full' onSubmit={handlerSubmit} >
+        <input autoComplete='off' className='text-2xl py-2 px-4 outline-none bg-slate-800 w-full border text-center' name='answer' type='text' placeholder='Escribe lo que logras escuchar...' />
       </form>
     </Interface>
   )
 }
+
+
+// // str2 is the text which I want to compare with str1.
+// var str2 = "I was sent to moon in order to protect you"
+
+// function words(s) {
+//     return s.toLowerCase().match(/\w+/g);
+// }
+
+// // str1 is the reference text. 
+// var str1 = "I was sent to earth to protect my cousin";
+
+// let a = words(str1);
+// let b = words(str2);
+// let res1 = b.filter(i => !a.includes(i));
+// let res2 = a.filter(i => !b.includes(i));
+
+// highlight(b, "str2", res1);
+// highlight(a, "str1", res2);
+// function highlight(str, id, res){
+//     const div = document.createElement('div');
+//     var text = "";
+//    for(var i=0; i<str.length; i++){
+//     var hasVal = res.includes(str[i]);
+//     if(hasVal){
+//       text +=" <span class='imp'>"+str[i]+"</span> ";
+//     } else {
+//        text +=" "+str[i]+" ";
+//     }
+//    }
+//     div.innerHTML = text;
+//     document.body.appendChild(div);
+// }
+// .imp{
+//   color: red
+// }

@@ -10,7 +10,7 @@ export default function Home() {
 
 
   return (
-    <Layout>
+    <Layout title={"home page"}>
       {auth ?
         <Review />
         :

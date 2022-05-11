@@ -8,9 +8,9 @@ export default function FlashCards({ current_card, gameType }) {
   const [url, setUrl] = useState()
   const current_num = useSelector(e => e.user_book.current)
 
-
   const [card, setCard] = useState(null)
 
+  
   useEffect(() => {
     setCard(current_card)
     const getgTTS = async (data = "") => {
@@ -52,7 +52,7 @@ export default function FlashCards({ current_card, gameType }) {
 
 
   return (
-    <div className='w-full border border-white flex flex-col justify-end items-center pb-4 pt-16 bg-slate-700 rounded-3xl' >
+    <div className='w-full flex flex-col justify-end items-center ' >
 
       <div className='flex flex-col justify-end  items-center  font-bold my-2'>
 

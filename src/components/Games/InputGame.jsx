@@ -45,9 +45,9 @@ export default function InputGame() {
     e.preventDefault()
   }
   return (
-    <Interface gameTitle='Input' >
-      <form action='' onSubmit={handlerSubmit} >
-        <input autoComplete='off' className='py-2 px-4 outline-none bg-slate-800 rounded-3xl border text-center' name='answer' type='text' placeholder='answer...' />
+    <Interface gameTitle='Input' study_session={true} >
+      <form className='w-full' onSubmit={handlerSubmit} >
+        <input autoComplete='off' className='w-full py-2 px-4 outline-none bg-slate-800  border text-center' name='answer' type='text' placeholder='answer...' />
       </form>
     </Interface>
   )

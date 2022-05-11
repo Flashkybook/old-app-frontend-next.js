@@ -7,7 +7,7 @@ import FeedbackComponent from '../../components/Games/FeedbackComponent'
 
 export default function Feedback(){
   return (
-    <Layout>
+    <Layout title={"feedback"}>
      <FeedbackComponent/>
 
     </Layout>

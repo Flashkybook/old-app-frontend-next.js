@@ -30,7 +30,7 @@ export const get_book = (bool) => async dispatch => {
                 type: types.GET_BOOK_SUCCESS,
                 payload: userData.success  // => res wordbook user data user
             })
-            if(bool !== undefined){
+            if (bool !== undefined) {
                 dispatch(set_session_study(bool))
             }
         } else {
@@ -83,35 +83,44 @@ export const add_word = (formData) => async dispatch => {
         })
     }
 }
-export const current_session = (formData) => async dispatch => {
-    // mandar los datos de estudio en tiempo real al backend
+export const current_session = (formData, bool) => async dispatch => {
+
+
+    // mandar los datos de estudio en tiempo real al backend si la respuesta es corrcta
     const const_body = JSON.stringify(formData)
-    try {
-        const res = await fetch('/api/01/wordbook/study_session/', {
-            method: 'POST',
-            headers: {
-                'Action': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: const_body
-        })
-        // resultado si agrega al libro o se tomo uno existente o fail
-        dispatch(get_book())
-        if (res.status === 201) { // create and adde to userbook
-            dispatch({
-                // agrega las cartas estudiadas al redux
-                type: types.SET_WORD_STUDY, payload: formData
+
+
+        if (bool) {
+            const res = await fetch('/api/01/wordbook/study_session/', {
+                method: 'POST',
+                headers: {
+                    'Action': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: const_body
             })
-        } else {
+            // resultado si agrega al libro o se tomo uno existente o fail
+            dispatch(get_book())
+            if (res.status === 201) { // create and adde to userbook
+                dispatch({
+                    // agrega las cartas estudiadas al redux
+                    type: types.CORRECT_WORD_STUDY, payload: formData
+                })
+            } else {            
+                dispatch({
+                    type: types.SET_WORD_STUDY_FAIL
+                })
+            }
+            
+            // agrega un punto negativo a la current word y la manda al final 
+        } else if (bool=== false) {
+            console.log("Palabra fallida manada al final")
             dispatch({
-                type: types.SET_WORD_STUDY_FAIL
+                type: types.FAIL_WORD_STUDY, payload: formData
             })
         }
-    } catch (error) {
-        dispatch({
-            type: types.AUTH_FAIL
-        })
-    }
+
+
 }
 export const set_current = (data) => dispatch => {
 
