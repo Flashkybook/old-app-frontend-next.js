@@ -89,36 +89,35 @@ export const current_session = (formData, bool) => async dispatch => {
     // mandar los datos de estudio en tiempo real al backend si la respuesta es corrcta
     const const_body = JSON.stringify(formData)
 
-
-        if (bool) {
-            const res = await fetch('/api/01/wordbook/study_session/', {
-                method: 'POST',
-                headers: {
-                    'Action': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: const_body
-            })
-            // resultado si agrega al libro o se tomo uno existente o fail
-            dispatch(get_book())
-            if (res.status === 201) { // create and adde to userbook
-                dispatch({
-                    // agrega las cartas estudiadas al redux
-                    type: types.CORRECT_WORD_STUDY, payload: formData
-                })
-            } else {            
-                dispatch({
-                    type: types.SET_WORD_STUDY_FAIL
-                })
-            }
-            
-            // agrega un punto negativo a la current word y la manda al final 
-        } else if (bool=== false) {
-            console.log("Palabra fallida manada al final")
+    if (bool) {
+        const res = await fetch('/api/01/wordbook/study_session/', {
+            method: 'POST',
+            headers: {
+                'Action': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: const_body
+        })
+        // resultado si agrega al libro o se tomo uno existente o fail
+        dispatch(get_book())
+        if (res.status === 201) { // create and adde to userbook
             dispatch({
-                type: types.FAIL_WORD_STUDY, payload: formData
+                // agrega las cartas estudiadas al redux
+                type: types.CORRECT_WORD_STUDY, payload: formData
+            })
+        } else {
+            dispatch({
+                type: types.SET_WORD_STUDY_FAIL
             })
         }
+
+        // agrega un punto negativo a la current word y la manda al final 
+    } else if (bool === false) {
+        console.log("Palabra fallida manada al final")
+        dispatch({
+            type: types.FAIL_WORD_STUDY, payload: formData
+        })
+    }
 
 
 }

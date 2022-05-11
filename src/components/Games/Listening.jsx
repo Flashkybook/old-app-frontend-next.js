@@ -19,7 +19,7 @@ export default function Listening() {
   const [correctAnswer, setCorrectAnswer] = useState()
 
   useEffect(() => {
- 
+
   }, [current])
 
   /**
@@ -33,6 +33,8 @@ export default function Listening() {
     const answer = e.target.answer.value.toLocaleLowerCase()
     const currentWord = cards[current].terms.word.toLocaleLowerCase()
     const card = cards[current]
+
+
 
     setCorrectAnswer(currentWord)
 
@@ -51,19 +53,24 @@ export default function Listening() {
         setCorrectAnswer(false)
 
         // una ves aprovado si la palabra fue fallida 1 ves la volvemos a repetir y gana un punto de fail acumulativo para la siguiente ronda
-        
-        if (cards.fails) { 
-          card.score = 5 - cards.fails
-        }
 
+        if (card.fails === undefined){
+          card.fails = 0
+
+        }
+        console.log(card.fails)
         
+
+
         // fail exist true
-        if (card.current_fail) { 
+        if (card.current_fail) {
           card.current_fail = false
+          console.log("in correct")
           dispatch(current_session(card, false))
-        } else { //fail donot exist
+        } else { //fail donot exist        
+          console.log("correct")
+
           dispatch(current_session(card, true)) // add word sta to backend
-          
           setTimeout(() => {
             if (cards.length === 0) {
               router.push("/study/feedback/")

@@ -27,8 +27,6 @@ export default function FlashCards({ current_card, gameType }) {
         })
         const resUrl = await res.json()
         setUrl(resUrl.success)
-        console.log(gameType === "Listening" && session_cards_completed.length > 0)
-        console.log(current_num > 0)
         setTimeout(() => {
           if (gameType === "Listening" && session_cards_completed.length > 0 || current_num > 0) {
             const audio_data = new Audio(resUrl.success)

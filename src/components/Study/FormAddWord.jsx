@@ -36,7 +36,7 @@ export default function FormAddWord() {
     <div className='mt-16 w-full'>
       <div className='flex flex-col justify-center items-center w-full'>
         <div className='my-2'>Add new word</div>
-        <form onSubmit={handleSubmit} className='w-full flex justify-center'>
+        <form onSubmit={handleSubmit} className='w-full flex justify-center flex-col md:flex-row'>
 
           <input autoComplete='off' name='newWord' spellCheck='true'
             className='bg-gray-900 text-gray-200 border border-gray-800

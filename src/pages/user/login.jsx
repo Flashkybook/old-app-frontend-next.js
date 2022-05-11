@@ -45,7 +45,7 @@ export default function Login() {
       <div className='flex justify-center items-center mt-5'>
 
 
-        <div className='border border-slate-50 rounded-[3rem] w-[50%] bg-slate-600 py-5 px-4 '>
+        <div className='border border-slate-50 rounded-[3rem] w-full  md:w-[50%] bg-slate-600 py-5 px-0 md:px-4 '>
           <div className='text-center mb-8'>
             <h3 className='text-[3rem]'>Login</h3>
 

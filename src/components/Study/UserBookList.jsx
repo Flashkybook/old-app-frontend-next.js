@@ -13,11 +13,12 @@ export default function UserBookList({ all_cards }) {
         <table className='text-right md:w-2/3 mx-auto w-full'>
           <thead>
             <tr >
-              <th className='text-left px-5'>Word</th>
+              <th className='text-left md:px-5'>Word</th>
               <th>progress</th>
-              <th>Next review </th>
-              <th className="text-right">repetitions</th>
-              <th className='px-5'>review today</th>
+
+              <th className="hidden md:table-cell">Next review </th>
+              <th className="text-right">Rps</th>
+              <th className='md:px-5'>review today</th>
             </tr>
           </thead>
           <tbody>
@@ -36,7 +37,7 @@ export default function UserBookList({ all_cards }) {
                   </span>
                 </td>
 
-                <td>
+                <td className="hidden md:table-cell">
                   {e.next_review_date}
 
                 </td>

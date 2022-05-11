@@ -15,12 +15,6 @@ export default function Navbar() {
   const handlerHidden = () => {
     const className = navRef.current.classList
     className.toggle('hidden')
-    console.log(className)
-    // const item = document.getElementById('nav')
-
-    // item.target
-
-
   }
 
   return (
