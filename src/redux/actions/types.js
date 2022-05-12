@@ -1,38 +1,33 @@
 
 // AUTH types
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
-
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
-
 export const AUTH_FAIL = 'AUTH_FAIL'
-
 export const AUTH_VERIFY = 'AUTH_VERIFY'
-
 export const ACTION_FAIL = 'ACTION_FAIL'
 
-// book types
-
-export const GET_BOOK_FAIL = 'GET_BOOK_FAIL'
-
-export const GET_BOOK_SUCCESS = 'GET_BOOK_SUCCESS'
-
-
-
+// current
 export const RESET_CURRENT = 'RESET_CURRENT'
 export const NEXT_CURRENT = 'NEXT_CURRENT'
 export const PREVIOUS_CURRENT = 'PREVIOUS_CURRENT'
 
 
-export const SET_CURRENT_FAIL = 'SET_CURRENT_FAIL'
+
+// CRUD user_book
+
+export const GET_BOOK_FAIL = 'GET_BOOK_FAIL'
+export const GET_BOOK_SUCCESS = 'GET_BOOK_SUCCESS'
 
 
 export const WORD_BOOK_ADD_SUCCESS = 'WORD_BOOK_ADD_SUCCESS'
-
 export const WORD_BOOK_ADD_FAIL = 'WORD_BOOK_ADD_FAIL'
 
+export const WORD_BOOK_DELETE_SUCCESS = 'WORD_BOOK_DELETE_SUCCESS'
+export const WORD_BOOK_DELETE_FAIL = 'WORD_BOOK_DELETE_FAIL'
+
 export const ADD_TO_USER_BOOK = 'ADD_TO_USER_BOOK'
+export const SET_CURRENT_FAIL = 'SET_CURRENT_FAIL'
 
 
 // Study Sesion

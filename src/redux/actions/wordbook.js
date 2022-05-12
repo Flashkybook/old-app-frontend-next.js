@@ -15,7 +15,7 @@ export const set_session_study = (bool) => dispatch => {
 }
 export const get_book = (bool) => async dispatch => {
     try {
-        const res = await fetch('/api/01/wordbook/', {
+        const res = await fetch('/api/01/user_book/', {
             method: 'GET',
             headers: {
                 'Action': 'application/json',
@@ -49,7 +49,7 @@ export const get_book = (bool) => async dispatch => {
 export const add_word = (formData) => async dispatch => {
     const const_body = JSON.stringify(formData)
     try {
-        const res = await fetch('/api/01/wordbook/addword/', {
+        const res = await fetch('/api/01/user_book/', {
             method: 'POST',
             headers: {
                 'Action': 'application/json',
@@ -83,6 +83,40 @@ export const add_word = (formData) => async dispatch => {
         })
     }
 }
+export const delete_user_book = (formData) => async dispatch => {
+    const const_body = JSON.stringify(formData)
+    try {
+        const res = await fetch('/api/01/user_book/set/', {
+            method: 'DELETE',
+            headers: {
+                'Action': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: const_body
+        })
+        const data = await res.json()
+
+        // resultado si agrega al libro o se tomo uno existente o fail
+        dispatch(get_book())
+        if (res.status === 201) { // create and adde to userbook
+            dispatch({
+                type: types.WORD_BOOK_DELETE_SUCCESS
+            })
+        } else {
+            console.log(`status ${res.error} data ${data} error ${data.error}`)
+            dispatch({
+                type: types.WORD_BOOK_DELETE_FAIL,
+                payload: `status ${res.status} data ${data.error}`
+            })
+        }
+    } catch (error) {
+        console.log(const_body)
+        dispatch({
+            type: types.AUTH_FAIL
+        })
+    }
+}
+
 export const current_session = (formData, bool) => async dispatch => {
 
 
@@ -90,7 +124,7 @@ export const current_session = (formData, bool) => async dispatch => {
     const const_body = JSON.stringify(formData)
 
     if (bool) {
-        const res = await fetch('/api/01/wordbook/study_session/', {
+        const res = await fetch('/api/01/user_book/study_session/', {
             method: 'POST',
             headers: {
                 'Action': 'application/json',

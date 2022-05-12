@@ -1,6 +1,11 @@
-
+import {delete_user_book} from '../../redux/actions/wordbook'
+import {useDispatch} from 'react-redux'
 
 export default function UserBookList({ all_cards }) {
+
+  const dispatch = useDispatch()
+  const deleteUserBook = (e) => { dispatch(delete_user_book(e)) }
+
   const today = new Date().toTimeString()
 
   return (
@@ -13,9 +18,9 @@ export default function UserBookList({ all_cards }) {
         <table className='text-right md:w-2/3 mx-auto w-full'>
           <thead>
             <tr >
+              <th className='text-left md:px-5'>x</th>
               <th className='text-left md:px-5'>Word</th>
               <th>progress</th>
-
               <th className="hidden md:table-cell">Next review </th>
               <th className="text-right">Rps</th>
               <th className='md:px-5'>review today</th>
@@ -24,6 +29,9 @@ export default function UserBookList({ all_cards }) {
           <tbody>
             {all_cards && all_cards.map((e, i) => (
               <tr className=' bg-gray-700 font-bold border border-slate-900 shadow-md hover:bg-gray-200 hover:text-gray-900' key={i}>
+                <td>
+                  <button onClick={()=>deleteUserBook(e)} className='bg-gray-800 p-2'>❌</button>
+                  </td>
                 <td className='text-left px-4'>
                   {e.terms.word}
                 </td>
@@ -39,7 +47,6 @@ export default function UserBookList({ all_cards }) {
 
                 <td className="hidden md:table-cell">
                   {e.next_review_date}
-
                 </td>
 
               <td className="test-center">

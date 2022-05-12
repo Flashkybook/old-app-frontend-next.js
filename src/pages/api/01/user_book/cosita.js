@@ -8,7 +8,7 @@ export default async function addword(request, response) {
     // api backend > BACKEND_DJANGO_API/api/words/ 
 
     const sendData = JSON.stringify(request.body)
-    if (request.method === 'POST') {
+    if (request.method === 'DELETE') {
         try {
             const apiRes = await fetch(`${backend_api}/api/words/setword/`, {
                 method: 'POST',

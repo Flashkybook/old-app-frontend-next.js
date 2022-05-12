@@ -1,4 +1,6 @@
 import * as types from '../actions/types'
+import { compare_repetitions, shuffledArr } from '../utils'
+
 
 const initial_state = {
     cards: [],
@@ -16,12 +18,23 @@ const bookReducer = (state = initial_state, actions) => {
     const { type, payload } = actions
     switch (type) {
 
-        // GET USER BOOK
+        // CRUD USER BOOK
 
         case types.GET_BOOK_SUCCESS:
-            return { ...state, cards: payload }
+            // random userbook
+            const random = shuffledArr(payload)
+            return { ...state, cards: random }
+
+        case types.WORD_BOOK_ADD_FAIL:
+            return { ...state, error: payload }
 
         case types.GET_BOOK_FAIL:
+            return { ...state }
+
+        case types.ADD_TO_USER_BOOK:
+            return { ...state }
+
+        case types.SET_CURRENT_FAIL:
             return { ...state }
 
         // SET CURRENT
@@ -37,39 +50,27 @@ const bookReducer = (state = initial_state, actions) => {
         case types.SET_CURRENT_FAIL:
             return { ...state }
 
-    
+
         // SESSION
         case types.CORRECT_WORD_STUDY:
             // manda al final la palabra pero ya aprobada
-            state.session_cards.shift() 
+            state.session_cards.shift()
 
-            // add score of fails if exist
-            
-            
-
-            return { ...state, session_cards_completed : [...state.session_cards_completed, payload] }
+            // add score of fails if exist          
+            return { ...state, session_cards_completed: [...state.session_cards_completed, payload] }
 
         case types.FAIL_WORD_STUDY:
             state.session_cards.shift() // elimina el elemento actual del principio
 
-            if(payload.fails ){
-                payload.fails +=1  
-            }else{
-                payload.fails = 1  
+            if (payload.fails) {
+                payload.fails += 1
+            } else {
+                payload.fails = 1
             }
-            return { ...state, session_cards : [...state.session_cards, payload] }
+            return { ...state, session_cards: [...state.session_cards, payload] }
 
         case types.NEW_STUDY_SESSION:
             // ordena por easiness mayor
-            function compare(a, b) {
-                if (a.repetitions < b.repetitions) {
-                    return -1;
-                }
-                if (a.repetitions > b.repetitions) {
-                    return 1;
-                }
-                return 0;
-            }
 
             const today = new Date().toLocaleDateString()
             const cards = state.cards
@@ -81,7 +82,7 @@ const bookReducer = (state = initial_state, actions) => {
             const ByLastReview = cards.filter((valor) => valor.last_review <= today)
 
             // por numero de repeticiones
-            const ByRepetitions = cards.sort(compare);
+            const ByRepetitions = cards.sort(compare_repetitions);
 
             const study_commit = state.commit // seteable por configuracion de usuario poximamente
 
@@ -103,15 +104,10 @@ const bookReducer = (state = initial_state, actions) => {
         case types.SESSION_STUDY_END:
             return { ...state, session_cards: [], session_study: false, current: 0, type_of_session: null }
 
-            
         case types.SESSION_STUDY_RESET:
             return { ...state, session_cards: [], session_study: false, current: 0, type_of_session: null }
-            
-        
 
-        // Add Word 
-        case types.WORD_BOOK_ADD_FAIL:
-            return { ...state, error: payload }
+
 
         default:
             return state;
