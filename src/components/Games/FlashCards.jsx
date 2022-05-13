@@ -90,10 +90,11 @@ export default function FlashCards({ current_card, gameType }) {
         {card && <>
           {gameType === "Listening" ? "" :
             <div className='text-5xl my-5 text-center'>
-              {card.terms.word.split(" ").map(e => (
-                <>
-                  <span onClick={() => getTranslate(e)} className='hover:underline hover:cursor-pointer'>{e}</span> {" "}
-                </>
+              {card.terms.word.split(" ").map((e,i) => (
+                  <span key={i} onClick={() => getTranslate(e)} className='hover:underline hover:cursor-pointer'>
+                    {e}
+                    {" "}
+                    </span> 
               ))}
             </div>
           }

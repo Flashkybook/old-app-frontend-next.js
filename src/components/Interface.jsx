@@ -1,7 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_book, set_current } from '../redux/actions/wordbook'
-import {shuffledArr} from '../redux/utils'
+import { shuffledArr } from '../redux/utils'
 
 import { useRouter } from 'next/router'
 
@@ -49,7 +49,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
 
 
     // solo tomar las cards de session
-    const cards = session_study ? session_cards : shuffledArr(all_cards)
+    const cards = session_study ? session_cards : all_cards
 
     const router = useRouter()
 
@@ -57,7 +57,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
 
     // progres bar
     const [taje, setTaje] = useState(0)
-    
+
     useEffect(() => {
         const act = current + 1
         if (cards.length > 0) {
@@ -68,7 +68,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
             router.push('/study/feedback')
         }
     })
-    
+
     return (
         <div className='mx-2'>
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>

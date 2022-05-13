@@ -10,8 +10,10 @@ const initial_state = {
     session_cards: [], // son las cartas que seran envidas al backend para su setteo,
     session_cards_completed: [], // son las cartas que seran envidas al backend para su setteo,
     error: null,
-    commit: 2
+    commit: 5
 }
+
+
 
 
 const bookReducer = (state = initial_state, actions) => {

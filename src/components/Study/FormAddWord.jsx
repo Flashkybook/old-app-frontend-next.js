@@ -18,7 +18,6 @@ export default function FormAddWord() {
     const newWord = e.target.newWord.value.toLocaleLowerCase()
     // console.log(newWord.hasCorrectedText)
     if (newWord.trim().length === 0) {
-
       setError('this word is empty')
       e.target.newWord.classList.add('border-red-500')
     } else if (words_user.includes(newWord)) {
