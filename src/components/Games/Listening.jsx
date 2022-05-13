@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { set_current, current_session } from '../../redux/actions/wordbook'
+import { current_session } from '../../redux/actions/wordbook'
 import Interface from '../Interface'
 import { useRouter } from 'next/router'
 
@@ -22,22 +22,13 @@ export default function Listening() {
 
   }, [current])
 
-  /**
-   * crear una lista de completadas y faltantes
-   * se esta mandando al final la palabra mal contestada[ esta bien]
-   * el current deberia reiniciarse tras cada palabra, 
-   * en session solo estan las palanbras no completadas
-   * una ves compeltadas se borran de session y se agregan a feedback con sus nuevas estadisticas 
-   */
+
   const handlerSubmit = e => {
     const answer = e.target.answer.value.toLocaleLowerCase()
     const currentWord = cards[current].terms.word.toLocaleLowerCase()
     const card = cards[current]
 
-
-
     setCorrectAnswer(currentWord)
-
     if (answer === currentWord) {
       // espera
       e.target.answer.classList.remove('border-red-500', 'border-white')
@@ -51,17 +42,12 @@ export default function Listening() {
         // reset of feedback
         setWrongAnswer(false)
         setCorrectAnswer(false)
-
         // una ves aprovado si la palabra fue fallida 1 ves la volvemos a repetir y gana un punto de fail acumulativo para la siguiente ronda
 
         if (card.fails === undefined){
           card.fails = 0
-
         }
         console.log(card.fails)
-        
-
-
         // fail exist true
         if (card.current_fail) {
           card.current_fail = false
@@ -83,17 +69,13 @@ export default function Listening() {
 
     } else {
       setWrongAnswer(answer)
-      card.current_fail = true //disparador a ser enviada al final de la ronda
+      card.current_fail = true // 
       e.target.answer.classList.remove('border-teal-500', 'border-white')
       e.target.answer.classList.add('border-red-500')
       setTimeout(() => {
-        e.target.answer.classList.replace('border-red-500', 'border-white') // success style
-
+        e.target.answer.classList.replace('border-red-500', 'border-white') // error style
+        e.target.reset()
       }, 1000);
-
-      // if (card.easiness > 0) {
-      //   card.easiness = card.easiness - 1
-      // }
     }
     e.preventDefault()
   }

@@ -1,0 +1,30 @@
+// /api/01/bookwords/
+import cookie from 'cookie'
+const backend_api = process.env.BACKEND_DJANGO_API
+
+export default async function gtts(request, response) {
+    //  guardados en los cookies
+    const save_cookies = cookie.parse(request.headers.cookie ?? '')
+    const refresh = save_cookies.refresh
+    const access = save_cookies.access
+    const sendData = request.body
+
+    const url =`${backend_api}/api/words/translate/`+ sendData
+    try {
+        const apiRes = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${access}`, // da una respuesta al backend con nuestro usuario
+            },
+        });
+        const data = await apiRes.json()
+        console.log(data)
+        return response.status(200).json({ success: data.success })
+        
+    } catch (error) {
+        console.log('400 api next',error)
+        return response.status(400).json({ error: 'algun error' })
+    }
+}

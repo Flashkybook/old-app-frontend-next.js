@@ -12,7 +12,7 @@ export default async function gtts(request, response) {
     const access = save_cookies.access
     const sendData = request.body
 
-    const url = `${backend_api}/api/words/` + sendData.id
+    const url = `${backend_api}/api/words/id/` + sendData.id
     if (request.method === 'DELETE') {
         try {
             const apiRes = await fetch(url, {

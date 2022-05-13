@@ -1,6 +1,8 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_book, set_current } from '../redux/actions/wordbook'
+import {shuffledArr} from '../redux/utils'
+
 import { useRouter } from 'next/router'
 
 // components
@@ -45,8 +47,9 @@ export default function Interface({ children, study_session, gameTitle, review, 
     const session_cards = useSelector(e => e.user_book.session_cards)
     const type_of_session = useSelector(e => e.user_book.type_of_session)
 
+
     // solo tomar las cards de session
-    const cards = session_study ? session_cards : all_cards
+    const cards = session_study ? session_cards : shuffledArr(all_cards)
 
     const router = useRouter()
 
@@ -54,6 +57,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
 
     // progres bar
     const [taje, setTaje] = useState(0)
+    
     useEffect(() => {
         const act = current + 1
         if (cards.length > 0) {
@@ -96,13 +100,13 @@ export default function Interface({ children, study_session, gameTitle, review, 
 
                         <div className='w-full mt-12'>
 
-                            {session_cards.map((e, i) => (
+                            {/* {session_cards.map((e, i) => (
                                 <div key={i} className='bg-gray-600 my-2 flex space-x-1'>
                                     <span>{e.terms.word}</span>
                                     <span className='text-red-500 font-bold'>{e.fails}</span>
                                     <span className='text-teal-500 font-bold'>{e.ready}</span>
                                 </div>
-                            ))}
+                            ))} */}
                         </div>
                     </div>
                 </div>

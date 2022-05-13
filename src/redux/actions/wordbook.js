@@ -24,7 +24,6 @@ export const get_book = (bool) => async dispatch => {
         })
         const userData = await res.json()
         // resultado exitoso o fail
-
         if (res.status === 200) {
             dispatch({
                 type: types.GET_BOOK_SUCCESS,
@@ -40,6 +39,7 @@ export const get_book = (bool) => async dispatch => {
         }
     } catch (error) {
         dispatch({
+
             type: types.GET_BOOK_FAIL
         })
 
@@ -155,6 +155,7 @@ export const current_session = (formData, bool) => async dispatch => {
 
 
 }
+
 export const set_current = (data) => dispatch => {
 
     if (data === 0) {

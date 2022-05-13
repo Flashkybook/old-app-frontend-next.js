@@ -32,7 +32,6 @@ export default async function index(request, response) {
             if (apiRes.status === 200) {
                 return response.status(200).json({ success: data.success })
             } else {
-                console.log('index?')
                 return response.status(500).json({error: data})
             }
         } catch (error) {

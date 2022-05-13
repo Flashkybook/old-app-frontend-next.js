@@ -5,7 +5,7 @@ import Link from 'next/link'
 export default function GameList() {
   const links = [
     {url:"/study", name: "study" }, 
-    {url:"/study/input", name: "input" }, 
+    // {url:"/study/input", name: "input" }, 
     {url:"/study/listening", name: "listeing" }, 
    ]
 

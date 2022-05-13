@@ -1,5 +1,5 @@
 import * as types from '../actions/types'
-import { compare_repetitions, shuffledArr } from '../utils'
+import { compare_repetitions } from '../utils'
 
 
 const initial_state = {
@@ -22,8 +22,7 @@ const bookReducer = (state = initial_state, actions) => {
 
         case types.GET_BOOK_SUCCESS:
             // random userbook
-            const random = shuffledArr(payload)
-            return { ...state, cards: random }
+            return { ...state, cards: payload }
 
         case types.WORD_BOOK_ADD_FAIL:
             return { ...state, error: payload }
