@@ -18,6 +18,7 @@ export default function Layout({ title, description, children }) {
         get_auth()
     }, [dispatch])
 
+    
     return (
         <>
             <Head>

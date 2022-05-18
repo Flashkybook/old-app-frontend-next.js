@@ -1,8 +1,8 @@
 
 export default function DailyTodo({ cards }) {
 
-    const today = new Date().toLocaleDateString()
-    const daily = cards.filter((valor, index) => valor.next_review_date === today || valor.next_review_date === null)
+    const today = new Date().toISOString()
+    const daily = cards.filter((valor, index) => valor.next_review_date <= today || valor.next_review_date === null)
 
     
     return (

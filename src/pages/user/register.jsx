@@ -23,7 +23,6 @@ const Register = () => {
     password: "",
     re_password: "",
   })
-
   const typeForm = (e)=>{
     if( e=== 'username'){
       return 'text'
@@ -33,8 +32,7 @@ const Register = () => {
       return 'password'
     }
   }
-
-
+  
   const handlerSubmit = e => {
     e.preventDefault()
     if(formData.password === formData.re_password){

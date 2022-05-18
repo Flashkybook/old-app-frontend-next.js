@@ -13,6 +13,7 @@ import DailyTodo from './Study/DailyTodo'
 
 const FlashCards = lazy(() => import('./Games/FlashCards'))
 
+
 /**
  * session de estudio vs review
  * si session is true se crea una nueva sesion y se muestran solo las cartas de session
@@ -46,12 +47,26 @@ export default function Interface({ children, study_session, gameTitle, review, 
     const all_cards = useSelector(e => e.user_book.cards)
     const session_cards = useSelector(e => e.user_book.session_cards)
     const type_of_session = useSelector(e => e.user_book.type_of_session)
+    const user = useSelector(e => e.auth.user)
 
 
-    // solo tomar las cards de session
+    
+  
+        
+    
     const cards = session_study ? session_cards : all_cards
+    
+
 
     const router = useRouter()
+
+    useEffect(() => {
+        if ( user === null) {
+            router.push("/user/login")
+        }
+    })
+
+
 
     const setCurrent = (e) => { dispatch(set_current(e)) }
 
@@ -59,7 +74,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
     const [taje, setTaje] = useState(0)
 
     useEffect(() => {
-        const act = current + 1
+        let act = current + 1
         if (cards.length > 0) {
             setTaje((act / cards.length) * 100)
         }

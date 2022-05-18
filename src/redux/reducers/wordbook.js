@@ -1,5 +1,5 @@
 import * as types from '../actions/types'
-import { compare_repetitions } from '../utils'
+import { compare_repetitions, shuffledArr } from '../utils'
 
 
 const initial_state = {
@@ -7,8 +7,8 @@ const initial_state = {
     current: 0,
     session_study: false,
     type_of_session: null,
-    session_cards: [], // son las cartas que seran envidas al backend para su setteo,
-    session_cards_completed: [], // son las cartas que seran envidas al backend para su setteo,
+    session_cards: [], 
+    session_cards_completed: [], 
     error: null,
     commit: 5
 }
@@ -24,7 +24,8 @@ const bookReducer = (state = initial_state, actions) => {
 
         case types.GET_BOOK_SUCCESS:
             // random userbook
-            return { ...state, cards: payload }
+            const random = shuffledArr(payload)
+            return { ...state, cards: random }
 
         case types.WORD_BOOK_ADD_FAIL:
             return { ...state, error: payload }
@@ -73,20 +74,21 @@ const bookReducer = (state = initial_state, actions) => {
         case types.NEW_STUDY_SESSION:
             // ordena por easiness mayor
 
-            const today = new Date().toLocaleDateString()
+            const today = new Date().toISOString()
+
             const cards = state.cards
 
             // next_review_date is less that today
-            const ByDaily = cards.filter((valor) => valor.next_review_date === today || valor.next_review_date === null)
+            const ByDaily = cards.filter((valor) => valor.next_review_date <= today || valor.next_review_date === null)
 
             // last_review que no sea menor que hoy  
-            const ByLastReview = cards.filter((valor) => valor.last_review <= today)
+            const ByLastReview = cards.filter((valor) => valor.last_review < today)
 
             // por numero de repeticiones
             const ByRepetitions = cards.sort(compare_repetitions);
 
             const study_commit = state.commit // seteable por configuracion de usuario poximamente
-
+            
             const list = []
             const type_of_session = ''
             if (ByDaily.length > 0) {

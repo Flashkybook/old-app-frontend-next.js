@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import { useSelector } from 'react-redux'
 
 
@@ -51,25 +51,24 @@ export default function FlashCards({ current_card, gameType }) {
   // <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAEEklEQVRoge2ZTY8VRRSGn5nLvQPjJBowMmJUXKhEjUQiEZmNBDbqwhgXunDAjfIDQGcpsAEi/AQJbNwoIBCiBDDxA5Xo0iiJGL8YRIVBgcQZEu9lcU6lmnP7o6qn7/SQzJt0eubUqar37epz6nRdmMMcbkk0gLeBC8B/wD5gfq2MSqAFHAI65tpZJ6lYDABHEOKXgGeAp/X/32rkFYUB4ChC+iLwhNobavu/Jl5RaAGHEcITwJOm3b1esxrzgY8Ron8Dy1N8rJAp9f0G2Au8BtzVW5r5WAAcQ0j+BTye4WeF2ETQAa4DB5GYmlEsAI4riT+Bx3J8rZAmsgKrgM3A50gMOb+DwH3VU+7GIHBCJ70APFrgHxIji4F3kH2nA/wDvDQ9mvkYBD7Bi3gkoE9MsN+PrEgHaANvleBYiEHgJOEr4RCbtfqAMfzrVqmYIeBTHfg8sCyirxVyDTiDPPkNwB0Z/V5FVqVNRa/ZEPCZkhkHHo7sX5S1JpCnnlaPbcHHTG4CaCF10PmUCex1DngoUkSakNuQFX0dnzQ6wNfA3aZvH/Chth/Im2RHgIAO8DvwYAkRaUIs1gA/qs+vdItZCkxq+6qsQcbVYXVG+8/absuOGIQE+0JkP+kAXyG1WxK7KFiVokna2t5XQCQPoVlrEXBWfTebtmEki10H7iwzSRUFnx3jKpLGn0/xXYNPADabfaFt68sQ7YWQZOxtS/F3e9UGY39T7XvKEO2FkCXIhjel9ueM/xtq32/sq9V+ugzRXghxGFP7CWNfpvYzxr4YX6QGTxLaHoKsMYbVfsXYh9R+1dgH1D7pDP3TJFYVGnpvG3t/hr0Ls0XIqN6/NfZ79P6Hsbss9m/aYLMh2J81/htJD/YRTLDPmyax6WI88fc24CPT/rLeDxm7qz6+Sxu0jhW5gmQquxIAa/Eb4u2m7ZS2jdpOIUTdx00jx6cIMSXKT+q7ybS5EmWKjBLFFY0jGYO72mddAJEshAhZhC9BvqS7aNxNQdG4PTFR3nUJWBGrQFEkZC1+JX5Bnn4SD+DL+KeyBmkhYtzK9EKMFTKEHFpsxB9kuJWwIvrwp5g2i0VjHvA+5cXkFY0usDfR/ToBbFWfy8C9kfOmogl8QDkxaWX8D8gTXk93dnIYxR8+vBjJNxcN4D38E1oZ2C82hdvjIPuRVQmayJOMWZkYIUvxMdFGvkF6hlgxIUKGkRTrstNlKn6dstBEcnqIGCtkAPm2GEHOs05x8yH2fioK7FCEiinKWh1kxz5Azj7RazTxh85ZYqyQSeT3lNPAu0h2Si07ZhpJMWnZrIrCc8bQwh9tJlfGfbZO1cSrFJK/sU8ALwCv6P/f18irFFr41yx5jdVJqiz6kdrpLPKD0G7q/yqdwxxicAOvc6CoQubfkwAAAABJRU5ErkJggg=="/>
 
 
-  const getTranslate = async (e) => {
-    console.log(e)
+  // const getTranslate = async (e) => {
+  //   console.log(e)
+  //   try {
+  //     const res = await fetch('/api/01/user_book/translate/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Action': 'application/json',
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify(e)
+  //     })
+  //     const tranlateData = await res.json()
+  //     console.log(tranlateData)
 
-    try {
-      const res = await fetch('/api/01/user_book/translate/', {
-        method: 'POST',
-        headers: {
-          'Action': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(e)
-      })
-      const tranlateData = await res.json()
-      console.log(tranlateData)
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
 
 
@@ -91,10 +90,12 @@ export default function FlashCards({ current_card, gameType }) {
           {gameType === "Listening" ? "" :
             <div className='text-5xl my-5 text-center'>
               {card.terms.word.split(" ").map((e,i) => (
-                  <span key={i} onClick={() => getTranslate(e)} className='hover:underline hover:cursor-pointer'>
+                <Fragment key={i} >
+                  <span onClick={() => getTranslate(e)} className='hover:underline hover:cursor-pointer'>
                     {e}
-                    {" "}
                     </span> 
+                    {" "}
+                </Fragment>
               ))}
             </div>
           }
