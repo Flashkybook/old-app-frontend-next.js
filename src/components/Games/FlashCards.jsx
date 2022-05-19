@@ -91,7 +91,7 @@ export default function FlashCards({ current_card, gameType }) {
             <div className='text-5xl my-5 text-center'>
               {card.terms.word.split(" ").map((e,i) => (
                 <Fragment key={i} >
-                  <span onClick={() => getTranslate(e)} className='hover:underline hover:cursor-pointer'>
+                  <span className='hover:underline hover:cursor-pointer'>
                     {e}
                     </span> 
                     {" "}

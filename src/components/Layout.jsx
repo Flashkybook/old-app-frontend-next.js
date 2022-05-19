@@ -29,9 +29,7 @@ export default function Layout({ title, description, children }) {
                 <title>wordbook {title}</title>
             </Head>
             <Navbar />
-            <div className=''>
                 {children}
-            </div>
 
 
         </>
@@ -39,6 +37,6 @@ export default function Layout({ title, description, children }) {
 }
 
 Layout.defaultProps = {
-    title: 'next-django',
-    description: 'project react-django auth',
+    title: 'woordbook',
+    description: 'Web aplication to learn English',
 }

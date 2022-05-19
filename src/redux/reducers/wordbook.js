@@ -78,6 +78,10 @@ const bookReducer = (state = initial_state, actions) => {
 
             const cards = state.cards
 
+            cards.map((valor) =>{
+                console.log(valor.last_review < today)
+            })
+
             // next_review_date is less that today
             const ByDaily = cards.filter((valor) => valor.next_review_date <= today || valor.next_review_date === null)
 

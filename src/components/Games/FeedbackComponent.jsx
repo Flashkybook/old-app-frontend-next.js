@@ -19,14 +19,6 @@ export default function FeedbackComponent() {
 
   var compare = session_cards_completed.filter(x=>  cards.indexOf(x) < 0 )
 
-  console.log(compare)
-
-  // const router = useRouter()
-  // const setResetSesion = () => {
-  //   dispatch(set_session_study(false))
-  //   router.push('/study/')
-  // }
-  // console.log(compare )
   return (
     <Interface gameTitle='feedback' review={false} feedback={true}>
       <div className='w-full flex flex-col justify-center mt-4' >
