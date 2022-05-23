@@ -144,7 +144,6 @@ export const current_session = (formData, bool) => async dispatch => {
 
         // agrega un punto negativo a la current word y la manda al final 
     } else if (bool === false) {
-        console.log("Palabra fallida manada al final")
         dispatch({
             type: types.FAIL_WORD_STUDY, payload: formData
         })

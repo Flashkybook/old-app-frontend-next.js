@@ -8,6 +8,7 @@ export default function UserBookList() {
   const deleteUserBook = (e) => { dispatch(delete_user_book(e)) }
 
   const cards = useSelector(e => e.user_book.cards)
+  const today = useSelector(e => e.user_book.today)
 
   function re_order(a, b) {
     if (a.next_review_date < b.next_review_date) {
@@ -21,8 +22,6 @@ export default function UserBookList() {
 
   const all_cards = cards.sort(re_order)
 
-
-  const today = new Date().toISOString("YYYY-MM-DD")
 
 
   return (
@@ -38,9 +37,9 @@ export default function UserBookList() {
               <th className='md:px-5'></th>
               <th className='md:px-5'>Word</th>
               <th className="hidden md:table-cell">progress</th>
-              <th className="hidden md:table-cell">Next review</th>
+              <th className='md:px-5'>last review</th>
+              <th className="">Next review</th>
               <th className="">Rps</th>
-              <th className='md:px-5'>review today</th>
             </tr>
           </thead>
           <tbody>
@@ -55,8 +54,11 @@ export default function UserBookList() {
                   </div> */}
                   <button onClick={() => deleteUserBook(e)} className='bg-gray-800 hover:gray-700 px-2'>❌</button>
                 </td>
-                <td className='px-4 text-left'>
+                <td className='px-4 text-left overflow-hidden'>
+                  <p className='text-ellipsis'>
                   {e.terms.word}
+
+                  </p>
                 </td>
                 <td className='hidden sm:table-cell'>
                   <span className='px-1 md:px-2 text-xs font-medium text-blue-100 text-center'>
@@ -69,22 +71,35 @@ export default function UserBookList() {
                   </span>
                 </td>
 
+                {/* last_review */}
+                <td className="text-[0.75rem] font-bold">
+                  {new Date(e.last_review).getDay() === 0 ?
+                    <span className='text-emerald-300'>today</span>
+                    :
+                    <span className='text-lime-500'>
+                      {new Date(e.last_review).getDay()} days
+                    </span>
+                  }
+
+
+                </td>
+
+
+
                 {/* next_review_date */}
 
-                <td className="hidden md:table-cell">
-                  {e.next_review_date}
+                <td className="text-[0.75rem] font-bold">
+                  <span className='text-lime-500'>
+                   {e.next_review_date} 
+                  </span>
+
+
                 </td>
 
                 {/* numb repetitions */}
                 <td className="test-center">
                   <span> {e.repetitions}</span>
                 </td>
-
-                {/* review today? */}
-                <td className='px-4'>
-                  {e.last_review >= today ? <i>✅</i> : <i>➡</i>}
-                </td>
-
               </tr>
             ))}
           </tbody>

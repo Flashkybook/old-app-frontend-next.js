@@ -61,6 +61,7 @@ export default function Login() {
             <div className="flex flex-col m-10 mt-0 space-y-2 text-black">
               {Object.keys(formData).map((e, index) => (
                 <input
+                autoComplete='off'
                   key={index}
                   value={formData[e]}
                   type={typeForm(e)}

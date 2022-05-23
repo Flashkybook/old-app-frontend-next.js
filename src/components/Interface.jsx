@@ -62,11 +62,16 @@ export default function Interface({ children, study_session, gameTitle, review, 
             setCurrent(0)
             router.push('/study/feedback')
         }
+
+        if (user === null) {
+            router.push('/user/login')
+
+        }
     })
 
     return (
         <div className='mx-2'>
-                <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
+            <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
             <div className='flex flex-col md:flex-row md:items-start md:space-x-16 lg:mx-24 justify-center items-center mt-8'>
                 <div className='flex flex-col mt-4 w-full md:w-1/5 rounded-xl   '>
 
@@ -77,7 +82,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
                         <div className='flex justify-between mb-1'>
                             {type_of_session &&
                                 <span className='text-base font-medium text-blue-700 dark:text-white'>{type_of_session} session</span>
-                                
+
                             }
 
                         </div>
@@ -105,7 +110,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
                     </div>
                 </div>
                 <div className='w-full md:mx-10 flex flex-col items-center pb-4 pt-16 border border-white  bg-slate-700 rounded-3xl'>
-                        
+
                     {feedback === false &&
                         <>
 

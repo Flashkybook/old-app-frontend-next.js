@@ -1,7 +1,7 @@
 import * as types from '../actions/types'
 
 const initial_state = {
-    user: null,
+    user: true,
     is_auth: false,
     auth_status: '',
     error: null
@@ -21,10 +21,10 @@ const authReducer = (state = initial_state, actions) => {
             return { ...state, is_auth: false, user: null }
 
         case types.AUTH_FAIL:
-            return { ...state, is_auth: false, error: payload }
+            return { ...state, is_auth: false, error: payload,  user: null }
 
         case types.ACTION_FAIL:
-            return { ...state, error: payload}
+            return { ...state, error: payload,  user: null}
 
         default:
             return state;
