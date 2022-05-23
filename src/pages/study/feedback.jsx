@@ -3,12 +3,12 @@ import React from 'react'
 
 // components
 import Layout from '../../components/Layout'
-import FeedbackComponent from '../../components/Games/FeedbackComponent'
+import FeedBack from '../../components/Games/FeedBack'
 
-export default function Feedback(){
+export default function(){
   return (
-    <Layout title={"feedback"}>
-     <FeedbackComponent/>
+    <Layout title={"Feed Back"}>
+     <FeedBackComponent/>
 
     </Layout>
   )

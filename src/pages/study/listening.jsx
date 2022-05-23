@@ -5,7 +5,7 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import Listening from '../../components/Games/Listening'
 
-export default function Index(){
+export default function(){
   return (
     <Layout title={"listening study"}>
      <Listening/>

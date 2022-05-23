@@ -10,10 +10,7 @@ export default function FlashCards({ current_card, gameType }) {
 
   const [url, setUrl] = useState()
   const audio_data = new Audio(url)
-
-
-
-
+  
   useEffect(() => {
     const getgTTS = async (data = "") => {
       try {

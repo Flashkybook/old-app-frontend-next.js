@@ -73,6 +73,7 @@ export default function UserBookList() {
 
                 {/* last_review */}
                 <td className="text-[0.75rem] font-bold">
+
                   {new Date(e.last_review).getDay() === 0 ?
                     <span className='text-emerald-300'>today</span>
                     :
@@ -81,6 +82,8 @@ export default function UserBookList() {
                     </span>
                   }
 
+                  
+                {console.log(e.last_review !== null && new Date(e.last_review) )}
 
                 </td>
 

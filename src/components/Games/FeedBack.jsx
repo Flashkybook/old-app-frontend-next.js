@@ -14,9 +14,6 @@ export default function FeedbackComponent() {
 
   
   // comparacion de 2 arrays
-
-  
-
   var compare = session_cards_completed.filter(x=>  cards.indexOf(x) < 0 )
 
   return (
@@ -25,7 +22,6 @@ export default function FeedbackComponent() {
         <span className='text-center text-2xl font-bold underline my-2'>
           user book list
         </span>
-
         <div className='border border-gray-700 p-5 flex '>
           <ul className='flex flex-col space-y-2 w-full mx-auto'>
             {compare && compare.map((e, i) => (
