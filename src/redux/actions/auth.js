@@ -48,7 +48,10 @@ export const login_action = (formData) => async dispatch => {
                 'Content-Type': 'application/json'
             },
             body: const_body
+            
         })
+        const data = await res.json()
+
         // resultado exitoso o fail
         if (res.status === 201) {
             dispatch(auth_action())
@@ -57,7 +60,8 @@ export const login_action = (formData) => async dispatch => {
             })
         } else {
             dispatch({
-                type: types.AUTH_FAIL
+                type: types.AUTH_FAIL,
+                payload: data.error
             })
         }
     } catch (error) {

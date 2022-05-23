@@ -26,6 +26,8 @@ const bookReducer = (state = initial_state, actions) => {
             // random userbook
             const random = shuffledArr(payload)
             return { ...state, cards: random }
+        case types.WORD_BOOK_ADD_SUCCESS:
+            return { ...state, error: payload }
 
         case types.WORD_BOOK_ADD_FAIL:
             return { ...state, error: payload }

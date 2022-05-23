@@ -15,7 +15,7 @@ export const set_session_study = (bool) => dispatch => {
 }
 export const get_book = (bool) => async dispatch => {
     try {
-        const res = await fetch('/api/01/user_book/', {
+        const res = await fetch('/api/01/user_book/', { 
             method: 'GET',
             headers: {
                 'Action': 'application/json',
@@ -39,7 +39,6 @@ export const get_book = (bool) => async dispatch => {
         }
     } catch (error) {
         dispatch({
-
             type: types.GET_BOOK_FAIL
         })
 
@@ -58,20 +57,18 @@ export const add_word = (formData) => async dispatch => {
             body: const_body
         })
         const data = await res.json()
-
-
         // resultado si agrega al libro o se tomo uno existente o fail
         dispatch(get_book())
-        if (res.status === 201) { // create and adde to userbook
+        if (res.status === 200) { // create and adde to userbook
             dispatch({
-                type: types.WORD_BOOK_ADD_SUCCESS
+                type: types.WORD_BOOK_ADD_SUCCESS,
+                payload: `${data.success}`
+
             })
         } else {
-            console.log(`status ${res.error} data ${data} error ${data.error}`)
             dispatch({
                 type: types.WORD_BOOK_ADD_FAIL,
-                payload: `status ${res.status} data ${data.error}`
-
+                payload: `${res.status} ${data.error}`
             })
 
         }

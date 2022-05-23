@@ -1,7 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_book, set_current } from '../redux/actions/wordbook'
-import { shuffledArr } from '../redux/utils'
 
 import { useRouter } from 'next/router'
 

@@ -19,7 +19,6 @@ export default async function login(request, response) {
                 body: sendData
             });
             const data = await apiRes.json()
-
             if (apiRes.status === 200) {
                 // save data in cookies
                 response.setHeader('Set-Cookie', [ // agrega un header a la respuesta de la peticion            
@@ -43,7 +42,7 @@ export default async function login(request, response) {
                 return response.status(201).json({ success: data.success, 'data': data.body })
 
             } else {
-                return response.status(apiRes.status).json({ error: data.error })
+                return response.status(apiRes.status).json({ error: data.detail })
             }
         } catch (error) {
             console.log('login 402')
