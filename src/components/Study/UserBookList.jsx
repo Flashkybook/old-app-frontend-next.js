@@ -56,7 +56,7 @@ export default function UserBookList() {
                 </td>
                 <td className='px-4 text-left overflow-hidden'>
                   <p className='text-ellipsis'>
-                  {e.terms.word}
+                    {e.terms.word}
 
                   </p>
                 </td>
@@ -73,7 +73,6 @@ export default function UserBookList() {
 
                 {/* last_review */}
                 <td className="text-[0.75rem] font-bold">
-
                   {new Date(e.last_review).getDay() === 0 ?
                     <span className='text-emerald-300'>today</span>
                     :
@@ -81,10 +80,6 @@ export default function UserBookList() {
                       {new Date(e.last_review).getDay()} days
                     </span>
                   }
-
-                  
-                {console.log(e.last_review !== null && new Date(e.last_review) )}
-
                 </td>
 
 
@@ -93,7 +88,7 @@ export default function UserBookList() {
 
                 <td className="text-[0.75rem] font-bold">
                   <span className='text-lime-500'>
-                   {e.next_review_date} 
+                    {e.next_review_date}
                   </span>
 
 

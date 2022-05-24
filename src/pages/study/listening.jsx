@@ -3,14 +3,13 @@ import React from 'react'
 
 // components
 import Layout from '../../components/Layout'
-import Listening from '../../components/Games/Listening'
+import StudySessionLayout from '../../components/StudySessionLayout'
 
-export default function(){
+export default function Listening() {
   return (
     <Layout title={"listening study"}>
-     <Listening/>
+      <StudySessionLayout input_message={"escribe lo que puedas escuchar"} gameTitle={"Listening"} />
     </Layout>
   )
 }
 
- 

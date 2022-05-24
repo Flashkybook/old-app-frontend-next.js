@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { current_session } from '../../redux/actions/wordbook'
-import Interface from '../Interface'
 import { useRouter } from 'next/router'
 
 
-export default function Listening({children, input_message}) {
+import { current_session } from '../redux/actions/wordbook'
+import Interface from './Interface'
+
+/**
+ * @returns Get correct anwers and send this to the backend, get session_cards evaluate and send this to the session_cards_completed
+ */
+export default function Listening({children, input_message, gameTitle}) {
 
   const dispatch = useDispatch()
   // const setCurrent = (e) => { dispatch(set_current(e)) }
@@ -73,7 +77,7 @@ export default function Listening({children, input_message}) {
 
 
   return (
-    <Interface gameTitle='Listening' study_session={true} >
+    <Interface gameTitle={gameTitle} study_session={true} >
 
       {wrongAnswer &&
         <div className='text-center'>

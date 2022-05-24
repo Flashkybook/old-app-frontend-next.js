@@ -10,7 +10,7 @@ const initial_state = {
     session_cards: [], 
     session_cards_completed: [], 
     error: null,
-    commit: 5,
+    commit: 1,
     today: new Date().toLocaleDateString("en-CA")
 }
 

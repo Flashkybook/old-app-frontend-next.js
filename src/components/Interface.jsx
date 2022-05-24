@@ -12,8 +12,7 @@ import DailyTodo from './Study/DailyTodo'
 
 const FlashCards = lazy(() => import('./Games/FlashCards'))
 
-export default function Interface({ children, study_session, gameTitle, review, feedback }) {
-
+export default function Interface({ children, study_session, gameTitle }) {
     const dispatch = useDispatch()
     const session_study = useSelector(e => e.user_book.session_study)
 
@@ -30,7 +29,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
         } else {
             getbook(false)
         }
-    }, [dispatch])
+    }, [])
 
     // redux state
     const current = useSelector(e => e.user_book.current)
@@ -44,15 +43,10 @@ export default function Interface({ children, study_session, gameTitle, review, 
 
     const router = useRouter()
 
-
-
-
-
     const setCurrent = (e) => { dispatch(set_current(e)) }
 
     // progres bar
     const [taje, setTaje] = useState(0)
-
     useEffect(() => {
         let act = current + 1
         if (cards.length > 0) {
@@ -62,10 +56,8 @@ export default function Interface({ children, study_session, gameTitle, review, 
             setCurrent(0)
             router.push('/study/feedback')
         }
-
         if (user === null) {
             router.push('/user/login')
-
         }
     })
 
@@ -87,11 +79,10 @@ export default function Interface({ children, study_session, gameTitle, review, 
 
                         </div>
 
-                        {gameTitle != "feedback" &&
+                        {gameTitle !== "feedback" &&
                             <div className='w-auto bg-gray-200 h-2.5 dark:bg-gray-700'>
                                 <div className='bg-blue-600 h-2.5 flex justify-center items-center' style={{ width: `${taje}%` }}>
                                     <span className='text-[10px] font-medium text-blue-700 dark:text-white'>{taje.toFixed(2)}%</span>
-
                                 </div>
                             </div>
                         }
@@ -111,7 +102,7 @@ export default function Interface({ children, study_session, gameTitle, review, 
                 </div>
                 <div className='w-full md:mx-10 flex flex-col items-center pb-4 pt-16 border border-white  bg-slate-700 rounded-3xl'>
 
-                    {feedback === false &&
+                    {gameTitle !==  "feedback"  &&
                         <>
 
                             {cards.length > 0 &&
@@ -146,6 +137,4 @@ export default function Interface({ children, study_session, gameTitle, review, 
 
 Interface.defaultProps = {
     gameTitle: 'Game title',
-    review: false,
-    feedback: false
 }
