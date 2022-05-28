@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { current_session } from '../../redux/actions/wordbook'
-import Interface from '../Interface'
 import { useRouter } from 'next/router'
 
 
-export default function Listening() {
+import { current_session } from '../redux/actions/wordbook'
+import Interface from './Interface'
+
+/**
+ * @returns Get correct anwers and send this to the backend, get session_cards evaluate and send this to the session_cards_completed
+ */
+export default function Listening({children, input_message, gameTitle}) {
 
   const dispatch = useDispatch()
   // const setCurrent = (e) => { dispatch(set_current(e)) }
@@ -19,31 +23,25 @@ export default function Listening() {
   const [correctAnswer, setCorrectAnswer] = useState()
 
   useEffect(() => {
-
   }, [current])
-
-
   const handlerSubmit = e => {
-    const answer = e.target.answer.value.toLocaleLowerCase()
+    const answer = e.target.answer.value.toLocaleLowerCase().replace(/\s+/g,' ').trim()
     const currentWord = cards[current].terms.word.toLocaleLowerCase()
     const card = cards[current]
-
+    console.log(answer)
     setCorrectAnswer(currentWord)
     if (answer === currentWord) {
       // espera
       e.target.answer.classList.remove('border-red-500', 'border-white')
       e.target.answer.classList.add('border-teal-500')
-
       setTimeout(() => {
         // setCurrent(+1) // next card
         e.target.reset()  // reset input
         e.target.answer.classList.replace('border-teal-500', 'border-white') // success style
-
         // reset of feedback
         setWrongAnswer(false)
         setCorrectAnswer(false)
         // una ves aprovado si la palabra fue fallida 1 ves la volvemos a repetir y gana un punto de fail acumulativo para la siguiente ronda
-
         if (card.fails === undefined){
           card.fails = 0
         }
@@ -55,18 +53,14 @@ export default function Listening() {
           dispatch(current_session(card, false))
         } else { //fail donot exist        
           console.log("correct")
-
           dispatch(current_session(card, true)) // add word sta to backend
           setTimeout(() => {
             if (cards.length === 0) {
               router.push("/study/feedback/")
             }
           }, 1000);
-
         }
-
       }, 500);
-
     } else {
       setWrongAnswer(answer)
       card.current_fail = true // 
@@ -83,7 +77,7 @@ export default function Listening() {
 
 
   return (
-    <Interface gameTitle='Listening' study_session={true} >
+    <Interface gameTitle={gameTitle} study_session={true} >
 
       {wrongAnswer &&
         <div className='text-center'>
@@ -92,9 +86,11 @@ export default function Listening() {
         </div>
       }
 
+      {children}
+
 
       <form className='w-full' onSubmit={handlerSubmit} >
-        <input autoComplete='off' className='text-2xl py-2 px-4 outline-none bg-slate-800 w-full border text-center' name='answer' type='text' placeholder='Escribe lo que logras escuchar...' />
+        <input autoComplete='off' className='text-2xl py-2 px-4 outline-none bg-slate-800 w-full border text-center' name='answer' type='text' placeholder={input_message} />
       </form>
     </Interface>
   )

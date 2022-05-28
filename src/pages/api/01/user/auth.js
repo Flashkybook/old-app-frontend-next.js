@@ -27,7 +27,6 @@ export default async function auth(request, response){
                 body: JSON.stringify({ refresh })
             });
             const data = await apiRes.json()
-
             // console.log('primer llamado', save_cookies, apiRes.status)
             if (apiRes.status === 200) {
                 // agregamos el token access a nuestra cookie

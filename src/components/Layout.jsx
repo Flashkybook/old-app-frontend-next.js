@@ -6,9 +6,7 @@ import { useEffect } from 'react'
 
 
 export default function Layout({ title, description, children }) {
-
     const dispatch = useDispatch()
-
     useEffect(() => {
         const get_auth = () => {
             if (dispatch && dispatch !== undefined && dispatch !== null) {
@@ -21,13 +19,13 @@ export default function Layout({ title, description, children }) {
     
     return (
         <>
-            <Head>
-                <meta charset='UTF-8' />
+            {<Head>
+                <meta charSet='UTF-8' />
                 <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
                 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
                 <meta name='description' content={description} />
                 <title>wordbook {title}</title>
-            </Head>
+            </Head>}
             <Navbar />
                 {children}
 

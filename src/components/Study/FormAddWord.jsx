@@ -15,7 +15,9 @@ export default function FormAddWord() {
   const [error, setError] = useState(null)
   const handleSubmit = e => {
     e.preventDefault()
-    const newWord = e.target.newWord.value.toLocaleLowerCase()
+    const newWord = e.target.newWord.value.toLocaleLowerCase().replace(/.,\s]/g, '')
+
+    console.log(newWord)
     // console.log(newWord.hasCorrectedText)
     if (newWord.trim().length === 0) {
       setError('this word is empty')

@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 export default function Login() {
   const route = useRouter()
   const reduxStatus = useSelector(e => e.auth)
+  const error = useSelector(e => e.auth.error)
 
   if (reduxStatus.is_auth) {
     route.push("/")
@@ -28,7 +29,6 @@ export default function Login() {
     }
   }
 
-  const [error, setError] = useState()
 
   const handlerSubmit = e => {
     e.preventDefault()
@@ -61,6 +61,7 @@ export default function Login() {
             <div className="flex flex-col m-10 mt-0 space-y-2 text-black">
               {Object.keys(formData).map((e, index) => (
                 <input
+                autoComplete='off'
                   key={index}
                   value={formData[e]}
                   type={typeForm(e)}
@@ -72,6 +73,12 @@ export default function Login() {
                 />
               ))}
             </div>
+
+            {error &&
+              <div className='flex justify-center -mt-5 mb-5'>
+                <span className='text-red-400 font-semibold uppercase'>{error} !</span>
+              </div>
+            }
             <div className='flex justify-center mb-8'>
               <button className='input-field bg-slate-800 text-white w-1/3' type="submit">Login</button>
             </div>

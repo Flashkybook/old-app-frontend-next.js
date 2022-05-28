@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import { useDispatch, useSelector } from 'react-redux'
 import { set_current } from '../../redux/actions/wordbook'
 import Interface from '../Interface'
@@ -25,7 +23,6 @@ export default function Review() {
         {/* NEXT */}
         <button onClick={() => dispatch(set_current(1))}>➡</button>
       </div>
-
     </Interface>
   )
 }

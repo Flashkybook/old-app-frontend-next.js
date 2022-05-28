@@ -28,7 +28,6 @@ export default async function index(request, response) {
                 }
             });
             const data = await apiRes.json()
-
             if (apiRes.status === 200) {
                 return response.status(200).json({ success: data.success })
             } else {
@@ -50,17 +49,12 @@ export default async function index(request, response) {
                 },
                 body: sendData
             });
-            const data = await apiRes.json()
 
             //  201 created  202 acepted and added 406 no lo crea ni lo acepta
             if (apiRes.status === 201) {
-                return response.status(201).json({ success: data.success })
-
-            } else if (apiRes.status === 202) {
-                return response.status(202).json({ success: data.success, })
-                
+                return response.status(200).json({ success: "term add" })                
             } else if (apiRes.status === 406) {
-                return response.status(406).json({ error:` ${data.error} ` })
+                return response.status(406).json({ error:`${apiRes.error}` })
             }
         } catch (error) {
             response.status(402).json({ error: `solicitud fallida ${request.method}` })

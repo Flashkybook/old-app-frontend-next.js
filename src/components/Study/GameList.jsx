@@ -10,7 +10,6 @@ export default function GameList() {
    ]
 
   return (
-
     <div className='mt-4 w-full rounded-xl'>
       <ul className='py-2 flex md:flex-col justify-around'>
 
@@ -34,3 +33,4 @@ export default function GameList() {
     </div>
   )
 }
+
