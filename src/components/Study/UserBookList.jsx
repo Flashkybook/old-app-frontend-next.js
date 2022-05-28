@@ -73,13 +73,17 @@ export default function UserBookList() {
 
                 {/* last_review */}
                 <td className="text-[0.75rem] font-bold">
-                  {new Date(e.last_review).getDay() === 0 ?
+                <span className='text-lime-500'>
+                    {e.last_review}
+                  </span>
+
+                  {/* {new Date(e.last_review).getDay() === 0 ?
                     <span className='text-emerald-300'>today</span>
                     :
                     <span className='text-lime-500'>
                       {new Date(e.last_review).getDay()} days
                     </span>
-                  }
+                  } */}
                 </td>
 
 
