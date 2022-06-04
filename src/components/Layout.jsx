@@ -1,12 +1,17 @@
 import Head from 'next/head'
 import Navbar from './Navbar'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { auth_action } from '../redux/actions/auth'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 
+// components
+import Loading  from './Loading'
 
 export default function Layout({ title, description, children }) {
+
+    const loading = useSelector(e => e.auth.loading)
     const dispatch = useDispatch()
+
     useEffect(() => {
         const get_auth = () => {
             if (dispatch && dispatch !== undefined && dispatch !== null) {
@@ -26,8 +31,16 @@ export default function Layout({ title, description, children }) {
                 <meta name='description' content={description} />
                 <title>wordbook {title}</title>
             </Head>}
+
             <Navbar />
-                {children}
+
+                {loading ? 
+                <div className="mt-[10%]">
+                <Loading />
+                </div>
+                :
+                children
+                }
 
 
         </>

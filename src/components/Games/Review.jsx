@@ -14,7 +14,7 @@ export default function Review() {
   }
 
   return (
-    <Interface gameTitle='Review' review={true}>
+    <Interface gameTitle='Review'>
       {/* BUTTONS FlashCards */}
       <div className='flex justify-center text-2xl mt-2'>
         {/* PREVIUS */}

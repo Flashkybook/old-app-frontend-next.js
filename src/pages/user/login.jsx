@@ -19,6 +19,13 @@ export default function Login() {
     password: "",
   })
 
+  const handlerSubmit = e => {
+    e.preventDefault()
+    dispatch(login_action(formData))
+  }
+
+  
+
   const typeForm = (e) => {
     if (e === 'username') {
       return 'text'
@@ -29,11 +36,6 @@ export default function Login() {
     }
   }
 
-
-  const handlerSubmit = e => {
-    e.preventDefault()
-    dispatch(login_action(formData))
-  }
 
 
   const handlerChange = e => {

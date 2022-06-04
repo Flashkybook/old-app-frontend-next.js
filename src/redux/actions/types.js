@@ -1,11 +1,18 @@
 
 // AUTH types
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+
+
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+
 export const AUTH_FAIL = 'AUTH_FAIL'
 export const AUTH_VERIFY = 'AUTH_VERIFY'
 export const ACTION_FAIL = 'ACTION_FAIL'
+
+export const LOADING = 'LOADING'
+export const END_LOADING = 'END_LOADING'
+
 
 // current
 export const RESET_CURRENT = 'RESET_CURRENT'

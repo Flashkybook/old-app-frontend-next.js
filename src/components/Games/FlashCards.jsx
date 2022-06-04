@@ -31,6 +31,7 @@ export default function FlashCards({ current_card, gameType }) {
         console.log(error)
       }
     }
+
     if (current_card !== undefined) {
       setTimeout(async () => {
         await getgTTS(current_card.terms.word)
@@ -44,17 +45,12 @@ export default function FlashCards({ current_card, gameType }) {
       audio_data.play()
     }, 500);
   }
-
-
-
   useEffect(() => {
-
     if (gameType === "Listening" && session_cards_completed.length > 0 || current_num > 0) {
       setTimeout(() => {
         playSond()
       }, 500);
     }
-
   }, [url])
 
 

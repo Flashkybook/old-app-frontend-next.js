@@ -16,6 +16,9 @@ export const auth_action = () => async dispatch => {
         })
         const userData = await res.json()
         // resultado exitoso o fail
+        dispatch({
+            type: types.LOADING,
+        })
         if (res.status === 200) {
             dispatch({
                 type: types.AUTH_VERIFY,
@@ -28,6 +31,11 @@ export const auth_action = () => async dispatch => {
 
             })
         }
+        dispatch({
+            type: types.END_LOADING,
+        })
+
+
     } catch (error) {
         dispatch({
             type: types.AUTH_FAIL,
