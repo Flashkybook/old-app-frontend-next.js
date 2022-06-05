@@ -8,7 +8,7 @@ body {
   @apply bg-slate-900 text-white
 }
 
-table{
+table {
   border-spacing: 0 16px;
 }
 
@@ -16,19 +16,45 @@ table{
 @tailwind components;
 @tailwind utilities;
 
-.card{
-  @apply shadow bg-slate-800 shadow-black p-4 m-4 rounded-xl 
+.card {
+  @apply shadow bg-slate-800 shadow-black p-4 m-4 rounded-xl
 }
 
-.button-primary{
-  @apply transition-all duration-700 border border-transparent hover:border-white rounded-xl mx-2 p-3 py-2 shadow-sm bg-black  hover:bg-slate-800 hover:shadow-white hover:text-slate-200  bg-opacity-30 
-
+.button-primary {
+  @apply transition-all duration-700 border border-transparent hover:border-white rounded-xl mx-2 p-3 py-2 shadow-sm bg-black hover:bg-slate-800 hover:shadow-white hover:text-slate-200 bg-opacity-30
 }
 
-.button-secondary{
-  @apply transition-all duration-700 border border-transparent hover:border-white rounded-xl p-3 py-1 shadow-sm bg-black  hover:bg-slate-800 hover:shadow-white hover:text-slate-200  bg-opacity-50 
+.button-secondary {
+  @apply transition-all duration-700 border border-transparent hover:border-white rounded-xl p-3 py-1 shadow-sm bg-black hover:bg-slate-800 hover:shadow-white hover:text-slate-200 bg-opacity-50
 }
 
-.logo{
+.logo {
   @apply border-2 border-slate-900 bg-sky-800 px-2 py-2 text-xl rounded-md
- }
+}
+
+.bg-coffee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  background: rgb(95, 127, 255);
+  color: white;
+  border-radius: 50%;
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px;
+  z-index: 9;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease 0s;
+  
+}
+
+.coffe {
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  padding: 0;
+}

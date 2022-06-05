@@ -27,87 +27,57 @@ export default function UserBookList() {
   return (
     <div className='' >
       <span className='w-full flex flex-col justify-center text-center text-2xl font-bold underline my-2'>
-        user book list
+        Your WordBook List
       </span>
 
-      <div className='border border-gray-700 md:p-5 text-[0.7rem] w-full '>
-        <table className='text-center mx-auto w-full'>
-          <thead>
-            <tr >
-              <th className='md:px-5'></th>
-              <th className='md:px-5'>Word</th>
-              <th className="hidden md:table-cell">progress</th>
-              <th className='md:px-5'>last review</th>
-              <th className="">Next review</th>
-              <th className="">Rps</th>
-            </tr>
-          </thead>
-          <tbody>
-            {all_cards && all_cards.map((e, i) => (
-              <tr className=' bg-gray-700 font-bold border border-slate-900 shadow-md hover:bg-gray-200 hover:text-gray-900' key={i}>
-                <td>
-                  {/* <div className='border rounded relative'>
-                    <ul>
-                      <li className='border-b'>delete</li>
-                      <li>get</li>
-                    </ul>
-                  </div> */}
-                  <button onClick={() => deleteUserBook(e)} className='bg-gray-800 hover:gray-700 px-2'>❌</button>
-                </td>
-                <td className='px-4 text-left overflow-hidden'>
-                  <p className='text-ellipsis'>
-                    {e.terms.word}
+      <table className='w-full'>
+        <thead>
+          <tr className='text-left'>
+            <th ></th>
+            <th >Word</th>
+            <th >progress</th>
+            <th >last review</th>
+            <th >Next review</th>
+            <th >Rps</th>
 
-                  </p>
-                </td>
-                <td className='hidden sm:table-cell'>
-                  <span className='px-1 md:px-2 text-xs font-medium text-blue-100 text-center'>
-                    <div className='w-auto md:w-full bg-gray-200 rounded-full dark:bg-gray-800'>
-                      <div
-                        className='bg-blue-600 leading-none rounded-full'
-                        style={{ width: `${(e.easiness * 100) / 5}%` }}> {(e.easiness * 100) / 5}%
-                      </div>
+          </tr>
+        </thead>
+        <tbody>
+          {all_cards && all_cards.map((e, i) => (
+            <tr className='border-t-2 border-slate-900 px-2 pb-0' key={i}>
+              <td>
+                <button onClick={() => deleteUserBook(e)} className='text-red-600 font-bold text-2xl mx-4'>x</button>
+              </td>
+              <td>{e.terms.word}</td>
+              <td className='mx-5 pr-5'>
+                <span className='text-[0.75rem] text-blue-100 text-center'>
+                  <div className='w-auto md:w-full bg-gray-900 rounded-full border-2 border-black '>
+                    <div
+                      className='bg-slate-600 leading-none rounded-full'
+                      style={{ width: `${(e.easiness * 100) / 5}%` }}> {(e.easiness * 100) / 5}%
                     </div>
-                  </span>
-                </td>
+                  </div>
+                </span>
+              </td>
+              <td>
+                {e.last_review}
+              </td>
+              <td>
 
-                {/* last_review */}
-                <td className="text-[0.75rem] font-bold">
-                <span className='text-lime-500'>
-                    {e.last_review}
-                  </span>
+                {e.next_review_date}
+              </td>
+              <td>
 
-                  {/* {new Date(e.last_review).getDay() === 0 ?
-                    <span className='text-emerald-300'>today</span>
-                    :
-                    <span className='text-lime-500'>
-                      {new Date(e.last_review).getDay()} days
-                    </span>
-                  } */}
-                </td>
+                {e.repetitions}
+              </td>
 
 
+            </tr>
 
-                {/* next_review_date */}
+          ))}
+        </tbody>
 
-                <td className="text-[0.75rem] font-bold">
-                  <span className='text-lime-500'>
-                    {e.next_review_date}
-                  </span>
-
-
-                </td>
-
-                {/* numb repetitions */}
-                <td className="test-center">
-                  <span> {e.repetitions}</span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-
-        </table>
-      </div>
+      </table>
     </div>
 
   )

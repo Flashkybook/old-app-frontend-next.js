@@ -120,7 +120,7 @@ export default function Interface({ children, study_session, gameTitle }) {
 
             <div className="flex justify-center">
 
-                <div className="card">
+                <div className="card w-[70%]">
                     <FormAddWord />
 
                 </div>
@@ -128,7 +128,6 @@ export default function Interface({ children, study_session, gameTitle }) {
 
             {/* mostrar all cards */}
             <div className="card">
-
                 <UserBookList />
             </div>
         </div>

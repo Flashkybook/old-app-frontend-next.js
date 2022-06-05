@@ -13,6 +13,15 @@ export default function FormAddWord() {
   const words_user = user_book.map(e => e.terms.word)
 
   const [error, setError] = useState(null)
+
+  if (error !== null) {
+
+    setTimeout(() => {
+      setError(null)
+    }, 3000)
+  }
+
+
   const handleSubmit = e => {
     e.preventDefault()
     const newWord = e.target.newWord.value.toLocaleLowerCase().replace(/.,\s]/g, '')
@@ -34,14 +43,14 @@ export default function FormAddWord() {
 
 
   return (
-    <div className='mt-16 w-full'>
+    <div className='w-full'>
       <div className='flex flex-col justify-center items-center w-full'>
-        <div className='my-2'>Add new word</div>
-        <form onSubmit={handleSubmit} className='w-full flex justify-center flex-col md:flex-row'>
 
+        <div className='my-2'>Add new word</div>
+        <form onSubmit={handleSubmit} className='w-full flex '>
           <input autoComplete='off' name='newWord' spellCheck='true'
-            className='bg-gray-900 text-gray-200 border border-gray-800
-             px-3 py-4 mx-2 rounded-md text-3xl text-center ' type='text' placeholder='New word ..' />
+            className='bg-gray-900 text-gray-200 border border-gray-800 w-full
+             px-3 py-4 mx-2 rounded-md text-xl text-center' type='text' placeholder='add a new phrase or word you want to learn' />
           <button className='bg-slate-900 px-2 mx-2' type='submit'> add</button>
 
         </form>
