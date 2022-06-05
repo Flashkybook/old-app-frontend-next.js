@@ -7,56 +7,30 @@ export default function DailyTodo({ cards }) {
 
 
     return (
-        <div className='flex  mt-5 md:mt-0 md:w-1/5 flex-col justify-center  ' >
+        <div className='' >
 
-      
-
-            <table>
-                <thead>
-                    <tr >
-                        <th className='px-2'>✔</th>
-                        <th className=''>      <span className='text-xl font-bold px-2 mb-5'>
-                Task :
-            </span></th>
-                    </tr >
-                </thead>
-                <tbody>
-                    {/* <tr className="border-b" >
-                        <td className=''>
-                            <input type="checkbox" value={false} name="" id="" />
-                        </td>
-                        <td className=''>repasa los terminos agregados en input</td>
-                    </tr > */}
-
-                    <tr className="border-b" >
-                        <td className=''>
-                            <input type="checkbox" value={daily.length == 0 ? false : true} name="" id="" />
-                        </td>
-                        <td className=''>{daily.length} terms for review today</td>
-                    </tr >
-                </tbody>
+ 
 
 
-            </table>
 
-            <div className="my-5">
-                {daily.length == 0 &&
+            <div className="my-5 text-center">
+                {daily.length == 0 ?
                     <>
-                        <h6>✅Has completado tu tarea diaria puedes seguir estudiando pero no sera agregado a tu progreso</h6>
-                        <h6>✅o puedes agregar mas terminos en el formulario</h6>
+                        <p className="p-2 bg-slate-900 bg-opacity-50">✅You have completed your daily task.</p>
+                        <p className="bg-blue-600 px-2 rounded-lg">you can continue studying but it will not be added to your progress</p>
                     </>
+                    :
+                    <p className='p-2 bg-slate-900 rounded-full bg-opacity-50'>
+                        <span className="bg-blue-600 px-1 rounded-lg">
+
+                            {daily.length}
+                        </span>
+                        terms for review today</p>
+
                 }
 
             </div>
-            {/* <div>
-                <ul className='flex flex-col'>
-                    {daily && daily.map((e, i) => (
-                        <li key={i} >
-                            {e.terms.word} 
-                        </li>
-                    ))}
-                </ul>
-            </div> */}
+
         </div>
     )
 }

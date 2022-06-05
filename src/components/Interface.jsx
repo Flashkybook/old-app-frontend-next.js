@@ -35,13 +35,12 @@ export default function Interface({ children, study_session, gameTitle }) {
 
     // redux state
     const current = useSelector(e => e.user_book.current)
-    const error = useSelector(e => e.user_book.error)
     const all_cards = useSelector(e => e.user_book.cards)
     const session_cards = useSelector(e => e.user_book.session_cards)
     const type_of_session = useSelector(e => e.user_book.type_of_session)
     const user = useSelector(e => e.auth.user)
 
-    
+
     const cards = session_study ? session_cards : all_cards
 
     const router = useRouter()
@@ -63,74 +62,75 @@ export default function Interface({ children, study_session, gameTitle }) {
             router.push('/user/login')
         }
     })
+
+    console.log(gameTitle)
     return (
         <div className='mx-2'>
+
+
+
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
-            <div className='flex flex-col md:flex-row md:items-start md:space-x-16 lg:mx-24 justify-center items-center mt-8'>
-                <div className='flex flex-col mt-4 w-full md:w-1/5 rounded-xl   '>
 
-                    <GameList />
-                    {/* FlashCards */}
+            <div className="md:flex items-start">
 
-                    <div className='w-auto my-5'>
-                        <div className='flex justify-between mb-1'>
-                            {type_of_session &&
-                                <span className='text-base font-medium text-blue-700 dark:text-white'>{type_of_session} session</span>
+                <div className='md:w-[20%]'>
+                    <div className="card">
+                        <GameList />
+                    </div>
 
-                            }
+                    {gameTitle !== 'Review' &&
+                        <div className='card w-auto my-5'>
+                            <span className='text-base font-medium text-blue-700 dark:text-white'>{type_of_session} session</span>
 
-                        </div>
 
-                        {gameTitle !== "feedback" &&
-                            <div className='w-auto bg-gray-200 h-2.5 dark:bg-gray-700'>
-                                <div className='bg-blue-600 h-2.5 flex justify-center items-center' style={{ width: `${taje}%` }}>
-                                    <span className='text-[10px] font-medium text-blue-700 dark:text-white'>{taje.toFixed(2)}%</span>
+                            {/* PROGRES BAR */}
+                            <div className='w-full rounded-full bg-gray-200 h-2.5 dark:bg-gray-700'>
+                                <div className='rounded-full bg-blue-600 h-2.5 flex justify-center items-center' style={{ width: `${taje}%` }}>
+                                    <span className='text-[10px] text-center font-medium text-blue-700 dark:text-white'>{taje.toFixed(2)}%</span>
                                 </div>
                             </div>
+
+                        </div>
+                    }
+                </div>
+                {/* FlashCards */}
+
+                <div className='w-full'>
+
+                    <div className='card'>
+                        {gameTitle !== "feedback" &&
+                            cards.length > 0 &&
+                            <Suspense fallback={<Loading />}>
+                                <FlashCards current_card={cards[current]} gameType={gameTitle} />
+                            </Suspense>
                         }
 
-
-                        {/* <div className='w-full mt-12'>
-
-                            {session_cards.map((e, i) => (
-                                <div key={i} className='bg-gray-600 my-2 flex space-x-1'>
-                                    <span>{e.terms.word}</span>
-                                    <span className='text-red-500 font-bold'>{e.fails}</span>
-                                    <span className='text-teal-500 font-bold'>{e.ready}</span>
-                                </div>
-                            ))}
-                        </div> */}
+                        {/* Input */}
+                        {children}
                     </div>
                 </div>
-                <div className='w-full md:mx-10 flex flex-col items-center pb-4 pt-16 border border-white  bg-slate-700 rounded-3xl'>
 
-                    {gameTitle !==  "feedback"  &&
-                        <>
-
-                            {cards.length > 0 &&
-                                <Suspense fallback={
-                                    <Loading/>
-                                }>
-                                    <FlashCards current_card={cards[current]} gameType={gameTitle} />
-                                </Suspense>
-                            }
-                        </>
-                    }
-                    {children}
+                <div className="card md:w-[20%]">
+                    <DailyTodo cards={all_cards} />
                 </div>
 
 
-                {/* wordbook LIST */}
-                <DailyTodo cards={all_cards} />
 
             </div>
-            {error &&
-                <h1 className='text-center mt-16 text-xl underline-offset-2 underline '>{error}</h1>
-            }
-            <FormAddWord />
+
+            <div className="flex justify-center">
+
+                <div className="card">
+                    <FormAddWord />
+
+                </div>
+            </div>
 
             {/* mostrar all cards */}
-            <UserBookList />
+            <div className="card">
+
+                <UserBookList />
+            </div>
         </div>
     )
 }
