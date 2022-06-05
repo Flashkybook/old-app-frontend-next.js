@@ -43,7 +43,7 @@ export default function Layout({ title, description, children }) {
                 children
             }
 
-            <a href="https://ko-fi.com/angelriera" target={"_blank"}>
+            <a href="https://ko-fi.com/angelriera" target={"_blank"} rel="noreferrer"> 
 
                 <div className='bg-coffee flex flex-col' >
                     <img width={25} height={25} className='coffee'
