@@ -35,7 +35,7 @@ export default async function index(request, response) {
             }
         } catch (error) {
             console.log('402')
-            response.status(402).json({ error: `solicitud fallida ${request.method}` })
+            response.status(402).json({ error: `Server error ${request.method}` })
         }
     }
     if (request.method === 'POST') {

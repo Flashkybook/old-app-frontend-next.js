@@ -4,33 +4,31 @@ import Link from 'next/link'
 
 export default function GameList() {
   const links = [
-    {url:"/study", name: "study" }, 
+    { url: "/study", name: "Review" },
     // {url:"/study/input", name: "input" }, 
-    {url:"/study/listening", name: "listeing" }, 
-   ]
+    { url: "study/listening/", name: "listening" },
+  ]
 
   return (
-    <div className='mt-4 w-full rounded-xl'>
-      <ul className='py-2 flex md:flex-col justify-around'>
+    <>
 
-        <li className='text-xl font-bold px-2'>
-          Games :
-        </li>
+      <h3 className='text-center underline font-bold text-xl'>Study Mode:</h3>
 
-        {links.map((e, index)=> (
+      <div className='flex md:flex-col mt-2'>
 
+      {links.map((e, index) => (
         <Link key={index} href={e.url}>
-          <a >
-            <button className='w-full px-2 my-4 border rounded-md bg-slate-900'>
+          <a className='button-secondary my-2 mx-2 md:mx-0 text-center'>
               {e.name}
-            </button>
           </a>
         </Link>
-        ))}
-       
+      ))}
+      </div>
 
-      </ul>
-    </div>
+
+    </>
   )
+
+
 }
 

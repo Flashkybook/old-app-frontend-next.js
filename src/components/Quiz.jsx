@@ -79,19 +79,25 @@ export default function Listening({children, input_message, gameTitle}) {
   return (
     <Interface gameTitle={gameTitle} study_session={true} >
 
+      {/* FEEDBACK */}
       {wrongAnswer &&
         <div className='text-center'>
           <h3 className='text-4xl  text-teal-500'>{correctAnswer}</h3>
           <h3 className='text-4xl mb-12 text-red-500'>{wrongAnswer}</h3>
         </div>
       }
+      {/* END_FEEDBACK */}
+
+
 
       {children}
 
 
+      {/* FORM OF ANSWER */}
       <form className='w-full' onSubmit={handlerSubmit} >
         <input autoComplete='off' className='text-2xl py-2 px-4 outline-none bg-slate-800 w-full border text-center' name='answer' type='text' placeholder={input_message} />
       </form>
+
     </Interface>
   )
 }

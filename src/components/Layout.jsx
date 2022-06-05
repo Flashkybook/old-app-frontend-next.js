@@ -1,12 +1,18 @@
 import Head from 'next/head'
 import Navbar from './Navbar'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { auth_action } from '../redux/actions/auth'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 
+// components
+import Loading from './Loading'
+import Image from 'next/image'
 
 export default function Layout({ title, description, children }) {
+
+    const loading = useSelector(e => e.auth.loading)
     const dispatch = useDispatch()
+
     useEffect(() => {
         const get_auth = () => {
             if (dispatch && dispatch !== undefined && dispatch !== null) {
@@ -16,7 +22,7 @@ export default function Layout({ title, description, children }) {
         get_auth()
     }, [dispatch])
 
-    
+
     return (
         <>
             {<Head>
@@ -26,8 +32,26 @@ export default function Layout({ title, description, children }) {
                 <meta name='description' content={description} />
                 <title>wordbook {title}</title>
             </Head>}
+
             <Navbar />
-                {children}
+
+            {loading ?
+                <div className="mt-[10%]">
+                    <Loading />
+                </div>
+                :
+                children
+            }
+
+            <a href="https://ko-fi.com/angelriera" target={"_blank"} rel="noreferrer"> 
+
+                <div className='bg-coffee flex flex-col' >
+                    <img width={25} height={25} className='coffee'
+                        src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg"
+                        alt="Buy Me A Coffee" />
+                    <span className='underline'>donar</span>
+                </div>
+            </a>
 
 
         </>

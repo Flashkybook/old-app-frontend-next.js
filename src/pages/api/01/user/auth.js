@@ -64,9 +64,7 @@ export default async function auth(request, response){
                         },
                         body: token_verify
                     });
-
                     const access_data = apiResVerify.json()
-
                     if (apiResVerify.status === 200) {
                         // refresh y token correctamente verificados
 
@@ -79,7 +77,6 @@ export default async function auth(request, response){
                             }
                         });
                         const userData = await userApiRes.json()
-
                         if (userApiRes.status === 200) {
                             return response.status(200).json({ success: userData.success })
                         } else {
@@ -103,7 +100,7 @@ export default async function auth(request, response){
             }
         } catch (error) {
             console.log('402')
-            response.status(402).json({ error: `solicitud fallida ${request.method}` })
+            response.status(402).json({ error: `Server error ${request.method}` })
         }
     } else {
         console.log('401')

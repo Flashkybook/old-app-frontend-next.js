@@ -25,7 +25,7 @@ export default async function register(request, response) {
                 return response.status(apiRes.status).json({ error: data.error })
             }
         } catch (error) {
-            response.status(402).json({ error: `solicitud fallida ${request.method}` })
+            response.status(402).json({ error: `Server error ${request.method}` })
         }
     } else {
         console.log('401')

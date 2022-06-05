@@ -31,7 +31,7 @@ export default async function study_session(request, response) {
             }
         } catch (error) {
             console.log('402')
-            response.status(402).json({ error: `solicitud fallida ${request.method}` })
+            response.status(402).json({ error: `Server error ${request.method}` })
         }
     } else {
         console.log('401')
