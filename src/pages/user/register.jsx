@@ -53,9 +53,7 @@ const Register = () => {
     <Layout>
       <div className='flex justify-center items-center'>
 
-        <div className='border border-slate-50 rounded-[3rem] 
-        w-[100%] sm:w-[85%] md:w-[65%] xl:w-[50%] lg:w-[40%]
-         bg-slate-600 py-5 px-4 '>
+        <div className='md:w-[50%] w-full card'>
           <div className='text-center mb-8'>
             <h3 className='text-[3rem]'>Create an Account</h3>
           </div>

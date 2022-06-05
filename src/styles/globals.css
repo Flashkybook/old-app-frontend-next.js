@@ -32,6 +32,10 @@ table {
   @apply border-2 border-slate-900 bg-sky-800 px-2 py-2 text-xl rounded-md
 }
 
+.input-field{
+  @apply transition-all duration-700 border border-transparent hover:border-white rounded-xl mx-2 p-3 py-4 shadow-sm bg-black hover:bg-slate-800 hover:shadow-white hover:text-slate-200 text-slate-400 bg-opacity-30
+}
+
 .bg-coffee {
   display: flex;
   align-items: center;
