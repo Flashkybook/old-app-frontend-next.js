@@ -26,58 +26,73 @@ export default function UserBookList() {
 
   return (
     <div className='' >
-      <span className='w-full flex flex-col justify-center text-center text-2xl font-bold underline my-2'>
+
+      <h3 className='w-full flex flex-col justify-center text-center text-2xl font-bold underline my-2'>
         Your WordBook List
-      </span>
+      </h3>
 
       <table className='w-full'>
-        <thead>
-          <tr className='text-left'>
-            <th ></th>
-            <th >Word</th>
-            <th >progress</th>
-            <th >last review</th>
-            <th >Next review</th>
-            <th >Rps</th>
 
-          </tr>
-        </thead>
-        <tbody>
-          {all_cards && all_cards.map((e, i) => (
-            <tr className='border-t-2 border-slate-900 px-2 pb-0' key={i}>
-              <td>
-                <button onClick={() => deleteUserBook(e)} className='text-red-600 font-bold text-2xl mx-4'>x</button>
-              </td>
-              <td>{e.terms.word}</td>
-              <td className='mx-5 pr-5'>
-                <span className='text-[0.75rem] text-blue-100 text-center'>
-                  <div className='w-auto md:w-full bg-gray-900 rounded-full border-2 border-black '>
-                    <div
-                      className='bg-slate-600 leading-none rounded-full'
-                      style={{ width: `${(e.easiness * 100) / 5}%` }}> {(e.easiness * 100) / 5}%
-                    </div>
-                  </div>
-                </span>
-              </td>
-              <td>
-                {e.last_review}
-              </td>
-              <td>
 
-                {e.next_review_date}
-              </td>
-              <td>
 
-                {e.repetitions}
-              </td>
 
+
+
+          <thead>
+            <tr className='text-left'>
+
+                <th ></th>
+                <th >Word</th>
+                <th >progress</th>
+                <th >last review</th>
+                <th >Next review</th>
+                <th >Rps</th>
 
             </tr>
 
-          ))}
-        </tbody>
+          </thead>
+
+
+          <tbody>
+            {all_cards && all_cards.map((e, i) => (
+              <tr className='border-t-2 border-slate-900 px-2 pb-0' key={i}>
+                <td>
+                  <button onClick={() => deleteUserBook(e)} className='text-red-600 font-bold text-2xl mx-4'>x</button>
+                </td>
+                <td>{e.terms.word}</td>
+                <td className='mx-5 pr-5'>
+                  <span className='text-[0.75rem] text-blue-100 text-center'>
+                    <div className='w-auto md:w-full bg-gray-900 rounded-full border-2 border-black '>
+                      <div
+                        className='bg-slate-600 leading-none rounded-full'
+                        style={{ width: `${(e.easiness * 100) / 5}%` }}> {(e.easiness * 100) / 5}%
+                      </div>
+                    </div>
+                  </span>
+                </td>
+                <td>
+                  {e.last_review}
+                </td>
+                <td>
+
+                  {e.next_review_date}
+                </td>
+                <td>
+
+                  {e.repetitions}
+                </td>
+
+
+              </tr>
+
+            ))}
+          </tbody>
+
+
 
       </table>
+
+
     </div>
 
   )

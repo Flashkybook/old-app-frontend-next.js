@@ -77,15 +77,14 @@ const Register = () => {
               <input className='input-field' type="password" placeholder='password*' />
               <input className='input-field' type="password" placeholder='re password*' /> */}
             </div>
-            {error &&
+            {error !== 'Server error GET' &&
               <div className='flex justify-center -mt-5 mb-5'>
                 <span className='text-red-400 font-semibold uppercase'>{error} !</span>
               </div>
             }
             <div className='flex justify-center mb-8'>
               <button className='input-field bg-slate-800 text-white w-1/3' type="submit">Register</button>
-            </div>
-
+            </div>            
           </form>
         </div>
       </div>
