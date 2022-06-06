@@ -63,11 +63,8 @@ export default function Interface({ children, study_session, gameTitle }) {
         }
     })
 
-    console.log(gameTitle)
     return (
         <div className='mx-2'>
-
-
 
             <h1 className='text-center mt-16 text-5xl font-bold underline-offset-2 underline '>{gameTitle}</h1>
 

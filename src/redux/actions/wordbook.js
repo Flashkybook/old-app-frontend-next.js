@@ -1,4 +1,6 @@
 import * as types from './types'
+import auth from './auth'
+
 
 export const set_session_study = (bool) => dispatch => {
     if (bool === true) {
@@ -15,7 +17,7 @@ export const set_session_study = (bool) => dispatch => {
 }
 export const get_book = (bool) => async dispatch => {
     try {
-        const res = await fetch('/api/01/user_book/', { 
+        const res = await fetch('/api/01/user_book/', {
             method: 'GET',
             headers: {
                 'Action': 'application/json',
@@ -29,6 +31,8 @@ export const get_book = (bool) => async dispatch => {
                 type: types.GET_BOOK_SUCCESS,
                 payload: userData.success  // => res wordbook user data user
             })
+            // dispatch(auth_action())
+
             if (bool !== undefined) {
                 dispatch(set_session_study(bool))
             }
@@ -58,7 +62,9 @@ export const add_word = (formData) => async dispatch => {
         })
         const data = await res.json()
         // resultado si agrega al libro o se tomo uno existente o fail
+
         dispatch(get_book())
+
         if (res.status === 200) { // create and adde to userbook
             dispatch({
                 type: types.WORD_BOOK_ADD_SUCCESS,
@@ -80,6 +86,7 @@ export const add_word = (formData) => async dispatch => {
         })
     }
 }
+
 export const delete_user_book = (formData) => async dispatch => {
     const const_body = JSON.stringify(formData)
     try {
@@ -171,6 +178,47 @@ export const set_current = (data) => dispatch => {
     } else {
         dispatch({
             type: types.SET_CURRENT_FAIL,
+        })
+    }
+}
+
+
+export const get_gTTS = (card) => async dispatch => {
+
+    const const_body = JSON.stringify(card)
+
+
+    try {
+        // useEffect(() => {
+        //   const getgTTS = async (data = "") => {
+        //     try {
+        //       const res = await fetch('/api/01/user_book/gtts/', {
+        //         method: 'POST',
+        //         headers: {
+        //           'Action': 'application/json',
+        //           'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(data)
+        //       })
+        //       const resUrl = await res.json()
+        //       setUrl(resUrl.success)
+
+        //     } catch (error) {
+        //       console.log(error)
+        //     }
+        //   }
+
+        //   if (current_card !== undefined) {
+        //     setTimeout(async () => {
+        //       await getgTTS(current_card.terms.word)
+        //     }, 500);
+        //   }
+        // }, [current_card])
+
+    } catch (error) {
+        console.log(const_body)
+        dispatch({
+            type: types.AUTH_FAIL
         })
     }
 }

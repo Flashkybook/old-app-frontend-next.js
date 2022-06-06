@@ -19,4 +19,9 @@ module.exports = {
 
     return config;
   },
+  env: {
+    backend_api: process.env.BACKEND_DJANGO_API,
+  },
+
+
 };

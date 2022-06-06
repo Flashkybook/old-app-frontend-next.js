@@ -1,6 +1,10 @@
-import { useEffect, useState, Fragment} from 'react'
+import { useEffect, useState, Fragment, useMemo} from 'react'
 import { useSelector } from 'react-redux'
 import Image from 'next/image'
+
+const backend_api = process.env.backend_api
+
+
 
 /**
  * @returns  Give audio and current flash card
@@ -10,34 +14,8 @@ export default function FlashCards({ current_card, gameType }) {
   const session_cards_completed = useSelector(e => e.user_book.session_cards_completed)
   const current_num = useSelector(e => e.user_book.current)
 
-  const [url, setUrl] = useState()
-  const audio_data = new Audio(url)
+  const audio_data = new Audio(`${backend_api}/api/words/gttsApi/${current_card.terms.word}`)
 
-  useEffect(() => {
-    const getgTTS = async (data = "") => {
-      try {
-        const res = await fetch('/api/01/user_book/gtts/', {
-          method: 'POST',
-          headers: {
-            'Action': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-        const resUrl = await res.json()
-        setUrl(resUrl.success)
-
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    if (current_card !== undefined) {
-      setTimeout(async () => {
-        await getgTTS(current_card.terms.word)
-      }, 500);
-    }
-  }, [current_card])
 
   const playSond = () => {
     audio_data.currentTime = 0
@@ -45,36 +23,16 @@ export default function FlashCards({ current_card, gameType }) {
       audio_data.play()
     }, 500);
   }
+
+
   useEffect(() => {
     if (gameType === "Listening" && session_cards_completed.length > 0 || current_num > 0) {
       setTimeout(() => {
         playSond()
-      }, 500);
+      }, 1000);
     }
-  }, [url])
 
-
-
-  // const getTranslate = async (e) => {
-  //   console.log(e)
-  //   try {
-  //     const res = await fetch('/api/01/user_book/translate/', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Action': 'application/json',
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(e)
-  //     })
-  //     const tranlateData = await res.json()
-  //     console.log(tranlateData)
-
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-
+  }, [current_num])
 
 
   return (
