@@ -9,7 +9,7 @@ import Home from '../components/Landing/Home';
 
 
 
-export default function index() {
+export default function Index() {
 
   const auth = useSelector(e => e.auth.user)
 

@@ -41,6 +41,9 @@ export const get_book = (bool) => async dispatch => {
                 type: types.GET_BOOK_FAIL
             })
         }
+
+        dispatch(auth_action())
+
     } catch (error) {
         dispatch({
             type: types.GET_BOOK_FAIL

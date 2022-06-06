@@ -26,8 +26,6 @@ export default function Listening({children, input_message, gameTitle}) {
 
   }, [current])
 
-  console.log(cards)
-
   const handlerSubmit = e => {
     
     const card = cards[current]
@@ -35,7 +33,7 @@ export default function Listening({children, input_message, gameTitle}) {
     const answer = e.target.answer.value.toLocaleLowerCase().replace(/[^a-zA-Z0-9 ]/g, '').trim()
     const currentWord = card.terms.word.toLocaleLowerCase().replace(/[^a-zA-Z0-9 ]/g, '')
 
-    setCorrectAnswer(currentWord)
+    setCorrectAnswer(card.terms.word.toLocaleLowerCase())
 
 
     if (answer === currentWord) {
@@ -53,7 +51,6 @@ export default function Listening({children, input_message, gameTitle}) {
         if (card.fails === undefined){
           card.fails = 0
         }
-        console.log(card.fails)
         // fail exist true
         if (card.current_fail) {
           card.current_fail = false
