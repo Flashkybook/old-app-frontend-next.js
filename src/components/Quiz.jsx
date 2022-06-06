@@ -23,13 +23,19 @@ export default function Listening({children, input_message, gameTitle}) {
   const [correctAnswer, setCorrectAnswer] = useState()
 
   useEffect(() => {
+
   }, [current])
+
   const handlerSubmit = e => {
-    const answer = e.target.answer.value.toLocaleLowerCase().replace(/\s+/g,' ').trim()
-    const currentWord = cards[current].terms.word.toLocaleLowerCase()
+    
     const card = cards[current]
-    console.log(answer)
-    setCorrectAnswer(currentWord)
+
+    const answer = e.target.answer.value.toLocaleLowerCase().replace(/[^a-zA-Z0-9 ]/g, '').trim()
+    const currentWord = card.terms.word.toLocaleLowerCase().replace(/[^a-zA-Z0-9 ]/g, '')
+
+    setCorrectAnswer(card.terms.word.toLocaleLowerCase())
+
+
     if (answer === currentWord) {
       // espera
       e.target.answer.classList.remove('border-red-500', 'border-white')
@@ -45,7 +51,6 @@ export default function Listening({children, input_message, gameTitle}) {
         if (card.fails === undefined){
           card.fails = 0
         }
-        console.log(card.fails)
         // fail exist true
         if (card.current_fail) {
           card.current_fail = false

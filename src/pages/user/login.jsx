@@ -50,14 +50,7 @@ export default function Login() {
         <div className='w-full md:w-[50%] card'>
           <div className='text-center mb-8'>
             <h3 className='text-[3rem]'>Login</h3>
-
-            {/* <div className='flex justify-center'>
-              <div className='bg-slate-800 w-2/3 text-left p-4 -mb-6 rounded-3xl'>
-                <p>recomendado:</p>
-                <p>user: invitado@callapp.com</p>
-                <p>password: 123456++</p>
-              </div>
-            </div> */}
+  
           </div>
           <form method='POST' onSubmit={handlerSubmit}>
             <div className="flex flex-col m-10 mt-0 space-y-2 text-black">
@@ -76,7 +69,7 @@ export default function Login() {
               ))}
             </div>
 
-            {error &&
+            {error !== 'Server error GET' &&
               <div className='flex justify-center -mt-5 mb-5'>
                 <span className='text-red-400 font-semibold uppercase'>{error} !</span>
               </div>

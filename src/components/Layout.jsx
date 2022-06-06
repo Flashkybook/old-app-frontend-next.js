@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Image from 'next/image'
+
 import Navbar from './Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth_action } from '../redux/actions/auth'
@@ -6,7 +8,6 @@ import { useEffect, lazy, Suspense } from 'react'
 
 // components
 import Loading from './Loading'
-import Image from 'next/image'
 
 export default function Layout({ title, description, children }) {
 
@@ -49,7 +50,7 @@ export default function Layout({ title, description, children }) {
                     <img width={25} height={25} className='coffee'
                         src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg"
                         alt="Buy Me A Coffee" />
-                    <span className='underline'>donar</span>
+                    <span className='underline'>a coffee</span>
                 </div>
             </a>
 
