@@ -115,16 +115,16 @@ export default function Interface({ children, study_session, gameTitle }) {
 
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center w-full ">
 
-                <div className="card w-[70%]">
+                <div className="card w-full md:w-[60%]">
                     <FormAddWord />
 
                 </div>
             </div>
 
             {/* mostrar all cards */}
-            <div className="card">
+            <div className="card ">
                 <UserBookList />
             </div>
         </div>

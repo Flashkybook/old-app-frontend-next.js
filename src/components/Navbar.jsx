@@ -23,8 +23,8 @@ export default function Navbar() {
       <div className='w-full sm:w-auto flex justify-between items-center '>
 
         <Link href='/'>
-          
-          <a className='hidden sm:flex button-primary font-bold text-[15px] sm:text-[25px]'>
+
+          <a className='sm:flex button-primary font-bold text-[15px] sm:text-[25px]'>
 
             Woordbook
             <div className='hidden sm:flex items-center mt-2 ml-2'>
@@ -57,7 +57,7 @@ export default function Navbar() {
       transition-all duration-500 w-full justify-between
       hidden mt-4 sm:mt-0 sm:flex items-center text-[15px] text-center '>
 
-        <div className='flex flex-col sm:flex-row items-center justify-start space-y-2 sm:space-y-0 w-1/3 mb-2 sm:mb-0'>
+        <div className='flex flex-col sm:flex-row items-center justify-start space-y-2 sm:space-y-0 md:w-1/3 mb-2 sm:mb-0'>
 
           <Link href='/contact'>
             <a className='button-primary w-full' >
@@ -72,31 +72,32 @@ export default function Navbar() {
           </Link>
         </div>
 
+        <div className='flex flex-col sm:flex-row items-center justify-end space-y-2 sm:space-y-0 w-full'>
 
-        {user ?
-          <button onClick={() => dispatch(logout_action())}
-            className='button-primary'>
-            Logout
-          </button>
-          :
-          <div className='flex flex-col sm:flex-row items-center justify-end space-y-2 sm:space-y-0 w-full'>
+          {user ?
+            <button onClick={() => dispatch(logout_action())}
+              className='button-primary sm:w-auto w-full'>
+              Logout
+            </button>
+            :
 
+            <>
 
+              <Link href='/user/login'>
+                <a className='button-primary sm:w-auto w-full' >
+                  login
+                </a>
+              </Link>
 
-            <Link href='/user/login'>
-              <a className='button-primary sm:w-auto w-full' >
-                login
-              </a>
-            </Link>
+              <Link href='/user/register'>
+                <a className='button-primary sm:w-auto w-full'>
+                  register
+                </a>
+              </Link>
+            </>
 
-            <Link href='/user/register'>
-              <a className='button-primary sm:w-auto w-full'>
-                register
-              </a>
-            </Link>
-
-          </div>
-        }
+          }
+        </div>
       </div>
     </nav>
   )

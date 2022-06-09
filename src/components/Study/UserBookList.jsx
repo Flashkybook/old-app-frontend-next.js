@@ -25,7 +25,7 @@ export default function UserBookList() {
 
 
   return (
-    <div className='' >
+    <div className='hidden sm:flex flex-col' >
 
       <h3 className='w-full flex flex-col justify-center text-center text-2xl font-bold underline my-2'>
         Your WordBook List

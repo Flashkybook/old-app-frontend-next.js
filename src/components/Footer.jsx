@@ -30,7 +30,7 @@ const Footer = () => {
             </div>
 
             <a href="https://github.com/RagAndRoll" target="__blank" rel="noreferrer"
-                className="mx-auto underline">
+                className="mx-auto underline text-center">
                 ©2022 Ragnarok. All rights reserved.
             </a>
         </footer>
