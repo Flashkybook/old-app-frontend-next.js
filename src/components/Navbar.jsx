@@ -18,7 +18,7 @@ export default function Navbar() {
   return (
     // fixed top-0 left-0 right-0s
 
-    <nav className=' shadow bg-slate-800 shadow-black p-4 mx-4  rounded-xl mt-0 flex flex-col sm:flex-row justify-between items-center px-8'>
+    <nav className='shadow bg-slate-800 shadow-black p-4 mx-4  rounded-xl mt-0 flex flex-col sm:flex-row justify-between items-center px-8'>
 
       <div className='w-full sm:w-auto flex justify-between items-center '>
 

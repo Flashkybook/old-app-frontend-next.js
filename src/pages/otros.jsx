@@ -8,8 +8,6 @@ export default function Index() {
 
   return (
     <Layout title={"home page"}>
-s
-
     </Layout>
   )
 }

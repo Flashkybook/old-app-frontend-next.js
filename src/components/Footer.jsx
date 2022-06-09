@@ -4,7 +4,7 @@ const Footer = () => {
 
 
 
-        <footer className="bg-slate-800 shadow-lg shadow-t left-0 right-0 flex flex-col py-2">
+        <footer className="bg-slate-800 shadow-lg shadow-t left-0 right-0 flex flex-col py-2 mt-5">
             <div className="mx-auto">
                 <div className='whitespace-nowrap pt-1 mx-auto flex space-x-1'>
                     <a href='https://twitter.com/ragnandroll' className='icon-social' target={"_blank"} rel="noreferrer">

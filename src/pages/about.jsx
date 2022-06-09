@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Layout from '../components/Layout';
 
 
-const about = () => {
+const About = () => {
     return (
         <Layout title={"Contact"}>
 
@@ -97,4 +97,4 @@ const about = () => {
     )
 }
 
-export default about
+export default About

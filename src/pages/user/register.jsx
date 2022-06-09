@@ -77,7 +77,7 @@ const Register = () => {
               <input className='input-field' type="password" placeholder='password*' />
               <input className='input-field' type="password" placeholder='re password*' /> */}
             </div>
-            {error !== 'Server error GET' &&
+            {error !== 'Server error GET' || error !== 'Refresh token fail' &&
               <div className='flex justify-center -mt-5 mb-5'>
                 <span className='text-red-400 font-semibold uppercase'>{error} !</span>
               </div>
