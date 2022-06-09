@@ -28,7 +28,6 @@ export default async function register(request, response) {
             response.status(402).json({ error: `Server error ${request.method}` })
         }
     } else {
-        console.log('401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }

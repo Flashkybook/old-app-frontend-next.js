@@ -87,23 +87,19 @@ export default async function auth(request, response){
 
                         // return response.status(201).json({ success: 'verify user success' })
                     } else {
-                        console.log(apiResVerify.status, '405')
                         return response.status(405).json({ error: 'verify token fail' })
                     }
 
                 } catch (error) {
-                    console.log(token_verify, '404')
                     return response.status(403).json({ error: 'Verify token fail' })
                 }
             } else {
                 return response.status(403).json({ error: 'Refresh token fail' })
             }
         } catch (error) {
-            console.log('402')
             response.status(402).json({ error: `Server error ${request.method}` })
         }
     } else {
-        console.log('401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }

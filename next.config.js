@@ -21,6 +21,7 @@ module.exports = {
   },
   env: {
     backend_api: process.env.BACKEND_DJANGO_API,
+    user_id_mail: process.env.REACT_APP_USER_ID_MAIL,
   },
 
 

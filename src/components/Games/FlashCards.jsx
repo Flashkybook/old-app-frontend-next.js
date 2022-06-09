@@ -13,9 +13,9 @@ export default function FlashCards({ current_card, gameType }) {
 
   const session_cards_completed = useSelector(e => e.user_book.session_cards_completed)
   const current_num = useSelector(e => e.user_book.current)
+  
 
-  const audio_data = new Audio(`${backend_api}/api/words/gttsApi/${current_card.terms.word}`)
-
+  const audio_data = new Audio(`${backend_api}/api/words/gttsApi/${encodeURIComponent(current_card.terms.word)}`)
 
   const playSond = () => {
     audio_data.currentTime = 0
@@ -26,13 +26,14 @@ export default function FlashCards({ current_card, gameType }) {
 
 
   useEffect(() => {
-    if (gameType === "Listening" && session_cards_completed.length > 0 || current_num > 0) {
-      setTimeout(() => {
-        playSond()
-      }, 1000);
-    }
 
-  }, [current_num])
+    setTimeout(() => {
+    if (gameType === "Listening" && session_cards_completed.length > 0 || current_num > 0) {
+        playSond()
+      }
+    }, 1000);
+
+  }, [current_num, audio_data.src])
 
 
   return (

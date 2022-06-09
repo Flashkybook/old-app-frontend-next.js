@@ -8,6 +8,13 @@ body {
   @apply bg-slate-900 text-white
 }
 
+
+#__next{
+  height: 100%;
+  @apply flex flex-col justify-between
+}
+
+
 table {
   border-spacing: 0 16px;
 }
@@ -18,6 +25,14 @@ table {
 
 .card {
   @apply shadow bg-slate-800 shadow-black p-4 m-4 rounded-xl
+}
+
+.card-2{
+  @apply shadow-xl shadow-slate-700 p-10 w-full sm:w-4/6 md:w-1/2 rounded-3xl border-t border-slate-500
+}
+
+.card-3{
+  @apply shadow-xl shadow-slate-700 p-10 rounded-3xl border-t border-slate-500
 }
 
 .button-primary {
@@ -32,13 +47,20 @@ table {
 
 }
 
-
 .logo {
   @apply border-2 border-slate-900 bg-sky-800 px-2 py-2 text-xl rounded-md
 }
 
 .input-field{
   @apply transition-all duration-700 border border-transparent hover:border-white rounded-xl mx-2 p-3 py-4 shadow-sm bg-black hover:bg-slate-800 hover:shadow-white hover:text-slate-200 text-slate-400 bg-opacity-30
+}
+
+.icon-social{
+  @apply text-gray-200 hover:text-slate-900 hover:bg-gray-300 rounded-full p-2
+}
+
+.footer {
+  
 }
 
 .bg-coffee {
@@ -58,7 +80,6 @@ table {
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s ease 0s;
-  
 }
 
 .coffe {
