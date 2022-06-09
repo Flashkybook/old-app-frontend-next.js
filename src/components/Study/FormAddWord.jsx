@@ -43,15 +43,14 @@ export default function FormAddWord() {
 
 
   return (
-    <div className='w-full'>
-      <div className='flex flex-col justify-center items-center w-full'>
+      <div className='flex flex-col  justify-center items-center w-full '>
 
         <div className='my-2'>Add new word</div>
-        <form onSubmit={handleSubmit} className='w-full flex '>
+        <form onSubmit={handleSubmit} className='w-full flex flex-col '>
           <input autoComplete='off' name='newWord' spellCheck='true'
             className='bg-gray-900 text-gray-200 border border-gray-800 w-full
-             px-3 py-4 mx-2 rounded-md text-xl text-center' type='text' placeholder='add a new phrase or word you want to learn' />
-          <button className='bg-slate-900 px-2 mx-2' type='submit'> add</button>
+             px-3 py-4  rounded-md text-xl text-center' type='text' placeholder='add a new phrase or word you want to learn' />
+          <button className='shadow border border-black shadow-slate-600 bg-slate-400 hover:bg-slate-300 text-black font-bold rounded-md px-2 sm:mx-2' type='submit'> add</button>
 
         </form>
 
@@ -60,7 +59,6 @@ export default function FormAddWord() {
         }
 
       </div>
-    </div>
   )
 }
 

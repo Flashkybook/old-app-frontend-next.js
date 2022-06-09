@@ -14,7 +14,7 @@ export default function GameList() {
 
       <h3 className='text-center underline font-bold text-xl'>Study Mode:</h3>
 
-      <div className='flex md:flex-col mt-2'>
+      <div className='flex flex-col mt-2'>
 
       {links.map((e, index) => (
         <Link key={index} href={e.url}>
