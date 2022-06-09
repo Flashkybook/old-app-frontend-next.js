@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
-
 import { useDispatch, useSelector } from 'react-redux'
 import { auth_action } from '../redux/actions/auth'
-import { useEffect, Fragment } from 'react'
+import { useEffect } from 'react'
 
 // components
 import Loading from './Loading'
@@ -52,7 +51,7 @@ export default function Layout({ title, description, children }) {
                 <a href="https://ko-fi.com/angelriera" target={"_blank"} rel="noreferrer">
 
                     <div className='bg-coffee flex flex-col' >
-                        <img width={25} height={25} className='coffee'
+                        <Image width={25} height={25} className='coffee'
                             src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg"
                             alt="Buy Me A Coffee" />
                         <span className='underline'>a coffee</span>
