@@ -32,11 +32,9 @@ export default async function index(request, response) {
                 return response.status(500).json({ error: data.error })
             }
         } catch (error) {
-            console.log('402')
             response.status(402).json({ error: `Server error ${request.method}` })
         }
     } else {
-        console.log('401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }

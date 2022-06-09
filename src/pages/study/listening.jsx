@@ -11,7 +11,7 @@ export default function Listening() {
   dispatch(set_current(0))
   return (
     <Layout title={"listening study"}>
-      <Quiz input_message={"escribe lo que puedas escuchar"} gameTitle={"Listening"}/>
+      <Quiz input_message={"listen and write"} gameTitle={"Listening"}/>
     </Layout>
   )
 }

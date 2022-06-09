@@ -45,12 +45,9 @@ export default async function login(request, response) {
                 return response.status(apiRes.status).json({ error: data.detail })
             }
         } catch (error) {
-            console.log('login 402')
-
             response.status(402).json({ error: `Server error ${request.method}` })
         }
     } else {
-        console.log('login 401')
         response.status(401).json({ error: `no soporta method ${request.method}` })
     }
 }

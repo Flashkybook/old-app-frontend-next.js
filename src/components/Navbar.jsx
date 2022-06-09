@@ -18,15 +18,16 @@ export default function Navbar() {
   return (
     // fixed top-0 left-0 right-0s
 
-    <nav className='card mt-0 flex flex-col sm:flex-row justify-between items-center px-8'>
+    <nav className='shadow bg-slate-800 shadow-black p-4 mx-4  rounded-xl mt-0 flex flex-col sm:flex-row justify-between items-center px-8'>
 
-      <div className='w-full flex justify-between items-center '>
+      <div className='w-full sm:w-auto flex justify-between items-center '>
 
         <Link href='/'>
-          <a className='flex button-primary font-bold text-[25px]'>
+          
+          <a className='hidden sm:flex button-primary font-bold text-[15px] sm:text-[25px]'>
 
             Woordbook
-            <div className='flex items-center mt-2 ml-2'>
+            <div className='hidden sm:flex items-center mt-2 ml-2'>
               <span className='text-sm border-2 border-slate-900 bg-sky-800 px-1 z-1'>Beta</span>
               <span className='text-sm border-2 border-slate-900 bg-teal-800 px-1 -ml-9 -mb-2 z-2'>Beta</span>
             </div>
@@ -53,25 +54,43 @@ export default function Navbar() {
 
 
       <div ref={navRef} className='
-      transition-all duration-500
-      hidden mt-4 sm:mt-0 sm:flex items-center space-x-8 text-[15px]'>
+      transition-all duration-500 w-full justify-between
+      hidden mt-4 sm:mt-0 sm:flex items-center text-[15px] text-center '>
+
+        <div className='flex flex-col sm:flex-row items-center justify-start space-y-2 sm:space-y-0 w-1/3 mb-2 sm:mb-0'>
+
+          <Link href='/contact'>
+            <a className='button-primary w-full' >
+              contact
+            </a>
+          </Link>
+
+          <Link href='/about'>
+            <a className='button-primary w-full' >
+              about
+            </a>
+          </Link>
+        </div>
+
+
         {user ?
           <button onClick={() => dispatch(logout_action())}
-            className='button-primary '>
+            className='button-primary'>
             Logout
           </button>
           :
-          <div className='flex items-center'>
+          <div className='flex flex-col sm:flex-row items-center justify-end space-y-2 sm:space-y-0 w-full'>
+
 
 
             <Link href='/user/login'>
-              <a className='button-primary w-full' >
+              <a className='button-primary sm:w-auto w-full' >
                 login
               </a>
             </Link>
 
             <Link href='/user/register'>
-              <a className='button-primary w-full'>
+              <a className='button-primary sm:w-auto w-full'>
                 register
               </a>
             </Link>

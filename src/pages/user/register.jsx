@@ -53,7 +53,7 @@ const Register = () => {
     <Layout>
       <div className='flex justify-center items-center'>
 
-        <div className='md:w-[50%] w-full card'>
+        <div className='card-2 my-5'>
           <div className='text-center mb-8'>
             <h3 className='text-[3rem]'>Create an Account</h3>
           </div>
@@ -77,7 +77,7 @@ const Register = () => {
               <input className='input-field' type="password" placeholder='password*' />
               <input className='input-field' type="password" placeholder='re password*' /> */}
             </div>
-            {error !== 'Server error GET' &&
+            {error !== 'Server error GET' || error !== 'Refresh token fail' &&
               <div className='flex justify-center -mt-5 mb-5'>
                 <span className='text-red-400 font-semibold uppercase'>{error} !</span>
               </div>

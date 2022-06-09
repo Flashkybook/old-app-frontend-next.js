@@ -47,7 +47,7 @@ export default function Login() {
       <div className='flex justify-center items-center mt-5'>
 
 
-        <div className='w-full md:w-[50%] card'>
+        <div className='card-2 my-5'>
           <div className='text-center mb-8'>
             <h3 className='text-[3rem]'>Login</h3>
   
@@ -69,7 +69,7 @@ export default function Login() {
               ))}
             </div>
 
-            {error !== 'Server error GET' &&
+            {error !== 'Server error GET'|| error !== 'Refresh token fail' &&
               <div className='flex justify-center -mt-5 mb-5'>
                 <span className='text-red-400 font-semibold uppercase'>{error} !</span>
               </div>
