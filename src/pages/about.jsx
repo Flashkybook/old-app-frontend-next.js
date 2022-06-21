@@ -10,44 +10,43 @@ const About = () => {
 
                 <h4 className='text-4xl mb-8'>
 
-                    ¡Hola! Gracias por visitar la web!
+                    Hello! Thank you for visiting the website!
                 </h4>
 
 
                 <h2 className='text-3xl mb-3 underline text-bold'>
-                    Sobre esta app:
+                    About this app:
                 </h2>
                 <div className='card-3 mx-auto'>
                     <h3>
-                        he desarrollado esta aplicación haciendo
-                        uso de <span className='underline text-teal-700 font-bold'>Django</span> y <span className='underline text-sky-700 font-bold'>React</span>
+                        I have developed this app making use of  <span className='underline text-teal-700 font-bold'>Django</span> and <span className='underline text-sky-700 font-bold'>React</span>
                     </h3>
                     <p>
-                        Esta aplicación la he creado para ayudar a todos a mejorar su avance en el aprendizaje de su idioma favorito
+                        I have created this application to help everyone to improve their progress in learning their favorite language in which many times we can feel stagnant.
                     </p>
                     <p>
-                        y próximamente estaré implementando mas funcionalidades, en el cual muchas veces nos podemos sentir estancados
+                        And soon I will be implementing more features.
                     </p>
                 </div>
 
                 <h2 className='text-3xl mb-3  mt-12 underline text-bold'>
-                    Sobre mi:
+                    About me:
                 </h2>
                 <div className='block card-3 mb-12'>
                     <h3>
-                        Mi nombre es Angel Riera, soy desarrollador FullStack apasionado por nunca parar de aprender,
-                        entre mis conocimientos como desarrollador tengo una variedad de lenguajes y herramientas frontend y backend
-                        en mi <a href="https://angelriera.notion.site/Angel-Riera-Full-Stack-Dev-Django-React-294be2e581fc4a65906221a4d803e586"
+                        My name is Angel Riera I am a FullStack web developer specialized in Django and React in my
+                        <a href="https://angelriera.notion.site/Angel-Riera-Full-Stack-Dev-Django-React-294be2e581fc4a65906221a4d803e586"
                             target={"_blank"} rel={"noreferrer"}
-                            className='underline text-teal-700 font-bold text-lg'>portafolio</a> puedes ver mas de lo que hablo
+                            className='underline text-teal-700 font-bold text-lg upercase'>portfolio</a>
+                        you can see more of my skills and projects.
 
                     </h3>
 
                     <p className='mt-2 text-lg flex items-center justify-start'>
-                        si esta aplicación fue realmente útil podrías considerar seguirme en mi twitter:
+                        if this application was really useful you might consider following me on my twitter:
                         <div className="inline-block">
                             <div className='whitespace-nowrap pt-1 mx-auto flex space-x-1'>
-                                <a href='https://twitter.com/ragnandroll' className='icon-social' target={"_blank"} rel="noreferrer">
+                                <a href='https://twitter.com/Angel7dev' className='icon-social' target={"_blank"} rel="noreferrer">
                                     <span className='sr-only'>Twitter</span>
                                     <svg className='w-6 h-6' aria-hidden='true' fill='currentColor' viewBox='0 0 24 24'>
                                         <path d='M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84'></path>
@@ -71,12 +70,11 @@ const About = () => {
                     </p>
                     <p className='mt-2 text-lg flex items-center justify-start'>
 
-                        o invitarme un café <a href="https://ko-fi.com/angelriera" target={"_blank"} rel={"noreferrer"}>
+                        or invite me for a coffee <a href="https://ko-fi.com/angelriera" target={"_blank"} rel={"noreferrer"}>
 
 
                             <div className="inline-block bg-blue-300  p-1 mx-2 rounded-full">
-
-                                <Image width={25} height={25} className='coffee'
+                                <img width={25} height={25} className='coffee'
                                     src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg"
                                     alt="Buy Me A Coffee" />
                             </div>

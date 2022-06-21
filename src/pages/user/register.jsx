@@ -48,19 +48,22 @@ const Register = () => {
   // una ves registrado el login debe ser automatico para evitar mandar mesajes de success
 
 
-
+  console.log(error)
   return (
     <Layout>
-      <div className='flex justify-center items-center'>
+      <div className='mx-[4%] flex justify-center items-center mt-5'>
+
 
         <div className='card-2 my-5'>
           <div className='text-center mb-8'>
             <h3 className='text-[3rem]'>Create an Account</h3>
           </div>
           <form method='POST' onSubmit={handlerSubmit}>
-            <div className="flex flex-col m-10 space-y-2 text-black">
+            <div className="flex flex-col mx-[2%] md:mx-5 mb-10 space-y-2 text-black">
+
               {Object.keys(formData).map((e, index) => (
                 <input
+                  autoComplete='off'
                   key={index}
                   value={formData[e]}
                   type={typeForm(e)}
@@ -77,14 +80,14 @@ const Register = () => {
               <input className='input-field' type="password" placeholder='password*' />
               <input className='input-field' type="password" placeholder='re password*' /> */}
             </div>
-            {error !== 'Server error GET' || error !== 'Refresh token fail' &&
+            {error !== 'Server error GET ' || error !== 'Refresh token fail' &&
               <div className='flex justify-center -mt-5 mb-5'>
                 <span className='text-red-400 font-semibold uppercase'>{error} !</span>
               </div>
             }
             <div className='flex justify-center mb-8'>
               <button className='input-field bg-slate-800 text-white w-1/3' type="submit">Register</button>
-            </div>            
+            </div>
           </form>
         </div>
       </div>

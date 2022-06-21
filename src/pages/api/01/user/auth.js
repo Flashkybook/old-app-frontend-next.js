@@ -97,7 +97,7 @@ export default async function auth(request, response){
                 return response.status(403).json({ error: 'Refresh token fail' })
             }
         } catch (error) {
-            response.status(402).json({ error: `Server error ${request.method}` })
+            response.status(402).json({ error: `Server error ${request.method}`})
         }
     } else {
         response.status(401).json({ error: `no soporta method ${request.method}` })

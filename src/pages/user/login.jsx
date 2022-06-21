@@ -44,16 +44,14 @@ export default function Login() {
 
   return (
     <Layout>
-      <div className='flex justify-center items-center mt-5'>
-
-
+      <div className='mx-[4%] flex justify-center items-center mt-5'>
         <div className='card-2 my-5'>
           <div className='text-center mb-8'>
             <h3 className='text-[3rem]'>Login</h3>
-  
+
           </div>
           <form method='POST' onSubmit={handlerSubmit}>
-            <div className="flex flex-col m-10 mt-0 space-y-2 text-black">
+            <div className="flex flex-col mx-[2%] md:mx-5 mb-10 space-y-2 text-black">
               {Object.keys(formData).map((e, index) => (
                 <input
                   autoComplete='off'
@@ -69,7 +67,7 @@ export default function Login() {
               ))}
             </div>
 
-            {error !== 'Server error GET'|| error !== 'Refresh token fail' &&
+            {error !== 'Server error GET ' || error !== 'Refresh token fail' &&
               <div className='flex justify-center -mt-5 mb-5'>
                 <span className='text-red-400 font-semibold uppercase'>{error} !</span>
               </div>
